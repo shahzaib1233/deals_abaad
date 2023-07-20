@@ -1,13 +1,66 @@
 <script lang="ts">
-    import "../style/app.css";
+	import '../style/app.css';
+	import { page } from '$app/stores';
 
-    import Header from "$lib/components/shared/header/header.svelte";
-	import Footer from "$lib/components/shared/footer/footer.svelte";
-	import GetInTouch from "$lib/components/shared/get_in_touch/get_in_touch.svelte";
-  </script>
-  
-  <Header/>
-  <slot />
-  <GetInTouch/>
-  <Footer/>
-  
+	import Header from '$lib/components/shared/header.svelte';
+	import Footer from '$lib/components/shared/footer.svelte';
+	import GetInTouch from '$lib/components/shared/get_in_touch.svelte';
+	import HeaderDark from '$lib/components/shared/header_dark.svelte';
+
+	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
+
+	const queryClient = new QueryClient();
+
+	const pagesWithoutLayout = [
+		'thankyou',
+		'login',
+		'register',
+		'otp',
+		'forget-password',
+		'reset-password',
+		'dealer-registration',
+		'user-login',
+		'dashboard'
+	];
+
+	const darkHeader = [
+		'profile',
+		'payment',
+		'privacy',
+		'terms',
+		'faq',
+		'refund',
+		'booking',
+		'saved-ads',
+		'wallet',
+		'deal-detail',
+		'get-deal',
+		'checkout',
+		'search'
+	];
+
+	let showDarkHeader = false;
+	let showLayout = false;
+
+	$: {
+		showDarkHeader = $page.url.pathname.split('/').some((each) => darkHeader.includes(each));
+		showLayout = $page.url.pathname.split('/').some((each) => pagesWithoutLayout.includes(each));
+	}
+</script>
+
+{#if !showLayout}
+	{#if showDarkHeader}
+		<HeaderDark />
+	{:else}
+		<Header />
+	{/if}
+{/if}
+
+<QueryClientProvider client={queryClient}>
+	<slot />
+</QueryClientProvider>
+
+{#if !showLayout}
+	<GetInTouch />
+	<Footer />
+{/if}

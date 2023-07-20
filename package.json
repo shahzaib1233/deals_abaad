@@ -15,6 +15,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/kit": "^1.20.4",
+		"@types/js-cookie": "^3.0.3",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.14",
@@ -32,5 +33,12 @@
 		"vite": "^4.4.2",
 		"vitest": "^0.32.2"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@tanstack/svelte-query": "^4.29.25",
+		"axios": "^1.4.0",
+		"js-cookie": "^3.0.5",
+		"svelte-headlessui": "^0.0.20",
+		"svelte-transition": "^0.0.10"
+	}
 }

@@ -23,10 +23,6 @@ body {
 	background-size: cover !important;
 }
 
-.contact__textarea textarea {
-	height: 18rem;
-}
-
 .image-zoom:hover .image-zoom__img {
 	transform: scale(1.2);
 }
