@@ -35,10 +35,13 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@floating-ui/dom": "^1.4.5",
 		"@tanstack/svelte-query": "^4.29.25",
 		"axios": "^1.4.0",
+		"flowbite": "^1.7.0",
 		"js-cookie": "^3.0.5",
 		"svelte-headlessui": "^0.0.20",
-		"svelte-transition": "^0.0.10"
+		"svelte-transition": "^0.0.10",
+		"tailwind-merge": "^1.14.0"
 	}
 }

@@ -6,10 +6,11 @@
 
 	export let list: any[];
 	export let key: string;
+	export let className: string = '';
 	export let onChange: (key: string, value: number) => void;
 
 	// TODO: type list so 'selected' isn't 'any'
-	const listbox = createListbox({ label: 'Actions', selected: list[0] });
+	$: listbox = createListbox({ label: 'Actions', selected: list[0] });
 
 	function onSelect(e: Event) {
 		console.log('select', (e as CustomEvent).detail);
@@ -18,12 +19,12 @@
 </script>
 
 <div class="flex w-full flex-col items-center justify-center">
-	<div class="border rounded-md w-[14rem]">
+	<div class="border rounded-md w-[14rem] {className}">
 		<div class="relative mt-1">
 			<button
 				use:listbox.button
 				on:select={onSelect}
-				class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+				class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm h-[2rem]"
 			>
 				<span class="block truncate">{$listbox.selected.label}</span>
 				<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -40,7 +41,7 @@
 			>
 				<ul
 					use:listbox.items
-					class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+					class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-[999]"
 				>
 					{#each list as value, i}
 						{@const active = $listbox.active === value}

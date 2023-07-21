@@ -6,6 +6,12 @@ export const getDealsApi = async () => {
 	});
 };
 
+export const getSingleDealApi = async (id: string) => {
+	return await axiosFunction({
+		url: `deal/${id}`
+	});
+};
+
 export const searchDealApi = async ({
 	project,
 	cities,

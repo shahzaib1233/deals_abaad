@@ -1,0 +1,124 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+
+	export let data: any;
+
+	import Button from '../shared/button.svelte';
+	import ListBox from '../shared/list_box.svelte';
+
+	let selectedData: any = {
+		floors: 0,
+		units: 0
+	};
+
+	const updateData = (key: string, value: number) => {
+		selectedData[`${key}`] = value;
+	};
+
+	interface GroupedData {
+		floorId: string;
+		saleper: number;
+		floorName: string;
+		price: number;
+		unitno: string[];
+		dealId: number;
+		inventoryId: number;
+	}
+
+	let calculatedInventory: GroupedData[] = [];
+
+	const groupedData: { [key: string]: GroupedData } = {};
+
+	data.DealInventory.map((item: any) => {
+		const floorId: string = item.inventory.floorId.toString();
+		if (!groupedData[floorId]) {
+			groupedData[floorId] = {
+				floorId: floorId,
+				saleper: data.saleper,
+				dealId: item.dealId,
+				inventoryId: item.inventoryId,
+				floorName: item.inventory.floors.name,
+				price: item.inventory.totalSalePrice,
+				unitno: [item.inventory.unitno]
+			};
+		} else {
+			groupedData[floorId].unitno.push(item.inventory.unitno);
+		}
+	});
+
+	calculatedInventory = Object.values(groupedData);
+	console.log(calculatedInventory);
+
+	const floors = calculatedInventory.map((item) => ({
+		value: item.floorId,
+		label: item.floorName
+	}));
+
+	$: units = calculatedInventory
+		.find((item) => item.floorId == selectedData.floors.toString())
+		?.unitno.map((item: any) => ({
+			value: item,
+			label: item
+		}));
+
+	let price = '';
+
+	$: {
+		let prevPrice = calculatedInventory.find(
+			(item) => item.floorId == selectedData.floors.toString()
+		)?.price;
+
+		let prevSale = calculatedInventory.find(
+			(item) => item.floorId == selectedData.floors.toString()
+		)?.saleper;
+
+		price = ((prevPrice ? +prevPrice : 0) - (prevSale ? +prevSale : 0)).toLocaleString();
+	}
+
+	onMount(() => {
+		selectedData.floors = floors[0].value;
+	});
+</script>
+
+<div class="bg-[#F2F5F7] px-10 py-10 rounded-md w-full">
+	<div
+		class="bg-[#4A6594] rounded-md h-[3rem] flex items-center justify-center mb-[1rem] w-[100%] min-w-[25rem]"
+	>
+		<span class="text-white text-[1.3rem]">Select Your Unit</span>
+	</div>
+	<Button
+		className="bg-[#FFD624] hover:bg-[#FFD624] text-[#1A202C] h-[3rem] rounded-md ml-0 sm:ml-0"
+		type="submit"
+		label="View Floor Plan"
+		onclick={() => {}}
+	/>
+	<div class="mt-[1rem] flex flex-col">
+		<label>Select Floor Number</label>
+		<ListBox list={floors} key="floors" onChange={updateData} className="w-full mb-4" />
+		<label>Select Unit Number</label>
+		<ListBox
+			list={units ?? [{ value: 0, label: '' }]}
+			key="units"
+			onChange={updateData}
+			className="w-full"
+		/>
+		{#if data.referral}
+			<div class="mt-[1.5rem] flex text-[#4B4B4B] text-[1rem] font-bold cursor-pointer">
+				<img src="/images/checkout/voucher.png" alt="32" />
+				<span class="ml-4">Apply Voucher/Referral Code</span>
+			</div>
+		{/if}
+
+		<span class="text-left mt-4 text-[1.2rem] font-bold"> *Total Unit Price </span>
+		<span class="text-left mt-2 mb-4 text-[1.4rem] font-bold">
+			{price}
+		</span>
+		<Button
+			className="bg-[#FFD624] hover:bg-[#FFD624] h-[2.5rem] text-[#1A202C] rounded-md ml-0 sm:ml-0"
+			type="submit"
+			onclick={() => {}}
+			label="Get The Deal"
+		/>
+		<span class="text-left mt-2"> *Select payment schedule on next page </span>
+	</div>
+</div>
