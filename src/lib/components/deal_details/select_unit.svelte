@@ -64,7 +64,9 @@
 			label: item
 		}));
 
+	let salePrice = 0;
 	let price = 0;
+	let discount = 0;
 	let referralAmount = 0;
 
 	$: {
@@ -75,6 +77,9 @@
 		let prevSale = calculatedInventory.find(
 			(item) => item.floorId == selectedData.floors.toString()
 		)?.saleper;
+
+		salePrice = prevPrice ?? 0;
+		discount = prevSale ?? 0;
 
 		price = (prevPrice ? +prevPrice : 0) - (prevSale ? +prevSale : 0) - referralAmount;
 	}
@@ -131,10 +136,30 @@
 			</div>
 		{/if}
 
-		<span class="text-left mt-4 text-[1.2rem] font-bold"> *Total Unit Price </span>
-		<span class="text-left mt-2 mb-4 text-[1.4rem] font-bold">
-			{price}
-		</span>
+		<div class="flex justify-between mt">
+			<span class="text-left mt-4 text-[1.2rem] font-bold"> *Total Sale Price </span>
+			<span class="text-left mt-2 mb-4 text-[1.4rem] font-bold">
+				Rs. {price.toLocaleString()}/-
+			</span>
+		</div>
+		<div class="flex justify-between">
+			<span class="text-left mt-4 text-[1.2rem] font-bold"> *Discount</span>
+			<span class="text-left mt-2 mb-4 text-[1.4rem] font-bold">
+				{discount.toLocaleString()}%
+			</span>
+		</div>
+		<div class="flex justify-between">
+			<span class="text-left mt-4 text-[1.2rem] font-bold"> *Referral Amount</span>
+			<span class="text-left mt-2 mb-4 text-[1.4rem] font-bold">
+				Rs. {referralAmount.toLocaleString()}/-
+			</span>
+		</div>
+		<div class="flex justify-between">
+			<span class="text-left mt-2 text-[1.2rem] font-bold"> *Total Unit Price </span>
+			<span class="text-left mt-2 mb-4 text-[1.4rem] font-bold">
+				Rs. {price.toLocaleString()}/-
+			</span>
+		</div>
 		<Button
 			className="bg-[#FFD624] hover:bg-[#FFD624] h-[2.5rem] text-[#1A202C] rounded-md ml-0 sm:ml-0"
 			type="submit"
