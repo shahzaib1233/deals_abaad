@@ -2,6 +2,12 @@
 	import { goto } from '$app/navigation';
 	import CheckoutPaymentCard from '$lib/components/checkout/checkout_payment_card.svelte';
 	import Button from '$lib/components/shared/button.svelte';
+	import axios from 'axios';
+	const submitHandler = async ()=>{
+		const res = await axios.post('sales/create',
+		
+		) 
+	}
 </script>
 
 <div class="my-container pt-[10.25rem]">

@@ -1,0 +1,55 @@
+import type { GETDEALFIELDS } from '$lib/types/getDealFields';
+import { writable } from 'svelte/store';
+
+export const paymentStore = writable<GETDEALFIELDS>({
+	name: '',
+	email: '',
+	FatherHusbandname: '',
+	guardian: '',
+	cnic: '',
+	dob: '',
+	mobileno: '',
+	residenceno: '',
+	officeno: '',
+	address: '',
+	country: '',
+	city: '',
+	zipcode: '',
+	nomineename: '',
+	nomineeFatherHusbandname: '',
+	nomineerelation: '',
+	nomineedob: '',
+	nomineecnic: '',
+	nomineephoneno: '',
+	nomineeaddress: '',
+	nomineedeclaration: true,
+	confirmationcheck: true,
+	paymenttype: '',
+	paymentplanId: 0,
+	bookingamount: 0,
+	totalAmount: 0,
+	salestatus: '',
+	referralcode: '',
+	sellingprice: 0,
+	promodiscount: 0,
+	referraldiscount: 0,
+	netsellingprice: 0,
+	unitno: '',
+	floor: '',
+	block: '',
+	registrationno: '',
+	inventoryId: 0,
+	projectId: 0,
+	downpayment: 0,
+	monthly: 0,
+	biannual: 0,
+	quaterly: 0,
+	yearly: 0,
+	possession: 0,
+	confirmationAmount: 0,
+	noofinstallments: 0
+});
+
+export function setPaymentFields(paymentFields: GETDEALFIELDS) {
+	paymentStore.update((state: any) => paymentFields);
+}

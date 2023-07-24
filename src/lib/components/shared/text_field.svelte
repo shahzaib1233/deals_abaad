@@ -46,6 +46,14 @@
 			{placeholder}
 			class="flex-1 focus:outline-none px-3 py-2 rounded-md border border-[#ced4da] text-[1rem] {className}"
 		/>
+	{:else if type == 'date'}
+		<input
+			{required}
+			type="date"
+			bind:value
+			{placeholder}
+			class="flex-1 focus:outline-none px-3 py-2 rounded-md border border-[#ced4da] text-[1rem] {className}"
+		/>
 	{:else if type == 'password'}
 		<div class="flex-1 px-3 py-2 rounded-md border border-[#ced4da] text-[1rem] flex {className}">
 			{#if passwordType == 'password'}

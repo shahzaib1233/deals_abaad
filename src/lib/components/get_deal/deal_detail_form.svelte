@@ -1,133 +1,211 @@
-<script>
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { setPaymentFields } from '$lib/stores/payment';
+	import type { GETDEALFIELDS } from '$lib/types/getDealFields';
+	import axiosFunction from '$lib/utils/network';
 	import TextField from '../shared/text_field.svelte';
+
+	export let fields: GETDEALFIELDS;
+	export let paymentBtn: HTMLButtonElement;
+
+	const submit = async () => {
+		try {
+			const res = await axiosFunction({ url: 'sale/create', method: 'POST', data: fields });
+			setPaymentFields(fields);
+			goto('/checkout');
+			console.log(res);
+		} catch (error) {
+			console.log('Error:', error);
+		}
+	};
 </script>
 
-<div class="mt-[1rem]">
-	<span class="text-[1.6rem] font-bold"> Please Fill out the Application Form </span>
-</div>
-<div class="mt-[1rem]">
-	<span class="text-[#4B4B4B]">
-		Dear Sir, I have undersigned hereby request register my name for allotment of Residential Luxury
-		Flats & Commercial Shop in your project GFS Builders AND Developers
-	</span>
-</div>
-<div class="mt-[1rem]">
-	<span class="text-[#4B4B4B]"> MY PARTICULARS ARE AS UNDER (PLEASE WRITE IN BLOCK LETTERS) </span>
-</div>
-<div class="flex flex-col md:flex-row mt-[1rem]">
-	<TextField
-		label="Name in Full Mr/Mrs/Miss"
-		withAsterisk
-		required
-		className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
-		value=""
-	/>
-	<TextField label="C.N.I.C" className="md:w-[21.75rem]" withAsterisk required value="" />
-</div>
-<div class="flex flex-col md:flex-row mt-[1rem]">
-	<TextField
-		label="Father's / Husband Name"
-		withAsterisk
-		required
-		className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
-		value=""
-	/>
-	<TextField label="Guardian" className="md:w-[21.75rem]" value="" />
-</div>
-<div class="flex flex-col md:flex-row mt-[1rem]">
-	<TextField
-		label="Date of Birth"
-		withAsterisk
-		required
-		className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
-		value=""
-	/>
-	<TextField label="Cell No" className="md:w-[21.75rem]" withAsterisk required value="" />
-</div>
-<div class="flex flex-col md:flex-row mt-[1rem]">
-	<TextField label="Residence No" className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0" value="" />
-	<TextField label="Address" className="md:w-[21.75rem]" withAsterisk required value="" />
-</div>
-<div class="flex flex-col md:flex-row mt-[1rem]">
-	<TextField label="Phone No. Office" className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0" value="" />
-	<TextField label="Country / Region" className="md:w-[21.75rem]" withAsterisk required value="" />
-</div>
-<div class="flex flex-col md:flex-row mt-[1rem]">
-	<TextField
-		label="Town / City"
-		withAsterisk
-		required
-		className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
-		value=""
-	/>
-	<TextField label="Postcode / ZIP" className="md:w-[21.75rem]" value="" />
-</div>
-<div class="flex mt-[1rem]">
-	<TextField
-		label="Email address"
-		withAsterisk
-		required
-		className="md:mr-3 md:w-[21.75rem]"
-		value=""
-	/>
-</div>
-<div class="flex mt-[1rem]">
-	<div>
-		<input type="checkbox" name="" id="" />
+<form on:submit={submit}>
+	<div class="mt-[1rem]">
+		<span class="text-[1.6rem] font-bold"> Please Fill out the Application Form </span>
 	</div>
-	<div class="flex-1 ml-[1rem]">
-		<span>
-			I hereby declare that I have read and understood the terms and conditions of allotment of flat
-			and accept the same, and further declare that I shall abide by the existing rules and
-			regulations, conditions, requirements, etc., which may be presented by you and approved by the
-			authority for the purchase of a flat in this project.
+	<div class="mt-[1rem]">
+		<span class="text-[#4B4B4B]">
+			Dear Sir, I have undersigned hereby request register my name for allotment of Residential
+			Luxury Flats & Commercial Shop in your project GFS Builders AND Developers
 		</span>
 	</div>
-</div>
-<div class="text-[1.1rem] w-[70%] flex flex-col mt-[1rem]">
-	<span class="text-[#4B4B4B]">NOMINATION</span>
-	<span class="text-[#4B4B4B]">(Nominee should not be a minor)</span>
-</div>
-<div class="flex flex-col md:flex-row mt-[1rem]">
-	<TextField
-		label="Full Name"
-		withAsterisk
-		className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
-		value=""
-	/>
-	<TextField label="Father/Husband Name" className="md:w-[21.75rem]" withAsterisk value="" />
-</div>
-<div class="flex flex-col md:flex-row mt-[1rem]">
-	<TextField
-		label="Relation"
-		withAsterisk
-		className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
-		value=""
-	/>
-	<TextField label="Date of Birth" className="md:w-[21.75rem]" withAsterisk value="" />
-</div>
-<div class="flex flex-col md:flex-row mt-[1rem]">
-	<TextField label="CNIC" withAsterisk className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0" value="" />
-	<TextField label="Phone Number" className="md:w-[21.75rem]" withAsterisk value="" />
-</div>
-<div class="flex flex-col md:flex-row mt-[1rem]">
-	<TextField
-		label="Address"
-		withAsterisk
-		className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
-		value=""
-	/>
-</div>
-<div class="flex mt-[1rem]">
-	<div>
-		<input type="checkbox" name="" id="" />
-	</div>
-	<div class="flex-1 ml-[1rem]">
-		<span>
-			I hereby declared that in case of my death before the execution of Lease/Sub-Lease of the unit
-			alloted to me, my above -named nominee shall be by successir-in-interest and Lease/Sub-Lease
-			for all purposes under this Agreement of Allotment of Plot subject to the compliance of all
-			the terms and conditions/undertakings.
+	<div class="mt-[1rem]">
+		<span class="text-[#4B4B4B]">
+			MY PARTICULARS ARE AS UNDER (PLEASE WRITE IN BLOCK LETTERS)
 		</span>
 	</div>
-</div>
+	<div class="flex flex-col md:flex-row mt-[1rem]">
+		<TextField
+			label="Name in Full Mr/Mrs/Miss"
+			withAsterisk
+			required
+			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
+			bind:value={fields.name}
+		/>
+		<TextField
+			label="C.N.I.C"
+			className="md:w-[21.75rem]"
+			withAsterisk
+			required
+			bind:value={fields.cnic}
+		/>
+	</div>
+	<div class="flex flex-col md:flex-row mt-[1rem]">
+		<TextField
+			label="Father's / Husband Name"
+			withAsterisk
+			required
+			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
+			bind:value={fields.FatherHusbandname}
+		/>
+		<TextField label="Guardian" className="md:w-[21.75rem]" bind:value={fields.guardian} />
+	</div>
+	<div class="flex flex-col md:flex-row mt-[1rem]">
+		<TextField
+			label="Date of Birth"
+			type="date"
+			withAsterisk
+			required
+			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
+			bind:value={fields.dob}
+		/>
+		<TextField
+			label="Cell No"
+			className="md:w-[21.75rem]"
+			withAsterisk
+			required
+			bind:value={fields.mobileno}
+		/>
+	</div>
+	<div class="flex flex-col md:flex-row mt-[1rem]">
+		<TextField
+			label="Residence No"
+			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
+			bind:value={fields.residenceno}
+		/>
+		<TextField
+			label="Address"
+			className="md:w-[21.75rem]"
+			withAsterisk
+			required
+			bind:value={fields.address}
+		/>
+	</div>
+	<div class="flex flex-col md:flex-row mt-[1rem]">
+		<TextField
+			label="Phone No. Office"
+			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
+			bind:value={fields.officeno}
+		/>
+		<TextField
+			label="Country / Region"
+			className="md:w-[21.75rem]"
+			withAsterisk
+			required
+			bind:value={fields.country}
+		/>
+	</div>
+	<div class="flex flex-col md:flex-row mt-[1rem]">
+		<TextField
+			label="Town / City"
+			withAsterisk
+			required
+			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
+			bind:value={fields.city}
+		/>
+		<TextField label="Postcode / ZIP" className="md:w-[21.75rem]" bind:value={fields.zipcode} />
+	</div>
+	<div class="flex mt-[1rem]">
+		<TextField
+			type="email"
+			label="Email address"
+			withAsterisk
+			required
+			className="md:mr-3 md:w-[21.75rem]"
+			bind:value={fields.email}
+		/>
+	</div>
+	<div class="flex mt-[1rem]">
+		<div>
+			<input type="checkbox" name="" id="" required bind:checked={fields.confirmationcheck} />
+		</div>
+		<div class="flex-1 ml-[1rem]">
+			<span>
+				I hereby declare that I have read and understood the terms and conditions of allotment of
+				flat and accept the same, and further declare that I shall abide by the existing rules and
+				regulations, conditions, requirements, etc., which may be presented by you and approved by
+				the authority for the purchase of a flat in this project.
+			</span>
+		</div>
+	</div>
+	<div class="text-[1.1rem] w-[70%] flex flex-col mt-[1rem]">
+		<span class="text-[#4B4B4B]">NOMINATION</span>
+		<span class="text-[#4B4B4B]">(Nominee should not be a minor)</span>
+	</div>
+	<div class="flex flex-col md:flex-row mt-[1rem]">
+		<TextField
+			label="Full Name"
+			withAsterisk
+			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
+			bind:value={fields.nomineename}
+		/>
+		<TextField
+			label="Father/Husband Name"
+			className="md:w-[21.75rem]"
+			withAsterisk
+			bind:value={fields.nomineeFatherHusbandname}
+		/>
+	</div>
+	<div class="flex flex-col md:flex-row mt-[1rem]">
+		<TextField
+			label="Relation"
+			withAsterisk
+			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
+			bind:value={fields.nomineerelation}
+		/>
+		<TextField
+			label="Date of Birth"
+			type="date"
+			className="md:w-[21.75rem]"
+			withAsterisk
+			bind:value={fields.nomineedob}
+		/>
+	</div>
+	<div class="flex flex-col md:flex-row mt-[1rem]">
+		<TextField
+			label="CNIC"
+			withAsterisk
+			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
+			bind:value={fields.nomineecnic}
+		/>
+		<TextField
+			label="Phone Number"
+			className="md:w-[21.75rem]"
+			withAsterisk
+			bind:value={fields.nomineephoneno}
+		/>
+	</div>
+	<div class="flex flex-col md:flex-row mt-[1rem]">
+		<TextField
+			label="Address"
+			withAsterisk
+			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
+			bind:value={fields.nomineeaddress}
+		/>
+	</div>
+	<div class="flex mt-[1rem]">
+		<div>
+			<input type="checkbox" name="" id="" required bind:checked={fields.nomineedeclaration} />
+		</div>
+		<div class="flex-1 ml-[1rem]">
+			<span>
+				I hereby declared that in case of my death before the execution of Lease/Sub-Lease of the
+				unit alloted to me, my above -named nominee shall be by successir-in-interest and
+				Lease/Sub-Lease for all purposes under this Agreement of Allotment of Plot subject to the
+				compliance of all the terms and conditions/undertakings.
+			</span>
+		</div>
+	</div>
+	<button bind:this={paymentBtn} type="submit" class="hidden" />
+</form>

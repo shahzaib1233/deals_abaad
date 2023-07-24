@@ -81,7 +81,10 @@
 		salePrice = prevPrice ?? 0;
 		discount = prevSale ?? 0;
 
-		price = (prevPrice ? +prevPrice : 0) - (prevSale ? +prevSale : 0) - referralAmount;
+		price =
+			((prevPrice ? +prevPrice : 0) - (prevSale ? +prevSale : 0)) *
+				(1 - (prevSale ? +prevSale : 0) / 100) -
+			referralAmount;
 	}
 
 	onMount(() => {
@@ -100,7 +103,14 @@
 		setInventory({
 			inventoryId: Number(inventoryData?.inventoryId),
 			dealId: Number(inventoryData?.dealId),
-			price: price
+			price: price,
+			saleprice: salePrice,
+			discount: discount,
+			referralamount: referralAmount,
+			floor: floors.find((floor) => floor.value == selectedData.floors)?.label ?? '',
+			unitno: units?.find((unit) => unit.value == selectedData.units)?.label ?? '',
+			bookingPrice: data.price,
+			projectId: data.projectId
 		});
 		goto('/get-deal');
 	};
@@ -139,7 +149,7 @@
 		<div class="flex justify-between mt">
 			<span class="text-left mt-4 text-[1.2rem]"> *Total Sale Price </span>
 			<span class="text-left mt-2 mb-4 text-[1.4rem]">
-				Rs. {price.toLocaleString()}/-
+				Rs. {salePrice.toLocaleString()}/-
 			</span>
 		</div>
 		<div class="flex justify-between">

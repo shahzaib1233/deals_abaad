@@ -3,14 +3,23 @@
 	import { onMount } from 'svelte';
 	import Button from '../shared/button.svelte';
 	import { inventoyStore } from '$lib/stores/inventory';
+	import { setPaymentFields } from '$lib/stores/payment';
 
 	export let isLoggedIn: boolean;
 	export let plan: any;
-
+	export let fields: any;
+	export let paymentBtn: HTMLButtonElement;
 	let price: number;
+
+	let bookingAmount = 0;
+
+	let confirmationAmount = 0;
+
+	let confirmationCheck = false;
 
 	inventoyStore.subscribe((value) => {
 		price = value.price;
+		bookingAmount = value.bookingPrice;
 	});
 
 	let paymentData = {
@@ -23,8 +32,6 @@
 		quarterlyPayments: 0,
 		noOfInstallments: 0
 	};
-
-	let bookingAmount = 0;
 
 	let paymentPlan = 1;
 
@@ -44,12 +51,18 @@
 				paymentData.possession) /
 			paymentData.noOfInstallments;
 
-		bookingAmount =
+		confirmationAmount =
 			paymentData.downPayment > 0 ? paymentData.downPayment : paymentData.amountPerInstallment;
 	});
+
+	const paymentHandler = () => {
+		paymentBtn.click();
+		setPaymentFields(fields);
+		// goto('/checkout');
+	};
 </script>
 
-<div class="bg-[#F2F5F7] min-w-[30rem] h-[43rem] p-[2rem] rounded-md">
+<div class="bg-[#F2F5F7] min-w-[30rem] h-[45rem] p-[2rem] rounded-md">
 	<div class="flex justify-between">
 		<div class="flex items-center">
 			<label for="plan1" class="text-[#4B4B4B] text-[1.125rem]">Payment Plan One</label>
@@ -92,6 +105,10 @@
 				{paymentData.possession.toFixed(2)}/-{' '}
 			</span>
 		</h2>
+		<h2 class="mt-3">
+			<input type="checkbox" id="camount" bind:checked={confirmationCheck} />{' '}
+			<label for="camount">Confirmation Amount</label>{' '}
+		</h2>
 		<h2 class="mt-[2rem] font-bold">BOOKING & PAYMENT DETAILS</h2>
 	</div>
 	<div class="flex justify-between mt-[1rem]">
@@ -104,14 +121,27 @@
 		<span>Booking Amount</span>
 		<span>Rs {bookingAmount.toFixed(2)} </span>
 	</div>
+	{#if confirmationCheck}
+		<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
+			<span>Confirmation Amount</span>
+			<span>Rs {confirmationAmount.toFixed(2)} </span>
+		</div>
+	{/if}
 	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
 		<span>Total</span>
-		<span>Rs {bookingAmount.toFixed(2)}</span>
+		<span
+			>Rs
+			{#if confirmationCheck}
+				{(bookingAmount + confirmationAmount).toFixed(2)}
+			{:else}
+				{bookingAmount.toFixed(2)}
+			{/if}
+		</span>
 	</div>
 	<Button
 		className="rounded-md w-[14.438rem] mt-6 h-[2.5rem]"
 		type="submit"
-		onclick={() => goto('/checkout')}
+		onclick={() => paymentHandler()}
 		disabled={!isLoggedIn}
 		label="Get The Deal"
 	/>
