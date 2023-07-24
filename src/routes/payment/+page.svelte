@@ -1,5 +1,6 @@
 <script>
-	import Button from '../../lib/components/shared/Button.svelte';
+	import Button from "$lib/components/shared/button.svelte";
+
 
 	let loading = false;
 
