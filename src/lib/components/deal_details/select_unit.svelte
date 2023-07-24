@@ -137,20 +137,20 @@
 		{/if}
 
 		<div class="flex justify-between mt">
-			<span class="text-left mt-4 text-[1.2rem] font-bold"> *Total Sale Price </span>
-			<span class="text-left mt-2 mb-4 text-[1.4rem] font-bold">
+			<span class="text-left mt-4 text-[1.2rem]"> *Total Sale Price </span>
+			<span class="text-left mt-2 mb-4 text-[1.4rem]">
 				Rs. {price.toLocaleString()}/-
 			</span>
 		</div>
 		<div class="flex justify-between">
-			<span class="text-left mt-4 text-[1.2rem] font-bold"> *Discount</span>
-			<span class="text-left mt-2 mb-4 text-[1.4rem] font-bold">
+			<span class="text-left mt-4 text-[1.2rem]"> *Discount</span>
+			<span class="text-left mt-2 mb-4 text-[1.4rem]">
 				{discount.toLocaleString()}%
 			</span>
 		</div>
 		<div class="flex justify-between">
-			<span class="text-left mt-4 text-[1.2rem] font-bold"> *Referral Amount</span>
-			<span class="text-left mt-2 mb-4 text-[1.4rem] font-bold">
+			<span class="text-left mt-4 text-[1.2rem]"> *Referral Amount</span>
+			<span class="text-left mt-2 mb-4 text-[1.4rem]">
 				Rs. {referralAmount.toLocaleString()}/-
 			</span>
 		</div>
