@@ -1,6 +1,6 @@
 <script>
 
-	import RegisterFom from "$lib/components/register/register_fom.svelte";
+	import RegisterForm from "$lib/components/register/register_fom.svelte";
 
 </script>
 <div class="w-full min-h-screen flex">
@@ -12,6 +12,6 @@
       />
     </div>
     <div class="flex-1 flex justify-center items-center">
-      <RegisterFom />
+      <RegisterForm />
     </div>
   </div>
