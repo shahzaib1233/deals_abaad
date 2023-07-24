@@ -5,18 +5,23 @@
 	import nav from '$lib/utils/nav';
 
 	import Button from '$lib/components/shared/button.svelte';
+	import Cookies from 'js-cookie';
+	import Popover from './popover.svelte';
+	import { redirect } from '@sveltejs/kit';
 
 	let dark = false;
 
 	let header: HTMLHeadElement;
 	let topBar: HTMLDivElement;
 
+	let token: any = Cookies.get('token');
+
 	const scrollFunction = () => {
 		if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
 			header.classList.remove('absolute');
 			header.classList.add('fixed');
 			header.classList.add('top-0');
-			header.classList.add('z-[999]');
+			header.classList.add('z-[1]');
 			header.classList.add('bg-white');
 			header.classList.add('shadow-lg');
 
@@ -38,6 +43,11 @@
 	onMount(() => {
 		window.onscroll = () => scrollFunction();
 	});
+
+	const logout = () => {
+		Cookies.remove('token');
+		token = null;
+	};
 </script>
 
 <header class="absolute w-full" bind:this={header}>
@@ -52,8 +62,31 @@
 			</div>
 			<div class="flex items-center gap-6">
 				<Button label="Dealer Registrations" onclick={() => goto('/dealer-registration')} />
-
-				<Button label="Login" onclick={() => goto('/login')} />
+				{#if token}
+					<Popover>
+						<svelte:fragment slot="body">
+							<button
+								class="bg-[#FFD624] hover:bg-[#FFD624] w-[4rem] rounded-md flex items-center justify-center h-[2.4rem]"
+							>
+								<img src="/icons/user.svg" alt="" />
+							</button>
+						</svelte:fragment>
+						<svelte:fragment slot="menu">
+							<ul class="flex flex-col w-full text-[1rem] cursor-pointer">
+								<li class="w-full">
+									<a href="" class="pt-2 px-4 w-full flex">Profile</a>
+								</li>
+								<li><a href="" class="pt-2 px-4 w-full flex">Payment</a></li>
+								<li><a href="" class="pt-2 px-4 w-full flex">My booking</a></li>
+								<li><a href="" class="pt-2 px-4 w-full flex">My saved ads</a></li>
+								<li><a href="" class="py-2 px-4 w-full flex">Wallet</a></li>
+								<li on:click={logout} class="border-t py-2 px-4 w-full">Logout</li>
+							</ul>
+						</svelte:fragment>
+					</Popover>
+				{:else}
+					<Button label="Login" onclick={() => goto('/login')} />
+				{/if}
 			</div>
 		</div>
 		<div class="flex items-center justify-between py-4">

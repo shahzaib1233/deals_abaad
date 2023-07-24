@@ -5,6 +5,7 @@
 	export let desc: string = '';
 	export let image: string;
 	export let search: boolean = false;
+	export let dropdown: any;
 </script>
 
 <div
@@ -24,6 +25,6 @@
 		</p>
 	{/if}
 	{#if search}
-		<HeroSearch />
+		<HeroSearch {dropdown} />
 	{/if}
 </div>

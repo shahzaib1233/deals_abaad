@@ -1,53 +1,21 @@
 <script>
 	import HeroSearch from '$lib/components/shared/hero_search.svelte';
 	import ProductCard from '$lib/components/shared/product_card.svelte';
-	import Spinner from '$lib/components/shared/spinner.svelte';
-	import { searchDealApi } from '$lib/modules/deal/api/deal_api';
-	import { createQuery, useQueryClient } from '@tanstack/svelte-query';
-	import { page } from '$app/stores';
 
-	const project = $page.url.searchParams.get('project');
-	const cities = $page.url.searchParams.get('cities');
-	const location = $page.url.searchParams.get('location');
-	const property = $page.url.searchParams.get('property');
+	export let data;
 
-	let isLoading = false;
-
-	const queryClient = useQueryClient();
-
-	$: {
-		console.log($page.url);
-		queryClient.invalidateQueries({ queryKey: ['search_deals'] });
-
-		isLoading = true;
-	}
-
-	$: query = createQuery({
-		queryKey: ['search_deals'],
-		queryFn: () =>
-			searchDealApi({
-				project: project ? +project : 0,
-				cities: cities ? +cities : 0,
-				location: location ? +location : 0,
-				property: property ? +property : 0
-			})
-	});
+	
 </script>
 
 <main>
 	<div class="my-container pt-[10.25rem]">
 		<div class="w-full border rounded-2xl pb-[5rem] flex items-center justify-center">
-			<HeroSearch />
+			<HeroSearch dropdown={data.dropdown} />
 		</div>
-		{#if $query.isLoading}
-			<div class="mt-16">
-				<Spinner />
-			</div>
-		{:else if $query.isSuccess}
-			{#if $query?.data?.data.length}
+			{#if data.search.length}
 				<div class="my-container pt-[2.25rem]">
 					<div class="flex flex-wrap gap-[1.5rem] mt-[4rem]">
-						{#each $query?.data?.data as item}
+						{#each data.search as item}
 							<ProductCard
 								productId={item.id}
 								name={item.name}
@@ -71,6 +39,5 @@
 					</div>
 				</div>
 			{/if}
-		{/if}
 	</div>
 </main>

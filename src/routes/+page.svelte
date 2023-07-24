@@ -7,6 +7,8 @@
 	import PlayVideo from '$lib/components/home/play_video.svelte';
 	import CustomerTestimonial from '$lib/components/home/customer_testimonial.svelte';
 	import AmazingDeals from '$lib/components/home/amazing_deals.svelte';
+
+	export let data;
 </script>
 
 <main>
@@ -15,9 +17,10 @@
 		desc="Grab these dream properties before they gone"
 		image="/images/home-hero.png"
 		search={true}
+		dropdown={data.dropdown}
 	/>
-	<Category />
-	<AmazingDeals />
+	<Category category={data.category} />
+	<AmazingDeals deals={data.deals} />
 	<PlayVideo />
 	<CustomerTestimonial />
 	<HowItWorks />

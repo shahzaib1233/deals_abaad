@@ -1,22 +1,12 @@
 <script lang="ts">
-	import { getCategoryApi } from '$lib/modules/category/api/category_api';
-
-	import { createQuery } from '@tanstack/svelte-query';
-	import Spinner from '../shared/spinner.svelte';
-
-	const query = createQuery({
-		queryKey: ['categories'],
-		queryFn: () => getCategoryApi()
-	});
+	export let category: any;
 </script>
 
 <div
 	class="my-container flex flex-col md:flex-row items-center gap-[1.5rem] my-[4rem] lg:my-[5rem] py-[3rem]"
 >
-	{#if $query.isLoading}
-		<Spinner />
-	{:else if $query.isSuccess}
-		{#each $query?.data?.data as item}
+	
+		{#each category as item}
 			<div class="md:flex-1">
 				<a href={`/deal/${item.id}`}>
 					<img
@@ -27,5 +17,4 @@
 				</a>
 			</div>
 		{/each}
-	{/if}
 </div>

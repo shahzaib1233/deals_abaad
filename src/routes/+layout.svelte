@@ -8,6 +8,7 @@
 	import HeaderDark from '$lib/components/shared/header_dark.svelte';
 
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
+	import Toast from '$lib/components/shared/toast.svelte';
 
 	const queryClient = new QueryClient();
 
@@ -64,3 +65,5 @@
 	<GetInTouch />
 	<Footer />
 {/if}
+
+<Toast/>

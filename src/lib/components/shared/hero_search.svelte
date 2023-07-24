@@ -1,14 +1,11 @@
 <script lang="ts">
-	import { createQuery } from '@tanstack/svelte-query';
 	import Button from './button.svelte';
 	import ListBox from './list_box.svelte';
 	import { getDropdownApi } from '$lib/modules/home/api/home_api';
 	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
-	const query = createQuery({
-		queryKey: ['dropdown'],
-		queryFn: () => getDropdownApi()
-	});
+	export let dropdown: any;
 
 	const data: any = {
 		project: 0,
@@ -21,40 +18,40 @@
 		data[`${key}`] = value;
 	};
 
-	const project = $query.data?.data
+	$: project = dropdown
 		? [
 				{ label: 'All', value: 0 },
-				...$query.data?.data?.project.map((item: any) => ({
+				...dropdown?.project.map((item: any) => ({
 					value: item.id,
 					label: item.name
 				}))
 		  ]
 		: [{ label: 'All', value: 0 }];
 
-	const cities = $query.data?.data
+	$: cities = dropdown
 		? [
 				{ label: 'All', value: 0 },
-				...$query.data?.data?.cities.map((item: any) => ({
+				...dropdown?.cities.map((item: any) => ({
 					value: item.id,
 					label: item.name
 				}))
 		  ]
 		: [{ label: 'All', value: 0 }];
 
-	const location = $query.data?.data
+	$: location = dropdown
 		? [
 				{ label: 'All', value: 0 },
-				...$query.data?.data?.location.map((item: any) => ({
+				...dropdown?.location.map((item: any) => ({
 					value: item.id,
 					label: item.name
 				}))
 		  ]
 		: [{ label: 'All', value: 0 }];
 
-	const property = $query.data?.data
+	$: property = dropdown
 		? [
 				{ label: 'All', value: 0 },
-				...$query.data?.data?.property.map((item: any) => ({
+				...dropdown?.property.map((item: any) => ({
 					value: item.id,
 					label: item.name
 				}))

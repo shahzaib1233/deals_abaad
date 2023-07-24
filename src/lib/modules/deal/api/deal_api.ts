@@ -34,3 +34,20 @@ export const searchDealApi = async ({
 		}
 	});
 };
+
+export const paymentPlanApi = async ({
+	dealId,
+	inventoryId,
+}: {
+	dealId: number;
+	inventoryId: number;
+}) => {
+	return await axiosFunction({
+		url: 'deal/payment-plan',
+		method: 'POST',
+		data: {
+			dealId,
+			inventoryId,
+		}
+	});
+};

@@ -1,0 +1,122 @@
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import Button from '../shared/button.svelte';
+	import { inventoyStore } from '$lib/stores/inventory';
+
+	export let isLoggedIn: boolean;
+	export let plan: any;
+
+	let price: number;
+
+	inventoyStore.subscribe((value) => {
+		price = value.price;
+	});
+
+	let paymentData = {
+		sellingPrice: 0,
+		downPayment: 0,
+		possession: 0,
+		amountPerInstallment: 0,
+		annualPayment: 0,
+		biannualPayments: 0,
+		quarterlyPayments: 0,
+		noOfInstallments: 0
+	};
+
+	let bookingAmount = 0;
+
+	let paymentPlan = 1;
+
+	onMount(() => {
+		paymentData.downPayment = (price / 100) * +plan[0].downpayment;
+		paymentData.possession = (price / 100) * +plan[0].possessionamount;
+		paymentData.annualPayment = (price / 100) * +plan[0].annualpayment;
+		paymentData.biannualPayments = (price / 100) * +plan[0].biannualpayments;
+		paymentData.quarterlyPayments = (price / 100) * +plan[0].quarterlypayments;
+		paymentData.noOfInstallments = +plan[0].noOfInstallments;
+		paymentData.amountPerInstallment =
+			(price -
+				paymentData.downPayment -
+				paymentData.annualPayment -
+				paymentData.biannualPayments -
+				paymentData.quarterlyPayments -
+				paymentData.possession) /
+			paymentData.noOfInstallments;
+
+		bookingAmount =
+			paymentData.downPayment > 0 ? paymentData.downPayment : paymentData.amountPerInstallment;
+	});
+</script>
+
+<div class="bg-[#F2F5F7] min-w-[30rem] h-[43rem] p-[2rem] rounded-md">
+	<div class="flex justify-between">
+		<div class="flex items-center">
+			<label for="plan1" class="text-[#4B4B4B] text-[1.125rem]">Payment Plan One</label>
+			<input
+				type="radio"
+				color="yellow"
+				checked={paymentPlan == 1}
+				name="plan"
+				id="plan1"
+				on:change={() => {
+					paymentPlan = 1;
+				}}
+				class="ml-[1rem] md:ml-[2.5rem]"
+			/>
+		</div>
+	</div>
+	<div class="mt-[2rem] text-[1.188rem]">
+		<h2 class="mt-3">
+			Down Payment
+			<span class="ml-4">
+				{paymentData.downPayment.toFixed(2)}/-{' '}
+			</span>
+		</h2>
+		<h2 class="mt-3">
+			Monthly ({paymentData.noOfInstallments}){' '}
+			<span class="ml-4">
+				{paymentData.amountPerInstallment.toFixed(2)}/-
+			</span>
+		</h2>
+
+		<h2 class="mt-3">
+			Yearly ({(paymentData.noOfInstallments / 12).toFixed(0)}){' '}
+			<span class="ml-4">
+				{paymentData.annualPayment.toFixed(2)}/-{' '}
+			</span>
+		</h2>
+		<h2 class="mt-3">
+			Possession{' '}
+			<span class="ml-4">
+				{paymentData.possession.toFixed(2)}/-{' '}
+			</span>
+		</h2>
+		<h2 class="mt-[2rem] font-bold">BOOKING & PAYMENT DETAILS</h2>
+	</div>
+	<div class="flex justify-between mt-[1rem]">
+		<span>Product</span>
+		<span>Subtotal</span>
+	</div>
+	<hr class="border-gray-300 border-1 mt-2" />
+
+	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
+		<span>Booking Amount</span>
+		<span>Rs {bookingAmount.toFixed(2)} </span>
+	</div>
+	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
+		<span>Total</span>
+		<span>Rs {bookingAmount.toFixed(2)}</span>
+	</div>
+	<Button
+		className="rounded-md w-[14.438rem] mt-6 h-[2.5rem]"
+		type="submit"
+		onclick={() => goto('/checkout')}
+		disabled={!isLoggedIn}
+		label="Get The Deal"
+	/>
+	<h2 class="w-[90%] mt-6">
+		Your personal data will be used to process your order, support your experience throughout this
+		website, and for other purposes described in our privacy policy.
+	</h2>
+</div>

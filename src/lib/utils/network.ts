@@ -1,6 +1,7 @@
 import axios from 'axios';
 import AppError from './error';
 import Cookies from 'js-cookie';
+import { toast } from '../stores/notification';
 
 interface FetchProps {
 	method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
@@ -47,6 +48,7 @@ const axiosFunction = async ({
 			return response;
 		})
 		.catch(function (error) {
+			toast({ heading: 'Error', text: error.response.data.message, type: 'error' });
 			throw new AppError(error.response.data.message);
 		});
 

@@ -5,6 +5,9 @@
 
 	import Button from '../shared/button.svelte';
 	import ListBox from '../shared/list_box.svelte';
+	import VoucherModal from './voucher_modal.svelte';
+	import { setInventory } from '$lib/stores/inventory';
+	import { goto } from '$app/navigation';
 
 	let selectedData: any = {
 		floors: 0,
@@ -61,7 +64,8 @@
 			label: item
 		}));
 
-	let price = '';
+	let price = 0;
+	let referralAmount = 0;
 
 	$: {
 		let prevPrice = calculatedInventory.find(
@@ -72,12 +76,29 @@
 			(item) => item.floorId == selectedData.floors.toString()
 		)?.saleper;
 
-		price = ((prevPrice ? +prevPrice : 0) - (prevSale ? +prevSale : 0)).toLocaleString();
+		price = (prevPrice ? +prevPrice : 0) - (prevSale ? +prevSale : 0) - referralAmount;
 	}
 
 	onMount(() => {
 		selectedData.floors = floors[0].value;
 	});
+
+	let showModal = false;
+	const handleToggleModal = () => {
+		showModal = !showModal;
+	};
+
+	const submit = () => {
+		const inventoryData = calculatedInventory.find(
+			(inventory) => inventory.floorId == selectedData.floors
+		);
+		setInventory({
+			inventoryId: Number(inventoryData?.inventoryId),
+			dealId: Number(inventoryData?.dealId),
+			price: price
+		});
+		goto('/get-deal');
+	};
 </script>
 
 <div class="bg-[#F2F5F7] px-10 py-10 rounded-md w-full">
@@ -88,11 +109,9 @@
 	</div>
 	<Button
 		className="bg-[#FFD624] hover:bg-[#FFD624] text-[#1A202C] h-[3rem] rounded-md ml-0 sm:ml-0"
-		type="submit"
 		label="View Floor Plan"
-		onclick={() => {}}
 	/>
-	<div class="mt-[1rem] flex flex-col">
+	<form class="mt-[1rem] flex flex-col" on:submit|preventDefault={submit}>
 		<label>Select Floor Number</label>
 		<ListBox list={floors} key="floors" onChange={updateData} className="w-full mb-4" />
 		<label>Select Unit Number</label>
@@ -103,7 +122,10 @@
 			className="w-full"
 		/>
 		{#if data.referral}
-			<div class="mt-[1.5rem] flex text-[#4B4B4B] text-[1rem] font-bold cursor-pointer">
+			<div
+				class="mt-[1.5rem] flex text-[#4B4B4B] text-[1rem] font-bold cursor-pointer"
+				on:click={handleToggleModal}
+			>
 				<img src="/images/checkout/voucher.png" alt="32" />
 				<span class="ml-4">Apply Voucher/Referral Code</span>
 			</div>
@@ -116,9 +138,10 @@
 		<Button
 			className="bg-[#FFD624] hover:bg-[#FFD624] h-[2.5rem] text-[#1A202C] rounded-md ml-0 sm:ml-0"
 			type="submit"
-			onclick={() => {}}
 			label="Get The Deal"
 		/>
 		<span class="text-left mt-2"> *Select payment schedule on next page </span>
-	</div>
+	</form>
 </div>
+
+<VoucherModal {showModal} {handleToggleModal} bind:referralAmount />
