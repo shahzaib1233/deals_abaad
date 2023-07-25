@@ -13,7 +13,7 @@
 	let header: HTMLHeadElement;
 	let topBar: HTMLDivElement;
 
-	let token: any = Cookies.get('token');
+	export let token: any;
 
 	const scrollFunction = () => {
 		if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
@@ -43,6 +43,10 @@
 		Cookies.remove('token');
 		token = null;
 	};
+
+	function redirectHandler(route: string) {
+		goto(route);
+	}
 </script>
 
 <header class="absolute w-full" bind:this={header}>
@@ -55,12 +59,6 @@
 			<div class="flex items-center gap-6">
 				<Button label="Dealer Registrations" onclick={() => goto('/dealer-registration')} />
 				{#if token}
-					<button
-						class="bg-[#FFD624] hover:bg-[#FFD624] w-[4rem] rounded-md flex items-center justify-center h-[2.4rem]"
-					>
-						<img src="/icons/user.svg" alt="" />
-					</button>
-				{:else if token}
 					<Popover>
 						<svelte:fragment slot="body">
 							<button
@@ -72,13 +70,32 @@
 						<svelte:fragment slot="menu">
 							<ul class="flex flex-col w-full text-[1rem] cursor-pointer">
 								<li class="w-full">
-									<a href="" class="pt-2 px-4 w-full flex">Profile</a>
+									<button on:click={() => redirectHandler('/profile')} class="pt-2 px-4 w-full flex"
+										>Profile</button
+									>
 								</li>
-								<li><a href="" class="pt-2 px-4 w-full flex">Payment</a></li>
-								<li><a href="" class="pt-2 px-4 w-full flex">My booking</a></li>
-								<li><a href="" class="pt-2 px-4 w-full flex">My saved ads</a></li>
-								<li><a href="" class="py-2 px-4 w-full flex">Wallet</a></li>
-								<li on:click={logout} class="border-t py-2 px-4 w-full">Logout</li>
+								<li>
+									<button on:click={() => redirectHandler('/payment')} class="pt-2 px-4 w-full flex"
+										>Payment</button
+									>
+								</li>
+								<li>
+									<button on:click={() => redirectHandler('/booking')} class="pt-2 px-4 w-full flex"
+										>My booking</button
+									>
+								</li>
+								<li>
+									<button
+										on:click={() => redirectHandler('/saved-ads')}
+										class="pt-2 px-4 w-full flex">My saved ads</button
+									>
+								</li>
+								<li>
+									<button on:click={() => redirectHandler('/wallet')} class="py-2 px-4 w-full flex"
+										>Wallet</button
+									>
+								</li>
+								<li on:click={() => logout} class="border-t py-2 px-4 w-full">Logout</li>
 							</ul>
 						</svelte:fragment>
 					</Popover>

@@ -1,6 +1,5 @@
 <script>
-	import Button from "$lib/components/shared/button.svelte";
-
+	import Button from '$lib/components/shared/button.svelte';
 
 	let loading = false;
 
@@ -41,11 +40,7 @@
 		</div>
 		<div class="flex items-center mt-[5rem]">
 			<div class="flex justify-center">
-				<img
-					class="w-14 h-14"
-					src="https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-					alt="profile"
-				/>
+				<img class="w-14 h-14" src="/images/user-picture.png" alt="profile" />
 			</div>
 			<div class="ml-[1rem]">
 				<p class="font-bold text-[1.2rem]">Asad Ahmed Khan</p>

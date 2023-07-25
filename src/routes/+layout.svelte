@@ -10,6 +10,8 @@
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 	import Toast from '$lib/components/shared/toast.svelte';
 
+	export let data;
+
 	const queryClient = new QueryClient();
 
 	const pagesWithoutLayout = [
@@ -51,9 +53,9 @@
 
 {#if !showLayout}
 	{#if showDarkHeader}
-		<HeaderDark />
+		<HeaderDark token={data.token} />
 	{:else}
-		<Header />
+		<Header token={data.token} />
 	{/if}
 {/if}
 
@@ -66,4 +68,4 @@
 	<Footer />
 {/if}
 
-<Toast/>
+<Toast />

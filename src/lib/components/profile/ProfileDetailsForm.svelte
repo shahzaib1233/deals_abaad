@@ -1,23 +1,28 @@
 <script>
+	import { goto } from '$app/navigation';
+	import { toast } from '$lib/stores/notification';
+	import Cookies from 'js-cookie';
 	import Button from '../shared/button.svelte';
 	import TextField from '../shared/text_field.svelte';
+
+	let loading = false;
 </script>
 
 <div class="my-container pt-[14.25rem]">
 	<div
-		class="bg-[#F2F5F7] min-h-[35.5rem] rounded-2xl flex flex-col items-left justify-left px-10 py-10"
+		class="bg-[#F2F5F7] min-h-[35.5rem] rounded-2xl flex flex-col items-left justify-left px-20 py-20"
 	>
 		<div
-			class="w-64 h-12 absolute top-273 left-288 font-semibold text-[4rem] leading-12 text-left text-[#1A202C]"
+			class="w-64 h-12 absolute top-273 left-288 font-semibold text-4xl leading-12 text-left text-[#1A202C]"
 		>
 			My Profile
 		</div>
 		<div class="flex items-center mt-[5rem]">
 			<div class="flex justify-center">
-				<img class="w-14 h-14" src="images/user-picture.png" alt="profile" />
+				<img class="w-14 h-14" src="/images/user-picture.png" alt="profile" />
 			</div>
 			<div class="ml-[1rem]">
-				<p class="font-bold text-[1.2rem]">Athar Rasool</p>
+				<p class="font-bold text-[1.2rem]">athar rasool</p>
 				<p>atharrasool210@gmail.com</p>
 			</div>
 		</div>
@@ -25,104 +30,93 @@
 
 		<div class="flex flex-col md:flex-row justify-center items-center">
 			<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
-				<TextField type="text" value="" />
+				<h2>First Name</h2>
 			</div>
 			<div class="flex items-start pl-4 mb-4 md:mb-0">
-				<!-- <TextInput value={fname?.toString()} className="w-[23rem]" size="lg" /> -->
-				<TextField type="text" value="" />
+				<TextField value="" className="w-[23rem]" />
 			</div>
 		</div>
 		<div class="flex flex-col md:flex-row justify-center items-center mt-4">
 			<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
-				<!-- <Text size="lg">Last Name</Text> -->
-				<TextField type="text" value="Last Name" />
+				<h2>Last Name</h2>
 			</div>
 			<div class="flex items-start pl-4 mb-4 md:mb-0">
-				<!-- <TextInput value={lname?.toString()} class="w-[23rem]" size="lg" /> -->
-				<TextField type="text" value="" />
+				<TextField value="" className="w-[23rem]" />
 			</div>
 		</div>
 		<div class="flex flex-col md:flex-row justify-center items-center mt-4">
 			<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
-				<!-- <Text size="lg">Gender</Text> -->
-				<TextField type="text" value="" />
+				<h2>Gender</h2>
 			</div>
 			<div class="flex items-start pl-4">
-				<!-- <NativeSelect
-					className="w-[23rem]"
-					size="lg"
-					data={['Male', 'Female', 'Other']}
-					withAsterisk
-				/> -->
-				<TextField type="text" value="" />
+				<TextField value="" className="w-[23rem]" />
 			</div>
 		</div>
 
 		<div class="flex flex-col md:flex-row justify-center items-center mt-4">
 			<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
-				<!-- <Text size="lg">Date Of Birth</Text> -->
-				<TextField type="text" value="" />
+				<h2>Date Of Birth</h2>
 			</div>
 			<div class="flex items-start pl-4">
-				<!-- <DatePickerInput {value} onChange={setValue} mx="auto" size="lg" className="w-[23rem]" /> -->
-				<TextField type="text" value="" />
+				<TextField value="" className="w-[23rem]" />
 			</div>
 		</div>
 
 		<div class="flex flex-col md:flex-row justify-center items-center mt-4">
 			<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
-				<!-- <Text size="lg">Country</Text> -->
+				<h2>Country</h2>
 			</div>
 			<div class="flex items-start pl-4">
-				<!-- <TextInput value="Pakistan" className="w-[23rem]" size="lg" /> -->
+				<TextField value="" className="w-[23rem]" />
 			</div>
 		</div>
 
 		<div class="flex flex-col md:flex-row justify-center items-center mt-4">
 			<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
-				<!-- <Text size="lg">City</Text> -->
+				<h2>City</h2>
 			</div>
 			<div class="flex items-start pl-4">
-				<!-- <TextInput className="w-[23rem]" value="Karachi" size="lg" /> -->
+				<TextField value="" className="w-[23rem]" />
 			</div>
 		</div>
 
 		<div class="flex flex-col md:flex-row justify-center items-center mt-4">
 			<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
-				<!-- <Text size="lg">Email</Text> -->
+				<h2>Email</h2>
 			</div>
 			<div class="flex items-start pl-4">
-				<!-- <TextInput value={email?.toString()} className="w-[23rem]" size="lg" readOnly /> -->
+				<TextField value="" className="w-[23rem]" />
 			</div>
 		</div>
 
 		<div class="flex flex-col md:flex-row justify-center items-center mt-4">
 			<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
-				<!-- <Text size="lg">Add Number</Text> -->
+				<h2>Add Number</h2>
 			</div>
 			<div class="flex items-start pl-4">
-				<!-- <TextInput value={contactno?.toString()} className="w-[23rem]" size="lg" readOnly /> -->
+				<TextField value="" className="w-[23rem]" />
 			</div>
 		</div>
 
 		<div class="flex flex-col md:flex-row justify-center items-center mt-4">
-			<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
-				<!-- <Text size="lg" class="whitespace-nowrap">Change Password</Text> -->
+			<div
+				class="flex items-end pr-4 w-32 justify-start md:justify-end text-right whitespace-nowrap"
+			>
+				<h2>Change Password</h2>
 			</div>
 			<div class="flex items-start pl-4">
-				<!-- <TextInput type="password" value="12345678" className="w-[23rem]" size="lg" withAsterisk /> -->
+				<TextField value="" className="w-[23rem]" />
 			</div>
 		</div>
 		<div class="flex flex-col md:flex-row justify-center items-start mt-4">
 			<div class="flex items-start pr-4 w-32" />
 			<div class="flex items-start pl-4">
-				<!-- <Button
-					className="bg-[#FFD624] hover:bg-[#FFD624] text-[#1A202C] mb-[0.563rem]"
-					size="lg"
+				<Button
+					className="bg-[#FFD624] hover:bg-[#FFD624] text-[#1A202C] h-[3rem] "
 					type="submit"
-				>
-					Save Changes
-				</Button> -->
+					{loading}
+					label="Save Changes"
+				/>
 			</div>
 		</div>
 	</div>

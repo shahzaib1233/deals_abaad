@@ -51,22 +51,22 @@
 		<TextField
 			type="text"
 			bind:value={data.otp1}
-			className="w-[7rem] h-16 text-3xl  border border-white-300 text-center mx-1 outline-none focus:ring-2 focus:ring-blue-500"
+			className="w-[7rem] h-22 text-[2rem]  border border-white-300 text-center mx-1 outline-none focus:ring-2 focus:ring-blue-500"
 		/>
 		<TextField
 			type="text"
 			bind:value={data.otp2}
-			className="w-[7rem] h-16 text-3xl  border border-gray-300 text-center mx-1 outline-none focus:ring-2 focus:ring-blue-500"
+			className="w-[7rem] h-22 text-[2rem]  border border-gray-300 text-center mx-1 outline-none focus:ring-2 focus:ring-blue-500"
 		/>
 		<TextField
 			type="text"
 			bind:value={data.otp3}
-			className="w-[7rem] h-16 text-3xl  border border-gray-300 text-center mx-1 outline-none focus:ring-2 focus:ring-blue-500"
+			className="w-[7rem] h-22 text-[2rem]  border border-gray-300 text-center mx-1 outline-none focus:ring-2 focus:ring-blue-500"
 		/>
 		<TextField
 			type="text"
 			bind:value={data.otp4}
-			className="w-[7rem] h-16 text-3xl  border border-gray-300 text-center mx-1 outline-none focus:ring-2 focus:ring-blue-500"
+			className="w-[7rem] h-22 text-[2rem]  border border-gray-300 text-center mx-1 outline-none focus:ring-2 focus:ring-blue-500"
 		/>
 	</div>
 

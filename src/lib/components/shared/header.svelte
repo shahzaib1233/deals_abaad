@@ -14,7 +14,7 @@
 	let header: HTMLHeadElement;
 	let topBar: HTMLDivElement;
 
-	let token: any = Cookies.get('token');
+	export let token: any;
 
 	const scrollFunction = () => {
 		if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
@@ -48,6 +48,9 @@
 		Cookies.remove('token');
 		token = null;
 	};
+	function redirectHandler(route: string) {
+		goto(route);
+	}
 </script>
 
 <header class="absolute w-full" bind:this={header}>
@@ -74,12 +77,34 @@
 						<svelte:fragment slot="menu">
 							<ul class="flex flex-col w-full text-[1rem] cursor-pointer">
 								<li class="w-full">
-									<a href="" class="pt-2 px-4 w-full flex">Profile</a>
+									<a href="/profile" class="pt-2 px-4 w-full flex">Profile</a>
 								</li>
-								<li><a href="" class="pt-2 px-4 w-full flex">Payment</a></li>
-								<li><a href="" class="pt-2 px-4 w-full flex">My booking</a></li>
-								<li><a href="" class="pt-2 px-4 w-full flex">My saved ads</a></li>
-								<li><a href="" class="py-2 px-4 w-full flex">Wallet</a></li>
+								<li class="w-full">
+									<button on:click={() => redirectHandler('/profile')} class="pt-2 px-4 w-full flex"
+										>Profile</button
+									>
+								</li>
+								<li>
+									<button on:click={() => redirectHandler('/payment')} class="pt-2 px-4 w-full flex"
+										>Payment</button
+									>
+								</li>
+								<li>
+									<button on:click={() => redirectHandler('/booking')} class="pt-2 px-4 w-full flex"
+										>My booking</button
+									>
+								</li>
+								<li>
+									<button
+										on:click={() => redirectHandler('/saved-ads')}
+										class="pt-2 px-4 w-full flex">My saved ads</button
+									>
+								</li>
+								<li>
+									<button on:click={() => redirectHandler('/wallet')} class="py-2 px-4 w-full flex"
+										>Wallet</button
+									>
+								</li>
 								<li on:click={logout} class="border-t py-2 px-4 w-full">Logout</li>
 							</ul>
 						</svelte:fragment>
