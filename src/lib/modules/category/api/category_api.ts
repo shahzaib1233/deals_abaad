@@ -11,3 +11,9 @@ export const getCategoryWithDealsApi = async () => {
 		url: 'category/deals'
 	});
 };
+
+export const getSingleCategoryDetailApi = async (id: string) => {
+	return await axiosFunction({
+		url: `category/${id}`
+	});
+};
