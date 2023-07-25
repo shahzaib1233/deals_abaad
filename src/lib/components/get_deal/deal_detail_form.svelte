@@ -13,11 +13,10 @@
 
 	const submit = async () => {
 		try {
-			const res = await axiosFunction({ url: 'sale/create', method: 'POST', data: fields });
+			
 			setPaymentFields(fields);
 			localStorage.setItem('dealDetails', JSON.stringify(fields));
 			goto('/checkout');
-			console.log(res);
 		} catch (error) {
 			console.log('Error:', error);
 		}
