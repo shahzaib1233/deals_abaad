@@ -12,6 +12,7 @@
 		try {
 			const res = await axiosFunction({ url: 'sale/create', method: 'POST', data: fields });
 			setPaymentFields(fields);
+			localStorage.setItem('dealDetails', JSON.stringify(fields));
 			goto('/checkout');
 			console.log(res);
 		} catch (error) {
@@ -128,15 +129,21 @@
 	</div>
 	<div class="flex mt-[1rem]">
 		<div>
-			<input type="checkbox" name="" id="" required bind:checked={fields.confirmationcheck} />
+			<input
+				type="checkbox"
+				name=""
+				id="confirmation"
+				required
+				bind:checked={fields.allotmentcheck}
+			/>
 		</div>
 		<div class="flex-1 ml-[1rem]">
-			<span>
+			<label for="confirmation">
 				I hereby declare that I have read and understood the terms and conditions of allotment of
 				flat and accept the same, and further declare that I shall abide by the existing rules and
 				regulations, conditions, requirements, etc., which may be presented by you and approved by
 				the authority for the purchase of a flat in this project.
-			</span>
+			</label>
 		</div>
 	</div>
 	<div class="text-[1.1rem] w-[70%] flex flex-col mt-[1rem]">
@@ -196,15 +203,21 @@
 	</div>
 	<div class="flex mt-[1rem]">
 		<div>
-			<input type="checkbox" name="" id="" required bind:checked={fields.nomineedeclaration} />
+			<input
+				type="checkbox"
+				name=""
+				id="nomineedeclaration"
+				required
+				bind:checked={fields.nomineedeclaration}
+			/>
 		</div>
 		<div class="flex-1 ml-[1rem]">
-			<span>
+			<label for="nomineedeclaration">
 				I hereby declared that in case of my death before the execution of Lease/Sub-Lease of the
 				unit alloted to me, my above -named nominee shall be by successir-in-interest and
 				Lease/Sub-Lease for all purposes under this Agreement of Allotment of Plot subject to the
 				compliance of all the terms and conditions/undertakings.
-			</span>
+			</label>
 		</div>
 	</div>
 	<button bind:this={paymentBtn} type="submit" class="hidden" />

@@ -56,23 +56,34 @@
 		yearly: 0,
 		possession: 0,
 		confirmationAmount: 0,
-		noofinstallments: 0
+		noofinstallments: 0,
+		allotmentcheck: true
 	};
 
-	inventoyStore.subscribe((value) => {
-		fields.inventoryId = value.inventoryId;
-		fields.totalAmount = value.price;
-		fields.sellingprice = value.saleprice;
-		fields.promodiscount = value.discount;
-		fields.referraldiscount = value.referralamount;
-		fields.floor = value.floor;
-		fields.unitno = value.unitno;
-		fields.bookingamount = value.bookingPrice;
-		fields.projectId = value.projectId;
-	});
+	// inventoyStore.subscribe((value) => {
+	// 	fields.inventoryId = value.inventoryId;
+	// 	fields.totalAmount = value.price;
+	// 	fields.sellingprice = value.saleprice;
+	// 	fields.promodiscount = value.discount;
+	// 	fields.referraldiscount = value.referralamount;
+	// 	fields.floor = value.floor;
+	// 	fields.unitno = value.unitno;
+	// 	fields.bookingamount = value.bookingPrice;
+	// 	fields.projectId = value.projectId;
+	// });
 
 	onMount(() => {
 		isLoggedIn = Cookies.get('token') ? true : false;
+		fields.inventoryId = data.inventoryValue.inventoryId;
+		fields.totalAmount = data.inventoryValue.price;
+		fields.sellingprice = data.inventoryValue.saleprice;
+		fields.promodiscount = data.inventoryValue.discount;
+		fields.referraldiscount = data.inventoryValue.referralamount;
+		fields.floor = data.inventoryValue.floor;
+		fields.unitno = data.inventoryValue.unitno;
+		fields.bookingamount = data.inventoryValue.bookingPrice;
+		fields.projectId = data.inventoryValue.projectId;
+
 		fields.downpayment = (fields.totalAmount / 100) * +data.paymentPlan[0].downpayment;
 		fields.possession = (fields.totalAmount / 100) * +data.paymentPlan[0].possessionamount;
 		fields.yearly = (fields.totalAmount / 100) * +data.paymentPlan[0].annualpayment;
@@ -103,6 +114,14 @@
 				<DealLoginForm bind:isLoggedIn />
 			{/if}
 		</div>
-		<DealPaymentCard bind:isLoggedIn plan={data.paymentPlan} bind:fields bind:paymentBtn />
+		<DealPaymentCard
+			bind:isLoggedIn
+			plan={data.paymentPlan}
+			price={data.inventoryValue?.price}
+			saleprice={data.inventoryValue?.saleprice}
+			bookingAmount={data.inventoryValue?.bookingPrice}
+			bind:fields
+			bind:paymentBtn
+		/>
 	</div>
 </div>

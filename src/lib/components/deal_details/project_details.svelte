@@ -3,17 +3,17 @@
 </script>
 
 <div class="">
-	<h2 class="text-[1.3rem] font-bold">Project details</h2>
+	<h2 class="text-[1.3rem] font-bold">Project? details</h2>
 	<ul class="list-disc list-inside text-[#4B4B4B] mt-[1rem] text-[1.1rem]">
-		<li>Project Name: {data.project.name}</li>
-		<li>Price: {data.price.toLocaleString()}</li>
+		<li>Project? Name: {data?.project?.name}</li>
+		<li>Price: {data?.price?.toLocaleString()}</li>
 	</ul>
 	<hr class="border-t-2 border-gray-300 my-6" />
 </div>
 <div class="">
 	<h2 class="text-[1.3rem] font-bold">Description</h2>
 	<h2 class="text-[#4B4B4B] mt-[1rem] text-[1.1rem]">
-		{data.desc}
+		{data?.desc}
 	</h2>
 	<hr class="border-t-2 border-gray-300 my-6" />
 </div>
@@ -21,7 +21,7 @@
 	<h2 class="text-[1.3rem] font-bold">Features</h2>
 	<div class="flex flex-col md:flex-row items-center">
 		<div class="flex flex-wrap">
-			{#each data.project.ProjectsFeature as item}
+			{#each data?.project?.ProjectsFeature as item}
 				<div class="flex items-center mb-2 mr-4">
 					<img src="/images/bookings/water.png" alt="" />
 					<span class="ml-2">{item.feature.name}</span>
@@ -34,9 +34,9 @@
 <div class="">
 	<h2 class="text-[1.3rem] font-bold">Address</h2>
 	<ul class="list-disc list-inside text-[#4B4B4B] mt-[1rem] text-[1.1rem]">
-		<li class="mt-2">Name: {data.project.description}</li>
-		<li class="mt-2">Address: {data.project.address}</li>
-		<li class="mt-2">Area: {data.project.description}</li>
+		<li class="mt-2">Name: {data?.project?.description}</li>
+		<li class="mt-2">Address: {data?.project?.address}</li>
+		<li class="mt-2">Area: {data?.project?.description}</li>
 	</ul>
 
 	<hr class="border-t-2 border-gray-300 my-6" />
@@ -47,7 +47,7 @@
 		<div class="flex mb-2 mr-4">
 			<img src="/images/bookings/sq.png" alt="" />
 			<span class="ml-2 whitespace-nowrap">
-				{data.project.totalsize + ' ' + data.project.sizestype}
+				{data?.project?.totalsize + ' ' + data?.project?.sizestype}
 			</span>
 		</div>
 	</div>

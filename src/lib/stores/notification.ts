@@ -6,7 +6,7 @@ export const notifications = writable<Notification[]>([]);
 
 export function toast(notification: Notification) {
 	notifications.update((state) => [notification, ...state]);
-	setTimeout(removeToast, 2000);
+	setTimeout(removeToast, 5000);
 }
 
 function removeToast() {

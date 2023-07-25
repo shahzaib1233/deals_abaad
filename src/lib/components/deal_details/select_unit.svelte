@@ -100,18 +100,33 @@
 		const inventoryData = calculatedInventory.find(
 			(inventory) => inventory.floorId == selectedData.floors
 		);
-		setInventory({
-			inventoryId: Number(inventoryData?.inventoryId),
-			dealId: Number(inventoryData?.dealId),
-			price: price,
-			saleprice: salePrice,
-			discount: discount,
-			referralamount: referralAmount,
-			floor: floors.find((floor) => floor.value == selectedData.floors)?.label ?? '',
-			unitno: units?.find((unit) => unit.value == selectedData.units)?.label ?? '',
-			bookingPrice: data.price,
-			projectId: data.projectId
-		});
+		// setInventory({
+		// 	inventoryId: Number(inventoryData?.inventoryId),
+		// 	dealId: Number(inventoryData?.dealId),
+		// 	price: price,
+		// 	saleprice: salePrice,
+		// 	discount: discount,
+		// 	referralamount: referralAmount,
+		// 	floor: floors.find((floor) => floor.value == selectedData.floors)?.label ?? '',
+		// 	unitno: units?.find((unit) => unit.value == selectedData.units)?.label ?? '',
+		// 	bookingPrice: data.price,
+		// 	projectId: data.projectId
+		// });
+		localStorage.setItem(
+			'inventory',
+			JSON.stringify({
+				inventoryId: Number(inventoryData?.inventoryId),
+				dealId: Number(inventoryData?.dealId),
+				price: price,
+				saleprice: salePrice,
+				discount: discount,
+				referralamount: referralAmount,
+				floor: floors.find((floor) => floor.value == selectedData.floors)?.label ?? '',
+				unitno: units?.find((unit) => unit.value == selectedData.units)?.label ?? '',
+				bookingPrice: data.price,
+				projectId: data.projectId
+			})
+		);
 		goto('/get-deal');
 	};
 </script>
@@ -147,27 +162,27 @@
 		{/if}
 
 		<div class="flex justify-between mt">
-			<span class="text-left mt-4 text-[1.2rem]"> *Total Sale Price </span>
+			<span class="text-left mt-4 text-[1.2rem]"> *Standard Price </span>
 			<span class="text-left mt-2 mb-4 text-[1.4rem]">
-				Rs. {salePrice.toLocaleString()}/-
+				Rs. {salePrice?.toLocaleString()}/-
 			</span>
 		</div>
 		<div class="flex justify-between">
-			<span class="text-left mt-4 text-[1.2rem]"> *Discount</span>
+			<span class="text-left mt-4 text-[1.2rem]"> *Discount ({discount?.toLocaleString()}%)</span>
 			<span class="text-left mt-2 mb-4 text-[1.4rem]">
-				{discount.toLocaleString()}%
+				Rs. {((salePrice * discount) / 100).toLocaleString()}/-
 			</span>
 		</div>
 		<div class="flex justify-between">
-			<span class="text-left mt-4 text-[1.2rem]"> *Referral Amount</span>
+			<span class="text-left mt-4 text-[1.2rem]"> *Referral Discount</span>
 			<span class="text-left mt-2 mb-4 text-[1.4rem]">
-				Rs. {referralAmount.toLocaleString()}/-
+				Rs. {referralAmount?.toLocaleString()}/-
 			</span>
 		</div>
 		<div class="flex justify-between">
-			<span class="text-left mt-2 text-[1.2rem] font-bold"> *Total Unit Price </span>
+			<span class="text-left mt-2 text-[1.2rem] font-bold"> *Net Unit Price </span>
 			<span class="text-left mt-2 mb-4 text-[1.4rem] font-bold">
-				Rs. {price.toLocaleString()}/-
+				Rs. {price?.toLocaleString()}/-
 			</span>
 		</div>
 		<Button

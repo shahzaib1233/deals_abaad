@@ -1,25 +1,17 @@
 import { paymentPlanApi } from '$lib/modules/deal/api/deal_api.js';
-import { inventoyStore } from '$lib/stores/inventory.js';
 
 export const load = async () => {
 	try {
-        let inventoryValue: any;
-
-        inventoyStore.subscribe((value) => {
-            inventoryValue = value;
-            console.log(value);
-            
-        });
-        
+		const inventoryValue: any = JSON.parse(localStorage.getItem('inventory') ?? '');
 
 		const data = await paymentPlanApi({
-            dealId: inventoryValue.dealId, 
-            inventoryId: inventoryValue.inventoryId
-        });
+			dealId: inventoryValue.dealId,
+			inventoryId: inventoryValue.inventoryId
+		});
 
-        console.log(data.data)
+		console.log(data.data);
 
-		return { paymentPlan: data.data };
+		return { paymentPlan: data.data, inventoryValue };
 	} catch (e) {
 		return { deal: null };
 	}

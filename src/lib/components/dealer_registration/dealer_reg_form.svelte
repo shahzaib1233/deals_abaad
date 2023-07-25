@@ -48,21 +48,20 @@
 <form class="flex flex-col" on:submit|preventDefault={submit}>
 	<h2 class="text-[2rem] md:text-[2.8rem] font-bold mb-[1.7rem] text-left">Dealer Registration</h2>
 	<div class="mb-4 flex flex-col md:flex-row gap-4">
-		<TextField bind:value={data.fname} placeholder="First Name" />
-		<TextField bind:value={data.lname} placeholder="Last Name" />
+		<TextField bind:value={data.fname} required placeholder="First Name" />
+		<TextField bind:value={data.lname} required placeholder="Last Name" />
 	</div>
-	<TextField bind:value={data.email} placeholder="Email" type="email" className="mb-4" />
+	<TextField bind:value={data.email} required placeholder="Email" type="email" className="mb-4" />
 	<TextField
 		bind:value={data.contactno}
+		required
 		placeholder="Phone Number"
 		type="number"
 		className="mb-4"
 	/>
-	<TextField bind:value={data.nic} placeholder="N.I.C" type="number" className="mb-4" />
-	<div class="mb-4 flex flex-col md:flex-row gap-4">
-		<TextField bind:value={data.business_city} placeholder="City" />
-		<TextField bind:value={data.business_name} placeholder="Agency Name" />
-	</div>
+	<TextField bind:value={data.nic} required placeholder="N.I.C" type="number" className="mb-4" />
+	<TextField bind:value={data.business_city} required placeholder="City" className="mb-4" />
+	<TextField bind:value={data.business_name} placeholder="Agency Name" className="mb-4" />
 	<TextField
 		bind:value={data.business_email}
 		placeholder="Agency Email"

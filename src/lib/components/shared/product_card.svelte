@@ -49,7 +49,7 @@
 		</p>
 		<div class="flex justify-between">
 			<p class="text-[1.5rem] font-medium">
-				Rs {price.toLocaleString()}
+				Rs {price?.toLocaleString()}
 			</p>
 			<img src="/icons/heart.svg" alt="" />
 		</div>

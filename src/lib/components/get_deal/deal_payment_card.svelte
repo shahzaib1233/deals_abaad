@@ -4,23 +4,24 @@
 	import Button from '../shared/button.svelte';
 	import { inventoyStore } from '$lib/stores/inventory';
 	import { setPaymentFields } from '$lib/stores/payment';
+	import type { GETDEALFIELDS } from '$lib/types/getDealFields';
 
 	export let isLoggedIn: boolean;
 	export let plan: any;
-	export let fields: any;
+	export let fields: GETDEALFIELDS;
 	export let paymentBtn: HTMLButtonElement;
-	let price: number;
-
-	let bookingAmount = 0;
+	export let price: number;
+	export let saleprice: number;
+	export let bookingAmount = 0;
 
 	let confirmationAmount = 0;
 
 	let confirmationCheck = false;
 
-	inventoyStore.subscribe((value) => {
-		price = value.price;
-		bookingAmount = value.bookingPrice;
-	});
+	// inventoyStore.subscribe((value) => {
+	// 	price = value.price;
+	// 	bookingAmount = value.bookingPrice;
+	// });
 
 	let paymentData = {
 		sellingPrice: 0,
@@ -36,8 +37,9 @@
 	let paymentPlan = 1;
 
 	onMount(() => {
-		paymentData.downPayment = (price / 100) * +plan[0].downpayment;
-		paymentData.possession = (price / 100) * +plan[0].possessionamount;
+		console.log('plan.. ', plan[0]);
+		paymentData.downPayment = (saleprice / 100) * +plan[0].downpayment;
+		paymentData.possession = (saleprice / 100) * +plan[0].possessionamount;
 		paymentData.annualPayment = (price / 100) * +plan[0].annualpayment;
 		paymentData.biannualPayments = (price / 100) * +plan[0].biannualpayments;
 		paymentData.quarterlyPayments = (price / 100) * +plan[0].quarterlypayments;
@@ -53,6 +55,7 @@
 
 		confirmationAmount =
 			paymentData.downPayment > 0 ? paymentData.downPayment : paymentData.amountPerInstallment;
+		fields.confirmationAmount = confirmationAmount;
 	});
 
 	const paymentHandler = () => {
@@ -60,9 +63,17 @@
 		setPaymentFields(fields);
 		// goto('/checkout');
 	};
+
+	$: {
+		if (fields.confirmationcheck) {
+			fields.totalAmount = confirmationAmount + bookingAmount;
+		} else {
+			fields.totalAmount = bookingAmount;
+		}
+	}
 </script>
 
-<div class="bg-[#F2F5F7] min-w-[30rem] h-[45rem] p-[2rem] rounded-md">
+<div class="bg-[#F2F5F7] min-w-[30rem] h-[max-content] p-[2rem] rounded-md">
 	<div class="flex justify-between">
 		<div class="flex items-center">
 			<label for="plan1" class="text-[#4B4B4B] text-[1.125rem]">Payment Plan One</label>
@@ -93,12 +104,15 @@
 			</span>
 		</h2>
 
-		<h2 class="mt-3">
-			Yearly ({(paymentData.noOfInstallments / 12).toFixed(0)}){' '}
-			<span class="ml-4">
-				{paymentData.annualPayment.toFixed(2)}/-{' '}
-			</span>
-		</h2>
+		{#if paymentData.annualPayment > 0}
+			<h2 class="mt-3">
+				Yearly ({(paymentData.noOfInstallments / 12).toFixed(0)}){' '}
+				<span class="ml-4">
+					{paymentData.annualPayment.toFixed(2)}/-{' '}
+				</span>
+			</h2>
+		{/if}
+
 		<h2 class="mt-3">
 			Possession{' '}
 			<span class="ml-4">
@@ -106,9 +120,13 @@
 			</span>
 		</h2>
 		<h2 class="mt-3">
-			<input type="checkbox" id="camount" bind:checked={confirmationCheck} />{' '}
+			<input type="checkbox" id="camount" bind:checked={fields.confirmationcheck} />{' '}
 			<label for="camount">Confirmation Amount</label>{' '}
+			<span>({fields.confirmationAmount.toLocaleString()} /-)</span>
 		</h2>
+		<p class="mt-6 text-sm text-[grey]">
+			Confirmation Payment Must be Paid within 7 days of Booking to avoid cancellation
+		</p>
 		<h2 class="mt-[2rem] font-bold">BOOKING & PAYMENT DETAILS</h2>
 	</div>
 	<div class="flex justify-between mt-[1rem]">
@@ -121,7 +139,7 @@
 		<span>Booking Amount</span>
 		<span>Rs {bookingAmount.toFixed(2)} </span>
 	</div>
-	{#if confirmationCheck}
+	{#if fields.confirmationcheck}
 		<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
 			<span>Confirmation Amount</span>
 			<span>Rs {confirmationAmount.toFixed(2)} </span>
@@ -131,7 +149,7 @@
 		<span>Total</span>
 		<span
 			>Rs
-			{#if confirmationCheck}
+			{#if fields.confirmationcheck}
 				{(bookingAmount + confirmationAmount).toFixed(2)}
 			{:else}
 				{bookingAmount.toFixed(2)}

@@ -4,7 +4,7 @@
 </script>
 
 {#if $notifications}
-	<div class="absolute bottom-[2rem] right-[2rem] flex flex-col gap-4 shadow-xl z-[92] rounded-md">
+	<div class="fixed bottom-[2rem] right-[2rem] flex flex-col gap-4 shadow-xl z-[92] rounded-md">
 		{#each $notifications as notification}
 			<div role="alert" class="bg-white w-[25rem] h-[4rem] py-2 px-4 flex gap-4" transition:fade>
 				{#if notification.type == 'success'}

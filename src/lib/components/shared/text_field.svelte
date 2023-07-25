@@ -3,7 +3,7 @@
 	export let value: string;
 	export let placeholder: string = '';
 	export let type: string = 'text';
-	export let required: boolean = true;
+	export let required: boolean = false;
 	export let label: string = '';
 	export let withAsterisk: boolean = false;
 
