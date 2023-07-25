@@ -3,7 +3,10 @@
 	import { setPaymentFields } from '$lib/stores/payment';
 	import type { GETDEALFIELDS } from '$lib/types/getDealFields';
 	import axiosFunction from '$lib/utils/network';
+	import { onMount } from 'svelte';
 	import TextField from '../shared/text_field.svelte';
+	import Cookies from 'js-cookie';
+	import dayjs from 'dayjs';
 
 	export let fields: GETDEALFIELDS;
 	export let paymentBtn: HTMLButtonElement;
@@ -19,6 +22,18 @@
 			console.log('Error:', error);
 		}
 	};
+
+	onMount(() => {
+		fields.name = `${Cookies.get('fname')} ${Cookies.get('lname')}`;
+		fields.cnic = Cookies.get('cnic') ?? '';
+		fields.dob = Cookies.get('dob') != '' ? dayjs(Cookies.get('dob')!).format('YYYY-MM-DD') : '';
+		fields.mobileno = Cookies.get('contactno') ?? '';
+		fields.address = Cookies.get('address') ?? '';
+		fields.country = Cookies.get('country') ?? '';
+		fields.city = Cookies.get('city') ?? '';
+		fields.zipcode = Cookies.get('zipcode') ?? '';
+		fields.email = Cookies.get('email') ?? '';
+	});
 </script>
 
 <form on:submit={submit}>
@@ -123,6 +138,7 @@
 			label="Email address"
 			withAsterisk
 			required
+			disabled
 			className="md:mr-3 md:w-[21.75rem]"
 			bind:value={fields.email}
 		/>

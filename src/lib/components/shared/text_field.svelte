@@ -4,6 +4,7 @@
 	export let placeholder: string = '';
 	export let type: string = 'text';
 	export let required: boolean = false;
+	export let disabled: boolean = false;
 	export let label: string = '';
 	export let withAsterisk: boolean = false;
 
@@ -36,6 +37,7 @@
 			type="email"
 			bind:value
 			{placeholder}
+			{disabled}
 			class="flex-1 focus:outline-none px-3 py-2 rounded-md border border-[#ced4da] text-[1rem] {className}"
 		/>
 	{:else if type == 'number'}

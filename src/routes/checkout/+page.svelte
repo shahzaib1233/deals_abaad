@@ -1,13 +1,18 @@
-<script>
+<script lang="ts">
 	import { goto } from '$app/navigation';
 	import CheckoutPaymentCard from '$lib/components/checkout/checkout_payment_card.svelte';
 	import Button from '$lib/components/shared/button.svelte';
 	import axios from 'axios';
-	const submitHandler = async ()=>{
-		const res = await axios.post('sales/create',
-		
-		) 
-	}
+	import { onMount } from 'svelte';
+	const submitHandler = async () => {
+		const res = await axios.post('sales/create');
+	};
+
+	let dealDtl: any;
+
+	onMount(() => {
+		dealDtl = JSON.parse(localStorage.getItem('dealDetails') ?? '');
+	});
 </script>
 
 <div class="my-container pt-[10.25rem]">
@@ -20,7 +25,7 @@
 			>
 				<!-- <Radio class="ml-4" /> -->
 				<input type="radio" name="payment" id="card" class="ml-4" />
-				<span class="ml-[1rem]">Credit / Debit Card</span>
+				<label for="card" class="ml-[1rem]">Credit / Debit Card</label>
 			</div>
 
 			<div>
@@ -45,40 +50,40 @@
 				</div>
 				<div class="flex mt-4">
 					<span class="font-bold text-[#4B4B4B]">Address:</span>
-					<span class="ml-2">Sukkur Bypass, Sukkur</span>
+					<span class="ml-2" />
 				</div>
 				<div class="flex mt-2">
 					<span class="font-bold text-[#4B4B4B]">Area:</span>
-					<span class="ml-2">Sukkur Bypass</span>
+					<span class="ml-2" />
 				</div>
 				<div class="flex mt-2">
 					<span class="font-bold text-[#4B4B4B]">City:</span>
-					<span class="ml-2">Sukkur</span>
+					<span class="ml-2" />
 				</div>
 				<div class="flex mt-2">
 					<span class="font-bold text-[#4B4B4B]">Zip:</span>
-					<span class="ml-2">48484894</span>
+					<span class="ml-2" />
 				</div>
 				<div class="flex mt-2">
 					<span class="font-bold text-[#4B4B4B]">Country:</span>
-					<span class="ml-2">Pakistan</span>
+					<span class="ml-2" />
 				</div>
 				<div class="flex mt-2">
 					<span class="font-bold text-[#4B4B4B]">Price:</span>
-					<span class="ml-2">75,000</span>
+					<span class="ml-2" />
 				</div>
 
 				<div class="mt-[2rem]">
 					<span class="text-[1.6rem] font-bold">Personal details</span>
 				</div>
 				<div class="mt-4">
-					<h2 class="font-bold text-[#4B4B4B] mt-2">Asad Ahmed Khan</h2>
-					<h2 class="font-bold text-[#4B4B4B] mt-2">asadahmedkhan17@gmail.com</h2>
-					<h2 class="font-bold text-[#4B4B4B] mt-2">+923113294921</h2>
+					<h2 class="font-bold text-[#4B4B4B] mt-2">{dealDtl?.name}</h2>
+					<h2 class="font-bold text-[#4B4B4B] mt-2">{dealDtl?.email}</h2>
+					<h2 class="font-bold text-[#4B4B4B] mt-2">{dealDtl?.mobileno}</h2>
 				</div>
 			</div>
 		</div>
 
-		<CheckoutPaymentCard />
+		<CheckoutPaymentCard paymentData={dealDtl} />
 	</div>
 </div>

@@ -125,7 +125,7 @@
 			<span>({fields.confirmationAmount.toLocaleString()} /-)</span>
 		</h2>
 		<p class="mt-6 text-sm text-[grey]">
-			Confirmation Payment Must be Paid within 7 days of Booking to avoid cancellation
+			Please Pay confirmation amount Now or in max 3 days to avoid cancellation
 		</p>
 		<h2 class="mt-[2rem] font-bold">BOOKING & PAYMENT DETAILS</h2>
 	</div>
