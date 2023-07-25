@@ -26,28 +26,15 @@
 			console.log(status);
 
 			toast({ type: 'success', heading: 'Otp Verified', text: 'OTP Verified Successfully' });
-			setTimeout(() => goto('/login'), 1000);
+			setTimeout(() => goto('/reset-password'), 1000);
 		} catch (e) {}
 		loading = false;
 	};
-	// const { mutation, otpSubmit } = useOtp();
-	// const { handleChange, submit, otp } = useOtpForm();
 </script>
 
-<!-- <form class="flex flex-col" onSubmit={(e) => submit(e, otpSubmit)}> -->
 <form class="flex flex-col" on:submit|preventDefault={submit}>
 	<h2 class="text-[2rem] md:text-[2.8rem] font-bold mb-[1.7rem]">One-Time-Password</h2>
 	<div class="flex justify-center mb-4">
-		<!-- <TextField
-			key={index}
-			id={`otp-input-${index}`}
-			class="w-[7rem] h-16 text-3xl bg-gray-200 border border-gray-300 text-center mx-1 outline-none focus:ring-2 focus:ring-blue-500"
-			type="text"
-			inputMode="numeric"
-			maxLength={1}
-			value={digit}
-			onChange={(e) => handleChange(e, index)}
-		/> -->
 		<TextField
 			type="text"
 			bind:value={data.otp1}

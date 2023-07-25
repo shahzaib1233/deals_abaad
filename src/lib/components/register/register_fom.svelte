@@ -21,10 +21,10 @@
 		loading = true;
 		try {
 			const res = await registerApi(data);
-			const status = res.data.otpstatus;
+			// const status = res.data.otpstatus;
 			toast({ type: 'success', heading: 'User Registered', text: 'User registered successfully' });
 			Cookies.set('email', data.email);
-			setTimeout(() => (status ? goto('/login') : goto('/otp')), 1000);
+			setTimeout(() => goto('/login'), 1000);
 		} catch (e) {}
 		loading = false;
 	};

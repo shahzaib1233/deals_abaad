@@ -41,6 +41,7 @@
 
 	const logout = () => {
 		Cookies.remove('token');
+		Cookies.remove('email');
 		token = null;
 	};
 

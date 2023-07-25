@@ -17,7 +17,7 @@
 		try {
 			const res = await forgetApi(data);
 			toast({ type: 'success', heading: 'Email registered', text: 'OTP Sent to ' + data.email });
-			Cookies.set('token', res.data.accessToken);
+			Cookies.set('email', data.email);
 			setTimeout(() => goto('/otp'), 1000);
 		} catch (e) {}
 		loading = false;
