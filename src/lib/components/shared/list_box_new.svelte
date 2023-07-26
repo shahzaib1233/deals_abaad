@@ -9,10 +9,11 @@
 
 	export let options: Option[] = [];
 	export let value: string = '';
+	export let item: any;
 	export let labelKey: string = 'label';
 	export let valueKey = 'value';
 	export let onChange: (key: string, value: number) => void;
-	$: listbox = createListbox({ label: 'Actions', selected: options[0] });
+	// $: listbox = createListbox({ label: 'Actions', selected: options[0] });
 
 	function onSelect(e: Event) {
 		console.log('select', (e as CustomEvent).detail);
@@ -27,6 +28,7 @@
 	function selectOption(option: Option) {
 		value = option[valueKey];
 		isOpen = false;
+		item = option[valueKey];
 	}
 </script>
 

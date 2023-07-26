@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 	import Button from '$lib/components/shared/button.svelte';
 	import ThankyouCard from '$lib/components/thankyou/thankyou_card.svelte';
+
+	const voucherNo = $page.url.searchParams.get('JCVoucherNo');
+	const voucherExpiry = $page.url.searchParams.get('JCVoucherExpiry');
 </script>
 
 <div class="bg-[#F2F5F7] min-h-screen">
@@ -9,17 +13,16 @@
 		<div class="flex justify-center">
 			<h2 class="text-[3.063rem] font-bold">Congratulations!</h2>
 		</div>
-		<div class="flex justify-center">
-			<h2 class="text-[1.363rem] text-center">
-				Thanks for your Trust, Your booking file will be dispatched on your address
-			</h2>
-		</div>
-		<div class="flex justify-center mt-[1rem] font-bold">
+
+		<div class="flex flex-col justify-center items-center mt-[1rem] font-bold">
 			<h2 class="text-[1.563rem] text-center">
-				Confirmation Payment Must be Paid within 7 days of Booking to avoid cancellation
+				Confirmation Payment Must be Paid within 3 days of Booking to avoid cancellation
 			</h2>
+			<h3 class="mt-4">
+				Your transaction has been received successfully and your account will be updated accordingly
+			</h3>
 		</div>
-		<ThankyouCard />
+		<ThankyouCard {voucherNo} {voucherExpiry} />
 		<div class="flex justify-center">
 			<Button
 				className="mb-[0.563rem] mt-[1.6rem] w-[11.813rem] h-[2.5rem]"
