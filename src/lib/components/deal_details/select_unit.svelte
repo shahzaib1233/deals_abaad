@@ -153,7 +153,12 @@
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label>Select Floor Number</label>
 		<!-- <ListBox list={floors} key="floors" onChange={updateData} className="w-full mb-4" /> -->
-		<ListBoxNew options={floors} onChange={updateData} bind:item={selectedData.floors} />
+		<ListBoxNew
+			key="floors"
+			options={floors}
+			onChange={updateData}
+			bind:item={selectedData.floors}
+		/>
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label>Select Unit Number</label>
 		<!-- <ListBox
@@ -163,6 +168,7 @@
 			className="w-full"
 		/> -->
 		<ListBoxNew
+			key="units"
 			options={units ?? [{ value: 0, label: '' }]}
 			onChange={updateData}
 			bind:item={selectedData.units}

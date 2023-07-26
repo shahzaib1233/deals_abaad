@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { createListbox } from 'svelte-headlessui';
 
 	interface Option {
@@ -12,8 +13,28 @@
 	export let item: any;
 	export let labelKey: string = 'label';
 	export let valueKey = 'value';
+	export let key: string;
 	export let onChange: (key: string, value: number) => void;
 	// $: listbox = createListbox({ label: 'Actions', selected: options[0] });
+
+	function handleClickOutside(event: any) {
+		const specificDiv = document.getElementById(key);
+
+		if (specificDiv && !specificDiv.contains(event.target)) {
+			// The click was outside the specific div
+			console.log('Clicked outside the specific div');
+
+			// Add your custom logic here
+			isOpen = false;
+		}
+	}
+
+	onMount(() => {
+		document.addEventListener('click', handleClickOutside);
+		return () => {
+			document.removeEventListener('click', handleClickOutside);
+		};
+	});
 
 	function onSelect(e: Event) {
 		console.log('select', (e as CustomEvent).detail);
@@ -32,7 +53,7 @@
 	}
 </script>
 
-<div class="select-container">
+<div class="select-container" id={key}>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div class="select" on:click={toggleDropdown}>
@@ -52,7 +73,7 @@
 		</svg>
 	</div>
 
-	{#if isOpen}
+	{#if isOpen && options.length > 0}
 		<div class="dropdown mt-1">
 			{#each options as option}
 				<div class="option" on:click={() => selectOption(option)}>{option[labelKey]}</div>
