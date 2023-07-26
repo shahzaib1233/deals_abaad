@@ -13,6 +13,7 @@
 
 <div
 	on:click={() => {
+		localStorage.setItem('bannerImage', bannerImage ?? '');
 		goto(`/deal-detail/${productId}`);
 	}}
 	on:keyup={() => {

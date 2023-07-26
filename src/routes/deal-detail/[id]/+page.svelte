@@ -3,11 +3,32 @@
 	import ProjectDetails from '$lib/components/deal_details/project_details.svelte';
 	import SelectUnit from '$lib/components/deal_details/select_unit.svelte';
 	import Carousal from '$lib/components/shared/carousal.svelte';
+	import { onMount } from 'svelte';
 
 	export let data;
+	let bannerImage: any;
+	const baseUrl = import.meta.env.VITE_BASE_URL;
+
+	onMount(() => {
+		bannerImage = localStorage.getItem('bannerImage');
+		console.log('onmount url = ', bannerImage);
+		// console.log('onmount url = ', baseUrl,img,category${bannerImage});
+	});
 </script>
 
 <main class="my-container pt-[10.25rem]">
+	{#if bannerImage && bannerImage !== ''}
+		<div class="w-full">
+			<div
+				class="h-[13rem] md:h-[27rem] w-full rounded-2xl bg-no-repeat bg-center aspect-w-2 aspect-h-1"
+				style="
+        background-image: url({`${bannerImage}`});
+        background-size: 100%;
+      "
+			/>
+		</div>
+	{/if}
+
 	{#if data.deal}
 		<div
 			class="text-[1.6rem] mt-[2rem] bg-[#FFD624] text-[#000000] rounded-lg h-[3rem] w-[50%] flex items-center justify-left"

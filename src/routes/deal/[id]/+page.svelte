@@ -31,6 +31,9 @@
 			{#each data.category.DealCategory as item}
 				<ProductCard
 					productId={item.deal.id}
+					bannerImage={`${import.meta.env.VITE_BASE_URL}category/img/${
+						data.category.backgroundImage
+					}`}
 					name={item.deal.name}
 					desc={item.deal.desc}
 					price={item.deal.price}

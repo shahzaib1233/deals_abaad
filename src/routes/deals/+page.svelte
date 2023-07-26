@@ -27,7 +27,7 @@
 					<div class="flex flex-wrap gap-[1.5rem]">
 						{#each item.DealCategory as product}
 							<ProductCard
-								bannerImage={item.bannerImage}
+								bannerImage={`${import.meta.env.VITE_BASE_URL}category/img/${item.bannerImage}`}
 								productId={product.deal.id}
 								name={product.deal.name}
 								desc={product.deal.desc}

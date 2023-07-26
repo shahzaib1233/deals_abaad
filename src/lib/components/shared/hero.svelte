@@ -1,11 +1,11 @@
 <script lang="ts">
-  import HeroSearch from "./hero_search.svelte";
-  
-	export let heading: string;
+	import HeroSearch from './hero_search.svelte';
+
+	export let heading: string = '';
 	export let desc: string = '';
-	export let image: string;
+	export let image: string = '';
 	export let search: boolean = false;
-	export let dropdown: any;
+	export let dropdown: any = '';
 </script>
 
 <div
