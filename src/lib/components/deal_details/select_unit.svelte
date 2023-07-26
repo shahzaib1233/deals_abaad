@@ -9,6 +9,7 @@
 	import VoucherModal from './voucher_modal.svelte';
 	import { setInventory } from '$lib/stores/inventory';
 	import { goto } from '$app/navigation';
+	import { toast } from '$lib/stores/notification';
 
 	let selectedData: any = {
 		floors: 0,
@@ -93,9 +94,9 @@
 			referralAmount;
 	}
 
-	onMount(() => {
-		selectedData.floors = floors[0].value;
-	});
+	// onMount(() => {
+	// 	selectedData.floors = floors[0].value;
+	// });
 
 	let showModal = false;
 	const handleToggleModal = () => {
@@ -103,21 +104,13 @@
 	};
 
 	const submit = () => {
+		if (selectedData.floors == 0 || selectedData.units == 0) {
+			toast({ type: 'error', heading: 'Error', text: 'Please select floor and unit' });
+			return;
+		}
 		const inventoryData = calculatedInventory.find(
 			(inventory) => inventory.floorId == selectedData.floors
 		);
-		// setInventory({
-		// 	inventoryId: Number(inventoryData?.inventoryId),
-		// 	dealId: Number(inventoryData?.dealId),
-		// 	price: price,
-		// 	saleprice: salePrice,
-		// 	discount: discount,
-		// 	referralamount: referralAmount,
-		// 	floor: floors.find((floor) => floor.value == selectedData.floors)?.label ?? '',
-		// 	unitno: units?.find((unit) => unit.value == selectedData.units)?.label ?? '',
-		// 	bookingPrice: data.price,
-		// 	projectId: data.projectId
-		// });
 		localStorage.setItem(
 			'inventory',
 			JSON.stringify({
@@ -160,7 +153,7 @@
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label>Select Floor Number</label>
 		<!-- <ListBox list={floors} key="floors" onChange={updateData} className="w-full mb-4" /> -->
-		<ListBoxNew options={floors} onChange={updateData} />
+		<ListBoxNew options={floors} onChange={updateData} bind:item={selectedData.floors} />
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label>Select Unit Number</label>
 		<!-- <ListBox
@@ -169,7 +162,11 @@
 			onChange={updateData}
 			className="w-full"
 		/> -->
-		<ListBoxNew options={units ?? [{ value: 0, label: '' }]} onChange={updateData} />
+		<ListBoxNew
+			options={units ?? [{ value: 0, label: '' }]}
+			onChange={updateData}
+			bind:item={selectedData.units}
+		/>
 		{#if data.referral}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
