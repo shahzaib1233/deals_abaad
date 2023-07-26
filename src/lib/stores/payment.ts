@@ -47,9 +47,10 @@ export const paymentStore = writable<GETDEALFIELDS>({
 	yearly: 0,
 	possession: 0,
 	confirmationAmount: 0,
-	noofinstallments: 0
+	noofinstallments: 0,
+	allotmentcheck: false // Add the 'allotmentcheck' property here
 });
 
 export function setPaymentFields(paymentFields: GETDEALFIELDS) {
-	paymentStore.update((state: any) => paymentFields);
+	paymentStore.update((state: GETDEALFIELDS) => paymentFields);
 }

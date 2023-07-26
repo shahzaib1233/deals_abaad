@@ -11,9 +11,9 @@
 	export let fields: GETDEALFIELDS;
 	export let paymentBtn: HTMLButtonElement;
 
-	const submit = async () => {
+	const submit = async (event: Event) => {
+		event.preventDefault();
 		try {
-			
 			setPaymentFields(fields);
 			localStorage.setItem('dealDetails', JSON.stringify(fields));
 			goto('/checkout');

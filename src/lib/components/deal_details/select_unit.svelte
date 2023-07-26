@@ -5,6 +5,7 @@
 
 	import Button from '../shared/button.svelte';
 	import ListBox from '../shared/list_box.svelte';
+	import ListBoxNew from '../shared/list_box_new.svelte';
 	import VoucherModal from './voucher_modal.svelte';
 	import { setInventory } from '$lib/stores/inventory';
 	import { goto } from '$app/navigation';
@@ -52,9 +53,14 @@
 	calculatedInventory = Object.values(groupedData);
 	console.log(calculatedInventory);
 
-	const floors = calculatedInventory.map((item) => ({
+	const floors: {
+		label: string;
+		value: string;
+		[key: string]: any;
+	}[] = calculatedInventory.map((item) => ({
 		value: item.floorId,
-		label: item.floorName
+		label: item.floorName,
+		key: item.floorId
 	}));
 
 	$: units = calculatedInventory
@@ -151,16 +157,22 @@
 		}}
 	/>
 	<form class="mt-[1rem] flex flex-col" on:submit|preventDefault={submit}>
+		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label>Select Floor Number</label>
-		<ListBox list={floors} key="floors" onChange={updateData} className="w-full mb-4" />
+		<!-- <ListBox list={floors} key="floors" onChange={updateData} className="w-full mb-4" /> -->
+		<ListBoxNew options={floors} onChange={updateData} />
+		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label>Select Unit Number</label>
-		<ListBox
+		<!-- <ListBox
 			list={units ?? [{ value: 0, label: '' }]}
 			key="units"
 			onChange={updateData}
 			className="w-full"
-		/>
+		/> -->
+		<ListBoxNew options={units ?? [{ value: 0, label: '' }]} onChange={updateData} />
 		{#if data.referral}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
 				class="mt-[1.5rem] flex text-[#4B4B4B] text-[1rem] font-bold cursor-pointer"
 				on:click={handleToggleModal}
