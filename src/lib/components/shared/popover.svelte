@@ -1,79 +1,100 @@
 <script lang="ts">
-	import { fade, scale } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
+	import { goto } from '$app/navigation';
+	import Cookies from 'js-cookie';
+	import { createPopover } from 'svelte-headlessui';
+	// import ChevronDown from './ChevronDown.svelte'
+	// import IconOne from './IconOne.svelte'
+	// import IconTwo from './IconTwo.svelte'
+	// import IconThree from './IconThree.svelte'
+	import Transition from 'svelte-transition';
 
-	let visible = false;
-	let anchor: HTMLButtonElement | undefined = undefined;
+	const popover = createPopover({});
 
-	let bottom: number;
-	let left: number;
+	// prettier-ignore
+	const solutions = [{
+		name: 'Insights',
+		description: 'Measure actions your users take',
+		href: '##',
+	}, {
+		name: 'Automations',
+		description: 'Create your own targeted content',
+		href: '##',
+	}, {
+		name: 'Reports',
+		description: 'Keep track of your growth',
+		href: '##',
+	}]
 
-	const initPosition = () =>
-		({ bottom, left } = anchor?.getBoundingClientRect() ?? { bottom: 0, left: 0 });
-
-	$: anchor, initPosition();
+	const logout = () => {
+		Cookies.remove('token');
+		Cookies.remove('email');
+		// token = null;
+	};
+	function redirectHandler(route: string) {
+		goto(route);
+	}
 </script>
 
-<svelte:window on:resize={initPosition} />
+<div class="flex flex-col items-center justify-center">
+	<div class="">
+		<div class="relative inline-block text-left">
+			<button
+				use:popover.button
+				class="group inline-flex items-center justify-center rounded-md bg-[#FFD624] px-3 py-2 text-base font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 h-[2.4rem] w-[4rem]"
+			>
+				<img src="/icons/user.svg" alt="" />
+			</button>
 
-<button on:click={() => (visible = true)} bind:this={anchor}><slot name="body" /></button>
-
-{#if visible}
-	<div
-		role="dialog"
-		aria-labelledby="Title"
-		aria-describedby="Description"
-		aria-orientation="vertical"
-		transition:fade
-		class="popover"
-		on:click|stopPropagation
-		style="--popover-top: {`${bottom}px`}; --popover-left: {`${left}px`}"
-	>
-		<div
-			on:click|stopPropagation={() => (visible = false)}
-			transition:scale={{ delay: 25, duration: 150, easing: quintOut }}
-			class="backdrop"
-		/>
-		<div class="wrapper rounded-md"><slot name="menu" /></div>
+			<Transition
+				show={$popover.expanded}
+				enter="transition ease-out duration-200"
+				enterFrom="opacity-0 translate-y-1"
+				enterTo="opacity-100 translate-y-0"
+				leave="transition ease-in duration-150"
+				leaveFrom="opacity-100 translate-y-0"
+				leaveTo="opacity-0 translate-y-1"
+			>
+				<div
+					use:popover.panel
+					class="absolute right-[-5rem] z-10 mt-3 w-screen max-w-sm -translate-x-1/2 transform lg:max-w-[10rem]"
+					on:click={popover.close}
+				>
+					<div
+						class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 w-full bg-white"
+					>
+						<!-- <div class="relative grid gap-8 bg-white lg:grid-cols-2 w-full"> -->
+						<ul class="flex flex-col w-full text-[1rem] cursor-pointer">
+							<li class="w-full">
+								<button on:click={() => redirectHandler('/profile')} class="pt-2 px-4 w-full flex"
+									>Profile</button
+								>
+							</li>
+							<li>
+								<button on:click={() => redirectHandler('/payment')} class="pt-2 px-4 w-full flex"
+									>Payment</button
+								>
+							</li>
+							<li>
+								<button on:click={() => redirectHandler('/booking')} class="pt-2 px-4 w-full flex"
+									>My booking</button
+								>
+							</li>
+							<li>
+								<button on:click={() => redirectHandler('/saved-ads')} class="pt-2 px-4 w-full flex"
+									>My saved ads</button
+								>
+							</li>
+							<li>
+								<button on:click={() => redirectHandler('/wallet')} class="py-2 px-4 w-full flex"
+									>Wallet</button
+								>
+							</li>
+							<li on:click={logout} class="border-t py-2 px-4 w-full">Logout</li>
+						</ul>
+						<!-- </div> -->
+					</div>
+				</div>
+			</Transition>
+		</div>
 	</div>
-{/if}
-
-<style>
-	.popover {
-		position: fixed;
-		inset: 0;
-		box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-		z-index: 997;
-	}
-
-	.backdrop {
-		position: absolute;
-		inset: 0;
-
-		/* background: rgba(0, 0, 0, 0.3); */
-	}
-
-	.wrapper {
-		position: absolute;
-
-		top: calc(var(--popover-top) + 10px);
-		left: calc(var(--popover-left) - 140px);
-
-		min-width: 200px;
-		max-width: 200px;
-
-		min-height: 100px;
-
-		width: fit-content;
-		height: auto;
-
-		overflow: hidden;
-
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-
-		background: white;
-		color: black;
-	}
-</style>
+</div>

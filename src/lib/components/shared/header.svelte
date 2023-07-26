@@ -72,7 +72,7 @@
 				<Button label="Dealer Registrations" onclick={() => goto('/dealer-registration')} />
 				{#if token}
 					<Popover>
-						<svelte:fragment slot="body">
+						<!-- <svelte:fragment slot="body">
 							<button
 								class="bg-[#FFD624] hover:bg-[#FFD624] w-[4rem] rounded-md flex items-center justify-center h-[2.4rem]"
 							>
@@ -109,7 +109,7 @@
 								</li>
 								<li on:click={logout} class="border-t py-2 px-4 w-full">Logout</li>
 							</ul>
-						</svelte:fragment>
+						</svelte:fragment> -->
 					</Popover>
 				{:else}
 					<Button label="Login" onclick={() => goto('/login')} />
