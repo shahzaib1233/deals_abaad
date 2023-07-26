@@ -137,9 +137,18 @@
 	>
 		<span class="text-white text-[1.3rem]">Select Your Unit</span>
 	</div>
+
 	<Button
 		className="bg-[#FFD624] hover:bg-[#FFD624] text-[#1A202C] h-[3rem] rounded-md ml-0 sm:ml-0"
 		label="View Floor Plan"
+		onclick={() => {
+			window.open(
+				'https://www.islamicbooksforfree.com/Upload/files/Kitaplar/PDF/ingilizce/1-Endless_Bliss-I_07_02_2022.pdf',
+				'newwindow',
+				'width=1000,height=700'
+			);
+			return false;
+		}}
 	/>
 	<form class="mt-[1rem] flex flex-col" on:submit|preventDefault={submit}>
 		<label>Select Floor Number</label>
