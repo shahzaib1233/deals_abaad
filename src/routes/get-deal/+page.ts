@@ -1,12 +1,17 @@
-import { paymentPlanApi } from '$lib/modules/deal/api/deal_api.js';
+import axiosFunction from '$lib/utils/network';
 
 export const load = async () => {
 	try {
 		const inventoryValue: any = JSON.parse(localStorage.getItem('inventory') ?? '');
 
-		const data = await paymentPlanApi({
-			dealId: inventoryValue.dealId,
-			inventoryId: inventoryValue.inventoryId
+		const data = await axiosFunction({
+			isServer: true,
+			url: 'deal/payment-plan',
+			method: 'POST',
+			data: {
+				dealId: inventoryValue.dealId,
+				inventoryId: inventoryValue.inventoryId
+			}
 		});
 
 		console.log(data.data);

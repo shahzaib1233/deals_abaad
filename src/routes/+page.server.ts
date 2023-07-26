@@ -1,13 +1,20 @@
-import { getCategoryApi } from '$lib/modules/category/api/category_api';
-import { getDealsApi } from '$lib/modules/deal/api/deal_api';
-import { getDropdownApi } from '$lib/modules/home/api/home_api';
+import axiosFunction from '$lib/utils/network';
 
 export const load = async () => {
 	try {
 		const [dropdown, category, deals] = await Promise.all([
-			getDropdownApi(),
-			getCategoryApi(),
-			getDealsApi()
+			axiosFunction({
+				url: 'home/dropdown',
+				isServer: true
+			}),
+			axiosFunction({
+				url: 'category',
+				isServer: true
+			}),
+			axiosFunction({
+				url: 'deal',
+				isServer: true
+			})
 		]);
 
 		return { dropdown: dropdown.data, category: category.data, deals: deals.data };

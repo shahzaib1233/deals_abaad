@@ -9,6 +9,7 @@ interface FetchProps {
 	data?: any;
 	params?: any;
 	formData?: boolean;
+	isServer?: boolean;
 }
 
 const axiosFunction = async ({
@@ -16,7 +17,8 @@ const axiosFunction = async ({
 	url = '',
 	data = {},
 	params = {},
-	formData = false
+	formData = false,
+	isServer = false
 }: FetchProps) => {
 	const form = new FormData();
 
@@ -32,7 +34,7 @@ const axiosFunction = async ({
 
 	const config: any = {
 		method: method,
-		url: `${import.meta.env.VITE_BASE_URL}${url}`,
+		url: `${isServer ? import.meta.env.VITE_SERVER_BASE_URL : import.meta.env.VITE_BASE_URL}${url}`,
 		headers: {
 			'Content-Type': formData ? 'multipart/form-data' : 'application/json',
 			Authorization: `Bearer ${Cookies.get('token')}`
