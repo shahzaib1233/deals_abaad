@@ -7,13 +7,18 @@
 	import Button from '$lib/components/shared/button.svelte';
 	import Cookies from 'js-cookie';
 	import Popover from './popover.svelte';
+	import { tokenStore } from '$lib/stores/token';
 
 	let dark = true;
 
 	let header: HTMLHeadElement;
 	let topBar: HTMLDivElement;
 
-	export let token: any;
+	let token: any;
+
+	tokenStore.subscribe((value) => {
+		token = value;
+	});
 
 	const scrollFunction = () => {
 		if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {

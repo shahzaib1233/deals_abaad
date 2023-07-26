@@ -9,8 +9,11 @@
 
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 	import Toast from '$lib/components/shared/toast.svelte';
+	import { setToken } from '$lib/stores/token';
 
 	export let data;
+
+	setToken(data.token!);
 
 	const queryClient = new QueryClient();
 
@@ -53,9 +56,9 @@
 
 {#if !showLayout}
 	{#if showDarkHeader}
-		<HeaderDark token={data.token} />
+		<HeaderDark />
 	{:else}
-		<Header token={data.token} />
+		<Header />
 	{/if}
 {/if}
 
