@@ -102,7 +102,7 @@
 			<div
 				class="flex items-end pr-4 w-32 justify-start md:justify-end text-right whitespace-nowrap"
 			>
-				<h2>Change Password</h2>
+				<h2>Contact Number</h2>
 			</div>
 			<div class="flex items-start pl-4">
 				<TextField value="" className="w-[23rem]" />

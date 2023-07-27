@@ -57,8 +57,8 @@
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div class="select" on:click={toggleDropdown}>
-		{#if options.find((option) => option[valueKey] === value)}
-			{options.find((option) => option[valueKey] === value)?.label}
+		{#if options.find((option) => option.value === value)}
+			{options.find((option) => option.value === value)?.label}
 		{:else}
 			Select an option
 		{/if}
