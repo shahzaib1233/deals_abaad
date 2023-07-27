@@ -44,3 +44,12 @@ export const resetApi = async (params: any) => {
 	});
 	return res;
 };
+
+export const updateApi = async (params: any) => {
+	const res = await axiosFunction({
+		method: 'POST',
+		url: 'member/update',
+		data: params
+	});
+	return res;
+};

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { setToken } from '$lib/stores/token';
 	import Cookies from 'js-cookie';
 	import { createPopover } from 'svelte-headlessui';
 	// import ChevronDown from './ChevronDown.svelte'
@@ -28,6 +29,7 @@
 	const logout = () => {
 		Cookies.remove('token');
 		Cookies.remove('email');
+		setToken('');
 		// token = null;
 	};
 	function redirectHandler(route: string) {

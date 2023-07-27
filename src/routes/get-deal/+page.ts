@@ -5,7 +5,6 @@ export const load = async () => {
 		const inventoryValue: any = JSON.parse(localStorage.getItem('inventory') ?? '');
 
 		const data = await axiosFunction({
-			isServer: true,
 			url: 'deal/payment-plan',
 			method: 'POST',
 			data: {
