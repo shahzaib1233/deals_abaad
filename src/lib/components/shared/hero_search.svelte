@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from './button.svelte';
-	import ListBox from './list_box.svelte';
+	import ListBox from './list_box_new.svelte';
 	import { getDropdownApi } from '$lib/modules/home/api/home_api';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
@@ -61,32 +61,53 @@
 
 <div class="mt-12 bg-white rounded-2xl py-4 px-12 hidden lg:flex flex-col gap-[2rem]">
 	<h3 class="font-bold text-[1.563rem]">Find your Dream Property</h3>
-	<div class="mb-4 flex gap-[1.375rem]">
+	<div class="mb-4 flex gap-[1.375rem] items-end">
 		<div class="flex flex-col gap-[1rem]">
 			<label class="text-[1.18rem] font-medium"> Project </label>
 
-			<ListBox list={project} key="project" onChange={updateData} />
+			<div class="w-[14rem] flex">
+				<ListBox options={project} key="project" onChange={updateData} bind:item={data.project} />
+			</div>
 
 			<!-- <Select name="project" id="project" class="max-w-[12.438rem]" /> -->
 		</div>
 		<div class="flex flex-col gap-[1rem]">
 			<label class="text-[1.18rem] font-medium"> All Cities </label>
-			<ListBox list={cities} key="cities" onChange={updateData} />
+
+			<div class="w-[14rem] flex">
+				<ListBox options={cities} key="cities" onChange={updateData} bind:item={data.cities} />
+			</div>
 			<!-- <Select name="city" id="city" class="max-w-[12.438rem]" /> -->
 		</div>
 		<div class="flex flex-col gap-[1rem]">
 			<label class="text-[1.18rem] font-medium"> Location </label>
-			<ListBox list={location} key="location" onChange={updateData} />
+
+			<div class="w-[14rem] flex">
+				<ListBox
+					options={location}
+					key="location"
+					onChange={updateData}
+					bind:item={data.location}
+				/>
+			</div>
 			<!-- <Select name="location" id="location" class="max-w-[19.9rem]" /> -->
 		</div>
 		<div class="flex flex-col gap-[1rem]">
 			<label class="text-[1.18rem] font-medium"> Property Category </label>
-			<ListBox list={property} key="property" onChange={updateData} />
+
+			<div class="w-[14rem] flex">
+				<ListBox
+					options={property}
+					key="property"
+					onChange={updateData}
+					bind:item={data.property}
+				/>
+			</div>
 			<!-- <Select name="property category" id="property category" class="max-w-[12.438rem]" /> -->
 		</div>
 		<Button
 			label="Search"
-			className="self-end text-[1.125rem] w-[9.375rem] h-[2.6rem]"
+			className="self-end text-[1.125rem] w-[9.375rem] h-[3rem]"
 			onclick={() => {
 				goto(
 					`/search?project=${data.project}&cities=${data.cities}&location=${data.location}&property=${data.property}`

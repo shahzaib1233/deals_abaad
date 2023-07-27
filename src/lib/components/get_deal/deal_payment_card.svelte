@@ -5,8 +5,9 @@
 	import { inventoyStore } from '$lib/stores/inventory';
 	import { setPaymentFields } from '$lib/stores/payment';
 	import type { GETDEALFIELDS } from '$lib/types/getDealFields';
+	import { tokenStore } from '$lib/stores/token';
+	import { toast } from '$lib/stores/notification';
 
-	export let isLoggedIn: boolean;
 	export let plan: any;
 	export let fields: GETDEALFIELDS;
 	export let paymentBtn: HTMLButtonElement;
@@ -18,10 +19,11 @@
 
 	let confirmationCheck = false;
 
-	// inventoyStore.subscribe((value) => {
-	// 	price = value.price;
-	// 	bookingAmount = value.bookingPrice;
-	// });
+	let token = '';
+
+	tokenStore.subscribe((value) => {
+		token = value;
+	});
 
 	let paymentData = {
 		sellingPrice: 0,
@@ -59,6 +61,10 @@
 	});
 
 	const paymentHandler = () => {
+		if (token == '' || token == undefined) {
+			toast({ type: 'error', heading: 'Error', text: 'Please Login first' });
+			return;
+		}
 		paymentBtn.click();
 		setPaymentFields(fields);
 		// goto('/checkout');
@@ -160,7 +166,6 @@
 		className="rounded-md w-[14.438rem] mt-6 h-[2.5rem]"
 		type="submit"
 		onclick={() => paymentHandler()}
-		disabled={!isLoggedIn}
 		label="Get The Deal"
 	/>
 	<h2 class="w-[90%] mt-6">

@@ -51,14 +51,25 @@
 		isOpen = false;
 		item = option[valueKey];
 	}
+
+	let label = '';
+
+	$: {
+		const newLabel = options.find((option) => option[valueKey] === value)?.label ?? '';
+		if (newLabel.length > 20) {
+			label = newLabel.substring(0, 20);
+		} else {
+			label = newLabel;
+		}
+	}
 </script>
 
-<div class="select-container" id={key}>
+<div class="select-container flex-1" id={key}>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div class="select" on:click={toggleDropdown}>
 		{#if options.find((option) => option[valueKey] === value)}
-			{options.find((option) => option[valueKey] === value)?.label}
+			{label}
 		{:else}
 			Select an option
 		{/if}

@@ -4,8 +4,7 @@
 	import Cookies from 'js-cookie';
 	import Button from '../shared/button.svelte';
 	import TextField from '../shared/text_field.svelte';
-
-	export let isLoggedIn: boolean;
+	import { setToken } from '$lib/stores/token';
 
 	let loading = false;
 
@@ -20,7 +19,7 @@
 			const res = await loginApi(data);
 			toast({ type: 'success', heading: 'Login Successfull', text: 'User login successfully' });
 			Cookies.set('token', res.data.accessToken);
-			isLoggedIn = true;
+			setToken(res.data.accessToken);
 		} catch (e) {}
 		loading = false;
 	};

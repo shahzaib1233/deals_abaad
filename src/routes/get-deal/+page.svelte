@@ -3,12 +3,19 @@
 	import DealLoginForm from '$lib/components/get_deal/deal_login_form.svelte';
 	import DealPaymentCard from '$lib/components/get_deal/deal_payment_card.svelte';
 	import { inventoyStore } from '$lib/stores/inventory.js';
+	import { tokenStore } from '$lib/stores/token.js';
 	import Cookies from 'js-cookie';
 	import { onMount } from 'svelte';
 
 	export let data;
 
-	let isLoggedIn = true;
+
+	let token = '';
+
+	tokenStore.subscribe((value) => {
+		token = value;
+		console.log(value);
+	});
 
 	let fields = {
 		name: '',
@@ -73,7 +80,6 @@
 	// });
 
 	onMount(() => {
-		isLoggedIn = Cookies.get('token') ? true : false;
 		fields.inventoryId = data.inventoryValue.inventoryId;
 		fields.totalAmount = data.inventoryValue.price;
 		fields.sellingprice = data.inventoryValue.saleprice;
@@ -108,14 +114,13 @@
 <div class="my-container pt-[10.25rem]">
 	<div class="flex gap-8">
 		<div>
-			{#if isLoggedIn}
+			{#if token != '' && token != undefined}
 				<DealDetailForm bind:fields bind:paymentBtn />
 			{:else}
-				<DealLoginForm bind:isLoggedIn />
+				<DealLoginForm  />
 			{/if}
 		</div>
 		<DealPaymentCard
-			bind:isLoggedIn
 			plan={data.paymentPlan}
 			price={data.inventoryValue?.price}
 			saleprice={data.inventoryValue?.saleprice}

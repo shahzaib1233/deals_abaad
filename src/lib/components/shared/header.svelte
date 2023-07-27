@@ -7,7 +7,7 @@
 	import Button from '$lib/components/shared/button.svelte';
 	import Cookies from 'js-cookie';
 	import Popover from './popover.svelte';
-	import { tokenStore } from '$lib/stores/token';
+	import { setToken, tokenStore } from '$lib/stores/token';
 
 	let dark = false;
 
@@ -47,15 +47,6 @@
 	onMount(() => {
 		window.onscroll = () => scrollFunction();
 	});
-
-	const logout = () => {
-		Cookies.remove('token');
-		Cookies.remove('email');
-		token = null;
-	};
-	function redirectHandler(route: string) {
-		goto(route);
-	}
 </script>
 
 <header class="absolute w-full" bind:this={header}>
