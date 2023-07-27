@@ -6,10 +6,12 @@
 	import Footer from '$lib/components/shared/footer.svelte';
 	import GetInTouch from '$lib/components/shared/get_in_touch.svelte';
 	import HeaderDark from '$lib/components/shared/header_dark.svelte';
+	import { navigating } from '$app/stores';
 
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 	import Toast from '$lib/components/shared/toast.svelte';
 	import { setToken } from '$lib/stores/token';
+	import Spinner from '$lib/components/shared/spinner.svelte';
 
 	export let data;
 
@@ -54,21 +56,27 @@
 	}
 </script>
 
-{#if !showLayout}
-	{#if showDarkHeader}
-		<HeaderDark />
-	{:else}
-		<Header />
+{#if $navigating}
+	<!-- LOOK HERE -->
+	<div class="flex justify-center items-center w-screen h-screen">
+		<Spinner />
+	</div>
+{:else}
+	{#if !showLayout}
+		{#if showDarkHeader}
+			<HeaderDark />
+		{:else}
+			<Header />
+		{/if}
+	{/if}
+
+	<QueryClientProvider client={queryClient}>
+		<slot />
+	</QueryClientProvider>
+
+	{#if !showLayout}
+		<GetInTouch />
+		<Footer />
 	{/if}
 {/if}
-
-<QueryClientProvider client={queryClient}>
-	<slot />
-</QueryClientProvider>
-
-{#if !showLayout}
-	<GetInTouch />
-	<Footer />
-{/if}
-
 <Toast />
