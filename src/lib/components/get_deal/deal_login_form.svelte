@@ -19,6 +19,17 @@
 			const res = await loginApi(data);
 			toast({ type: 'success', heading: 'Login Successfull', text: 'User login successfully' });
 			Cookies.set('token', res.data.accessToken);
+			Cookies.set('email', res.data.email);
+			Cookies.set('contactno', res.data.contactno ?? '');
+			Cookies.set('fname', res.data.fname ?? '');
+			Cookies.set('lname', res.data.lname ?? '');
+			Cookies.set('address', res.data.address ?? '');
+			Cookies.set('city', res.data.city ?? '');
+			Cookies.set('country', res.data.country ?? '');
+			Cookies.set('zipcode', res.data.zipcode ?? '');
+			Cookies.set('cnic', res.data.cnic ?? '');
+			Cookies.set('gender', res.data.gender ?? '');
+			Cookies.set('dob', res.data.dob ?? '');
 			setToken(res.data.accessToken);
 		} catch (e) {}
 		loading = false;
