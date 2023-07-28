@@ -6,7 +6,7 @@
 		<div>
 			<h2 class="font-bold text-2xl md:text-3xl mb-2">My Wallet</h2>
 			<div class="flex items-center mt-[2rem]">
-				<img class="w-14 h-14" src="/images/user-picture.png" alt="profile" />
+				<img class="w-14 h-14" src="/images/user-icon.png" alt="profile" />
 				<div class="ml-4">
 					<h2 class="font-bold text-xl md:text-xl">Asad Ahmed Khan</h2>
 					<p>asadahmedkhan17@gmail.com</p>

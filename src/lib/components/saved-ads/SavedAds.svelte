@@ -10,7 +10,7 @@
 		</div>
 		<div class="flex items-center mt-[5rem]">
 			<div class="flex justify-center">
-				<img class="w-14 h-14" src="/images/user-picture.png" alt="profile" />
+				<img class="w-14 h-14" src="/images/user-icon.png" alt="profile" />
 			</div>
 			<div class="ml-[1rem]">
 				<p class="font-bold text-[1.2rem]">Asad Ahmed Khan</p>

@@ -4,6 +4,7 @@
 
 	import { createDealerApi } from '$lib/modules/dealer/api/dealer_api';
 	import Modal from '../shared/modal.svelte';
+	import { goto } from '$app/navigation';
 
 	let showModal = false;
 	const handleToggleModal = () => {
@@ -42,6 +43,10 @@
 			handleToggleModal();
 		} catch (e) {}
 		loading = false;
+	};
+
+	const homehandler = () => {
+		goto('/');
 	};
 </script>
 
@@ -102,6 +107,14 @@
 					{/if}
 				</h2>
 			</div>
+		</div>
+		<div class="flex justify-center items-center mt-[1rem]">
+			<Button
+				className="bg-[#FFD624] hover:bg-[#FFD624] text-[#1A202C] mb-[0.563rem] h-[3rem]"
+				label="Go To Home Page"
+				{loading}
+				onclick={homehandler}
+			/>
 		</div>
 	</svelte:fragment>
 </Modal>
