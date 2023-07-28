@@ -77,21 +77,24 @@
 	let referralAmount = 0;
 
 	$: {
-		let prevPrice = calculatedInventory.find(
-			(item) => item.floorId == selectedData.floors.toString()
-		)?.price;
+		let prevPrice = Number(
+			calculatedInventory.find((item) => item.floorId == selectedData.floors.toString())?.price ?? 0
+		);
 
-		let prevSale = calculatedInventory.find(
-			(item) => item.floorId == selectedData.floors.toString()
-		)?.saleper;
+		let prevSale = Number(
+			calculatedInventory.find((item) => item.floorId == selectedData.floors.toString())?.saleper ??
+				0
+		);
 
-		salePrice = prevPrice ?? 0;
-		discount = prevSale ?? 0;
+		salePrice = Math.round(prevPrice ?? 0);
+		discount = Math.round(prevSale ?? 0);
 
-		price =
-			((prevPrice ? +prevPrice : 0) - (prevSale ? +prevSale : 0)) *
-				(1 - (prevSale ? +prevSale : 0) / 100) -
-			referralAmount;
+		price = Math.round(salePrice - (salePrice * discount) / 100 - referralAmount);
+
+		console.log(salePrice);
+		console.log(discount);
+		console.log(referralAmount);
+		console.log(price);
 	}
 
 	// onMount(() => {
@@ -194,7 +197,7 @@
 		<div class="flex justify-between">
 			<span class="text-left mt-4 text-[1.2rem]"> *Discount ({discount?.toLocaleString()}%)</span>
 			<span class="text-left mt-2 mb-4 text-[1.4rem]">
-				Rs. {((salePrice * discount) / 100).toLocaleString()}/-
+				Rs. {Math.round((salePrice * discount) / 100).toLocaleString()}/-
 			</span>
 		</div>
 		<div class="flex justify-between">
