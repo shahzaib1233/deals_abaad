@@ -106,6 +106,15 @@
 						0
 					{/if}
 				</h2>
+				<div class="flex justify-center">
+					<Button
+						className="mb-[0.563rem] mt-[1.6rem] w-[11.813rem] h-[2.5rem]"
+						label="Ok"
+						onclick={() => {
+							goto('/');
+						}}
+					/>
+				</div>
 			</div>
 		</div>
 		<div class="flex justify-center items-center mt-[1rem]">

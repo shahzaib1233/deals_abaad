@@ -40,23 +40,25 @@
 
 	onMount(() => {
 		console.log('plan.. ', plan[0]);
-		paymentData.downPayment = (saleprice / 100) * +plan[0].downpayment;
-		paymentData.possession = (saleprice / 100) * +plan[0].possessionamount;
-		paymentData.annualPayment = (price / 100) * +plan[0].annualpayment;
-		paymentData.biannualPayments = (price / 100) * +plan[0].biannualpayments;
-		paymentData.quarterlyPayments = (price / 100) * +plan[0].quarterlypayments;
+		paymentData.downPayment = Math.round((saleprice / 100) * +plan[0].downpayment);
+		paymentData.possession = Math.round((saleprice / 100) * +plan[0].possessionamount);
+		paymentData.annualPayment = Math.round((price / 100) * +plan[0].annualpayment);
+		paymentData.biannualPayments = Math.round((price / 100) * +plan[0].biannualpayments);
+		paymentData.quarterlyPayments = Math.round((price / 100) * +plan[0].quarterlypayments);
 		paymentData.noOfInstallments = +plan[0].noOfInstallments;
-		paymentData.amountPerInstallment =
+		paymentData.amountPerInstallment = Math.round(
 			(price -
 				paymentData.downPayment -
 				paymentData.annualPayment -
 				paymentData.biannualPayments -
 				paymentData.quarterlyPayments -
 				paymentData.possession) /
-			paymentData.noOfInstallments;
+				paymentData.noOfInstallments
+		);
 
-		confirmationAmount =
-			paymentData.downPayment > 0 ? paymentData.downPayment : paymentData.amountPerInstallment;
+		confirmationAmount = Math.round(
+			paymentData.downPayment > 0 ? paymentData.downPayment : paymentData.amountPerInstallment
+		);
 		fields.confirmationAmount = confirmationAmount;
 	});
 
@@ -100,13 +102,13 @@
 		<h2 class="mt-3">
 			Down Payment
 			<span class="ml-4">
-				{paymentData.downPayment.toFixed(2)}/-{' '}
+				{paymentData.downPayment}/-{' '}
 			</span>
 		</h2>
 		<h2 class="mt-3">
 			Monthly ({paymentData.noOfInstallments}){' '}
 			<span class="ml-4">
-				{paymentData.amountPerInstallment.toFixed(2)}/-
+				{paymentData.amountPerInstallment}/-
 			</span>
 		</h2>
 
@@ -114,7 +116,7 @@
 			<h2 class="mt-3">
 				Yearly ({(paymentData.noOfInstallments / 12).toFixed(0)}){' '}
 				<span class="ml-4">
-					{paymentData.annualPayment.toFixed(2)}/-{' '}
+					{paymentData.annualPayment}/-{' '}
 				</span>
 			</h2>
 		{/if}
@@ -122,7 +124,7 @@
 		<h2 class="mt-3">
 			Possession{' '}
 			<span class="ml-4">
-				{paymentData.possession.toFixed(2)}/-{' '}
+				{paymentData.possession}/-{' '}
 			</span>
 		</h2>
 		<h2 class="mt-3">
@@ -143,12 +145,12 @@
 
 	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
 		<span>Booking Amount</span>
-		<span>Rs {bookingAmount.toFixed(2)} </span>
+		<span>Rs {bookingAmount} </span>
 	</div>
 	{#if fields.confirmationcheck}
 		<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
 			<span>Confirmation Amount</span>
-			<span>Rs {confirmationAmount.toFixed(2)} </span>
+			<span>Rs {confirmationAmount} </span>
 		</div>
 	{/if}
 	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
@@ -156,9 +158,9 @@
 		<span
 			>Rs
 			{#if fields.confirmationcheck}
-				{(bookingAmount + confirmationAmount).toFixed(2)}
+				{bookingAmount + confirmationAmount}
 			{:else}
-				{bookingAmount.toFixed(2)}
+				{bookingAmount}
 			{/if}
 		</span>
 	</div>

@@ -9,7 +9,6 @@
 
 	export let data;
 
-
 	let token = '';
 
 	tokenStore.subscribe((value) => {
@@ -38,8 +37,8 @@
 		nomineecnic: '',
 		nomineephoneno: '',
 		nomineeaddress: '',
-		nomineedeclaration: true,
-		confirmationcheck: true,
+		nomineedeclaration: false,
+		confirmationcheck: false,
 		paymenttype: '',
 		paymentplanId: 1,
 		bookingamount: 0,
@@ -64,7 +63,7 @@
 		possession: 0,
 		confirmationAmount: 0,
 		noofinstallments: 0,
-		allotmentcheck: true
+		allotmentcheck: false
 	};
 
 	// inventoyStore.subscribe((value) => {
@@ -90,20 +89,27 @@
 		fields.bookingamount = data.inventoryValue.bookingPrice;
 		fields.projectId = data.inventoryValue.projectId;
 
-		fields.downpayment = (fields.totalAmount / 100) * +data.paymentPlan[0].downpayment;
-		fields.possession = (fields.totalAmount / 100) * +data.paymentPlan[0].possessionamount;
-		fields.yearly = (fields.totalAmount / 100) * +data.paymentPlan[0].annualpayment;
-		fields.biannual = (fields.totalAmount / 100) * +data.paymentPlan[0].biannualpayments;
-		fields.quaterly = (fields.totalAmount / 100) * +data.paymentPlan[0].quarterlypayments;
+		fields.downpayment = Math.round((fields.totalAmount / 100) * +data.paymentPlan[0].downpayment);
+		fields.possession = Math.round(
+			(fields.totalAmount / 100) * +data.paymentPlan[0].possessionamount
+		);
+		fields.yearly = Math.round((fields.totalAmount / 100) * +data.paymentPlan[0].annualpayment);
+		fields.biannual = Math.round(
+			(fields.totalAmount / 100) * +data.paymentPlan[0].biannualpayments
+		);
+		fields.quaterly = Math.round(
+			(fields.totalAmount / 100) * +data.paymentPlan[0].quarterlypayments
+		);
 		fields.noofinstallments = +data.paymentPlan[0].noOfInstallments;
-		fields.monthly =
+		fields.monthly = Math.round(
 			(fields.totalAmount -
 				fields.downpayment -
 				fields.yearly -
 				fields.biannual -
 				fields.quaterly -
 				fields.possession) /
-			fields.noofinstallments;
+				fields.noofinstallments
+		);
 
 		// fields.bookingamount = fields.downpayment > 0 ? fields.downpayment : fields.monthly;
 	});
@@ -117,7 +123,7 @@
 			{#if token != '' && token != undefined}
 				<DealDetailForm bind:fields bind:paymentBtn />
 			{:else}
-				<DealLoginForm  />
+				<DealLoginForm />
 			{/if}
 		</div>
 		<DealPaymentCard
