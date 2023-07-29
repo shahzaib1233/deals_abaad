@@ -22,7 +22,7 @@
 		</div>
 
 		<div class="flex flex-col justify-center items-center mt-[1rem] font-bold">
-			{#if !dealDetails.confirmationcheck}
+			{#if !dealDetails.AmountconfirmationCheck}
 				<h2 class="text-[1.563rem] text-center">
 					Confirmation Payment Must be Paid within 3 days of Booking to avoid cancellation
 				</h2>

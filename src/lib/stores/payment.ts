@@ -48,7 +48,9 @@ export const paymentStore = writable<GETDEALFIELDS>({
 	possession: 0,
 	confirmationAmount: 0,
 	noofinstallments: 0,
-	allotmentcheck: false // Add the 'allotmentcheck' property here
+	allotmentcheck: false,
+	confirmationCheck: false,
+	AmountconfirmationCheck: false // Add the 'allotmentcheck' property here
 });
 
 export function setPaymentFields(paymentFields: GETDEALFIELDS) {

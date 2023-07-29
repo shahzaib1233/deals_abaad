@@ -7,12 +7,10 @@
 
 	export let data;
 	let bannerImage: any;
-	const baseUrl = import.meta.env.VITE_BASE_URL;
 
 	onMount(() => {
 		bannerImage = localStorage.getItem('bannerImage');
-		console.log('onmount url = ', bannerImage);
-		// console.log('onmount url = ', baseUrl,img,category${bannerImage});
+		console.log(data.deal);
 	});
 </script>
 

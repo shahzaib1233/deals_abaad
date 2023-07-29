@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { toast } from '$lib/stores/notification';
+
 	export let className: string = '';
 	export let value: string;
 	export let placeholder: string = '';
@@ -7,11 +9,52 @@
 	export let disabled: boolean = false;
 	export let label: string = '';
 	export let withAsterisk: boolean = false;
+	let previousValidPhoneValue = 0;
+	let previousCnicPhoneValue = 0;
 
 	let passwordType: string = 'password';
 
 	const changePasswordType = (type: string) => {
 		passwordType = type;
+	};
+
+	const validatePhoneNumber = (event: any) => {
+		const inputValue = event.target.value;
+		const phoneNumberRegex = /^\d{0,11}$/;
+
+		if (!phoneNumberRegex.test(inputValue)) {
+			if (inputValue.length > 11) {
+				toast({
+					type: 'error',
+					heading: 'Phone Limit Exceeded',
+					text: 'Please Enter Only 11 Digits'
+				});
+			}
+			event.preventDefault();
+			event.target.value = previousValidPhoneValue;
+		} else {
+			const newValue = inputValue.startsWith('0')
+				? '0' + inputValue.replace(/^0+/, '')
+				: inputValue;
+			event.target.value = newValue;
+			previousValidPhoneValue = newValue;
+		}
+	};
+	const validateCnicNumber = (event: any) => {
+		const inputValue = event.target.value;
+		const phoneNumberRegex = /^\d{0,13}$/;
+		if (!phoneNumberRegex.test(inputValue)) {
+			if (inputValue.length > 13) {
+				toast({
+					type: 'error',
+					heading: 'Cnic Limit Exceeded',
+					text: 'Please Enter Only 13 Digits'
+				});
+			}
+			event.target.value = previousCnicPhoneValue;
+		} else {
+			previousCnicPhoneValue = inputValue;
+		}
 	};
 </script>
 
@@ -47,6 +90,24 @@
 			bind:value
 			{placeholder}
 			class="flex-1 focus:outline-none px-3 py-2 rounded-md border border-[#ced4da] text-[1rem] {className}"
+		/>
+	{:else if type == 'phone'}
+		<input
+			{required}
+			type="number"
+			bind:value
+			{placeholder}
+			class="flex-1 focus:outline-none px-3 py-2 rounded-md border border-[#ced4da] text-[1rem] {className}"
+			on:input={validatePhoneNumber}
+		/>
+	{:else if type == 'cnic'}
+		<input
+			{required}
+			type="number"
+			bind:value
+			{placeholder}
+			class="flex-1 focus:outline-none px-3 py-2 rounded-md border border-[#ced4da] text-[1rem] {className}"
+			on:input={validateCnicNumber}
 		/>
 	{:else if type == 'date'}
 		<input

@@ -2,6 +2,7 @@
 	import Button from '$lib/components/shared/button.svelte';
 	import ListBoxNew from '$lib/components/shared/list_box_payment.svelte';
 	import { getScheduleApi } from '$lib/modules/payment/api/payment_api';
+	import { toast } from '$lib/stores/notification';
 	import { onMount } from 'svelte';
 
 	let loading = false;
@@ -27,10 +28,20 @@
 			// Uncheck action - remove installment amount from amountpayable
 			selectedInstallments = selectedInstallments.filter((item: any) => item !== scheduleItem);
 			amountpayable -= scheduleItem.payableAmount;
+			toast({
+				type: 'warning',
+				heading: 'Amount Deducted',
+				text: 'This Amount is Deducted from Payable Amount'
+			});
 		} else {
 			// Check action - add installment amount to amountpayable
 			selectedInstallments.push(scheduleItem);
 			amountpayable += scheduleItem.payableAmount;
+			toast({
+				type: 'success',
+				heading: 'Amount Added',
+				text: 'This Amount is Added in Payable Amount Below'
+			});
 		}
 	};
 	const updateData = (saleIds: number[]) => {

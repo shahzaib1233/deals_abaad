@@ -63,7 +63,9 @@
 		possession: 0,
 		confirmationAmount: 0,
 		noofinstallments: 0,
-		allotmentcheck: false
+		allotmentcheck: false,
+		AmountconfirmationCheck: false,
+		confirmationCheck: false
 	};
 
 	// inventoyStore.subscribe((value) => {

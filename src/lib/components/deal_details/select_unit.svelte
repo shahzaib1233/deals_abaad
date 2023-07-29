@@ -15,7 +15,9 @@
 		floors: 0,
 		units: 0
 	};
-
+	onMount(() => {
+		console.log('data= ', data);
+	});
 	const updateData = (key: string, value: number) => {
 		selectedData[`${key}`] = value;
 	};
@@ -129,6 +131,15 @@
 				projectId: data.projectId
 			})
 		);
+		localStorage.setItem(
+			'Deal_Details',
+			JSON.stringify({
+				address: data.project.address,
+				area: data.project.location.name,
+				city: data.project.cities.name
+			})
+		);
+
 		goto('/get-deal');
 	};
 </script>

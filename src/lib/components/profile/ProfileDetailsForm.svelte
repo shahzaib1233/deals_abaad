@@ -148,7 +148,7 @@
 					<h2>Contact Number</h2>
 				</div>
 				<div class="flex items-start pl-4">
-					<TextField bind:value={data.contactno} className="w-[23rem]" />
+					<TextField bind:value={data.contactno} type="phone" className="w-[23rem]" />
 				</div>
 			</div>
 			<div class="flex flex-col md:flex-row justify-center items-start mt-4">

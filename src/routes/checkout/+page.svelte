@@ -6,11 +6,15 @@
 	import dayjs from 'dayjs';
 	import { onMount } from 'svelte';
 	import CryptoJS from 'crypto-js';
+	import type { GETDEALFIELDS } from '$lib/types/getDealFields.js';
 
 	let dealDtl: any;
-
+	let dealAdd: any;
 	onMount(() => {
 		dealDtl = JSON.parse(localStorage.getItem('dealDetails') ?? '');
+		dealAdd = JSON.parse(localStorage.getItem('Deal_Details') ?? '');
+		console.log('data = ', dealAdd);
+		// console.log('fields = ', fields);
 	});
 
 	function openWindowWithPost(url: any, name: any, params: any) {
@@ -134,6 +138,10 @@
 			pp_ProductID: productID
 		});
 	};
+	// onMount(() => {
+	// 	const dealDetails = JSON.parse(localStorage.getItem('dealDetails') ?? '');
+	// 	console.log(dealDetails);
+	// });
 </script>
 
 <div class="my-container pt-[10.25rem]">
@@ -170,28 +178,36 @@
 					<span class="text-[1.6rem] font-bold">Property details</span>
 				</div>
 				<div class="flex mt-4">
-					<span class="font-bold text-[#4B4B4B]">Address:</span>
-					<span class="ml-2" />
+					<span class="font-bold text-[#4B4B4B]">Unit No:</span>
+					<span class="ml-2">{dealDtl?.unitno}</span>
 				</div>
 				<div class="flex mt-2">
-					<span class="font-bold text-[#4B4B4B]">Area:</span>
-					<span class="ml-2" />
+					<span class="font-bold text-[#4B4B4B]">Floor:</span>
+					<span class="ml-2">{dealDtl?.floor}</span>
 				</div>
+				<div class="flex mt-2">
+					<span class="font-bold text-[#4B4B4B]">Address:</span>
+					<span class="ml-2">{dealAdd?.address}</span>
+				</div>
+				<!-- <div class="flex mt-2">
+					<span class="font-bold text-[#4B4B4B]">Area:</span>
+					<span class="ml-2">{dealAdd?.area}</span>
+				</div> -->
 				<div class="flex mt-2">
 					<span class="font-bold text-[#4B4B4B]">City:</span>
-					<span class="ml-2" />
+					<span class="ml-2">{dealAdd?.city}</span>
 				</div>
-				<div class="flex mt-2">
+				<!-- <div class="flex mt-2">
 					<span class="font-bold text-[#4B4B4B]">Zip:</span>
-					<span class="ml-2" />
-				</div>
-				<div class="flex mt-2">
+					<span class="ml-2">{''}</span>
+				</div> -->
+				<!-- <div class="flex mt-2">
 					<span class="font-bold text-[#4B4B4B]">Country:</span>
-					<span class="ml-2" />
-				</div>
+					<span class="ml-2">{'Pakistan'}</span>
+				</div> -->
 				<div class="flex mt-2">
 					<span class="font-bold text-[#4B4B4B]">Price:</span>
-					<span class="ml-2" />
+					<span class="ml-2">{dealDtl?.sellingprice.toLocaleString()}</span>
 				</div>
 
 				<div class="mt-[2rem]">

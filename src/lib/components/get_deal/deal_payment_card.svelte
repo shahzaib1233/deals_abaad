@@ -79,7 +79,8 @@
 	}
 
 	const handleCheckboxChange = (check: boolean) => {
-		fields.confirmationcheck = check;
+		fields.AmountconfirmationCheck = check;
+		console.log(fields.AmountconfirmationCheck);
 	};
 </script>
 
@@ -104,21 +105,21 @@
 		<h2 class="mt-3">
 			Down Payment
 			<span class="ml-4">
-				{paymentData.downPayment}/-{' '}
+				{Math.round(paymentData.downPayment).toLocaleString()}/-{' '}
 			</span>
 		</h2>
 		<h2 class="mt-3">
-			Monthly ({paymentData.noOfInstallments}){' '}
+			Monthly ({paymentData.noOfInstallments.toLocaleString()}){' '}
 			<span class="ml-4">
-				{paymentData.amountPerInstallment}/-
+				{paymentData.amountPerInstallment.toLocaleString()}/-
 			</span>
 		</h2>
 
 		{#if paymentData.annualPayment > 0}
 			<h2 class="mt-3">
-				Yearly ({(paymentData.noOfInstallments / 12).toFixed(0)}){' '}
+				Yearly ({(paymentData.noOfInstallments / 12).toFixed(0).toLocaleString()}){' '}
 				<span class="ml-4">
-					{paymentData.annualPayment}/-{' '}
+					{paymentData.annualPayment.toLocaleString()}/-{' '}
 				</span>
 			</h2>
 		{/if}
@@ -126,7 +127,7 @@
 		<h2 class="mt-3">
 			Possession{' '}
 			<span class="ml-4">
-				{paymentData.possession}/-{' '}
+				{paymentData.possession.toLocaleString()}/-{' '}
 			</span>
 		</h2>
 		<h2 class="mt-3">
@@ -153,12 +154,12 @@
 
 	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
 		<span>Booking Amount</span>
-		<span>Rs {bookingAmount} </span>
+		<span>Rs {bookingAmount.toLocaleString()} </span>
 	</div>
-	{#if fields.confirmationcheck}
+	{#if fields.AmountconfirmationCheck}
 		<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
 			<span>Confirmation Amount</span>
-			<span>Rs {confirmationAmount} </span>
+			<span>Rs {confirmationAmount.toLocaleString()} </span>
 		</div>
 	{/if}
 	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
@@ -166,7 +167,7 @@
 		<span
 			>Rs
 			{#if fields.confirmationcheck}
-				{bookingAmount + confirmationAmount}
+				{bookingAmount + confirmationAmount.toLocaleString()}
 			{:else}
 				{bookingAmount}
 			{/if}
@@ -176,7 +177,7 @@
 		className="rounded-md w-[14.438rem] mt-6 h-[2.5rem]"
 		type="submit"
 		onclick={() => paymentHandler()}
-		label="Get The Deal"
+		label="Checkout"
 	/>
 	<h2 class="w-[90%] mt-6">
 		Your personal data will be used to process your order, support your experience throughout this

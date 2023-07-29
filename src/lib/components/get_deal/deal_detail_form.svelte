@@ -63,6 +63,7 @@
 			className="md:w-[21.75rem]"
 			withAsterisk
 			required
+			type="cnic"
 			bind:value={fields.cnic}
 		/>
 	</div>
@@ -90,6 +91,7 @@
 			className="md:w-[21.75rem]"
 			withAsterisk
 			required
+			type="phone"
 			bind:value={fields.mobileno}
 		/>
 	</div>
@@ -118,6 +120,7 @@
 			className="md:w-[21.75rem]"
 			withAsterisk
 			required
+			type="country"
 			bind:value={fields.country}
 		/>
 	</div>
