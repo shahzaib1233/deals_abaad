@@ -77,11 +77,11 @@
 								>
 							</li>
 							<li>
-								<button on:click={() => redirectHandler('/booking')} class="pt-2 px-4 w-full flex"
+								<button on:click={() => redirectHandler('/booking')} class="py-2 px-4 w-full flex"
 									>My booking</button
 								>
 							</li>
-							<li>
+							<!-- <li>
 								<button on:click={() => redirectHandler('/saved-ads')} class="pt-2 px-4 w-full flex"
 									>My saved ads</button
 								>
@@ -90,7 +90,7 @@
 								<button on:click={() => redirectHandler('/wallet')} class="py-2 px-4 w-full flex"
 									>Wallet</button
 								>
-							</li>
+							</li> -->
 							<li on:click={logout} class="border-t py-2 px-4 w-full">Logout</li>
 						</ul>
 						<!-- </div> -->

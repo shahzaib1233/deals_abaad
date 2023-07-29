@@ -41,17 +41,14 @@
 			console.log(response);
 			const saleIds = response.map((item) => item.saleId);
 			updateData(saleIds);
-			if (options.length > 0) {
-				selectedOption = options[1];
-				updateSelectedSaleData();
-			}
+			// if (options.length > 0) {
+			// 	selectedOption = options[1];
+			// 	updateSelectedSaleData();
+			// }
 		} catch (e) {}
 	};
-	const updateSelectedSaleData = () => {
-		if (selectedOption) {
-			const selectedSaleId = parseInt(selectedOption.value);
-			selectedSaleData = response.find((item) => item.saleId === selectedSaleId);
-		}
+	const updateSelectedSaleData = (value: number) => {
+		selectedSaleData = response.find((item) => item.saleId === value);
 	};
 
 	onMount(() => {
@@ -61,17 +58,14 @@
 		data.email = Cookies.get('email') ?? '';
 	});
 
-	const handleListBoxChange = (event: any) => {
-		const selectedValue = event.detail;
-		console.log(selectedValue);
-		selectedOption = event.detail;
-		updateSelectedSaleData();
+	const handleListBoxChange = (key: string, value: number) => {
+		updateSelectedSaleData(value);
 	};
 	const formatDate = (dateStr: string) => {
 		const date = new Date(dateStr);
 		const options: Intl.DateTimeFormatOptions = {
 			day: 'numeric',
-			month: 'long',
+			month: 'short',
 			year: 'numeric'
 		};
 		return date.toLocaleDateString('en-GB', options);
@@ -107,7 +101,7 @@
 			/>
 		</div>
 	</div>
-	{#if selectedOption !== null && selectedSaleData !== null}
+	{#if selectedSaleData !== null}
 		<!-- {#each response as booking} -->
 		<div
 			class="bg-[#F2F5F7] rounded-2xl flex flex-col items-left justify-left px-4 md:px-20 py-8 md:py-20 mt-8"

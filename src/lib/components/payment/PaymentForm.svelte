@@ -9,7 +9,7 @@
 	let isOpen = false;
 	let selectedOption: Option | null = null;
 	let options: { value: string; label: string }[] = [];
-	let selectedSaleData: any = null; // Replace 'any' with the appropriate type
+	let selectedSaleData: any = null;
 
 	interface SaleData {
 		saleId: number;
@@ -35,34 +35,33 @@
 			console.log(response);
 			const saleIds = response.map((item) => item.saleId);
 			updateData(saleIds);
-			if (options.length > 0) {
-				selectedOption = options[1];
-				updateSelectedSaleData();
-			}
+			// if (options.length > 0) {
+			// 	selectedOption = options[1];
+			// 	updateSelectedSaleData();
+			// }
 		} catch (e) {}
 	};
-	const updateSelectedSaleData = () => {
-		if (selectedOption) {
-			const selectedSaleId = parseInt(selectedOption.value);
-			selectedSaleData = response.find((item) => item.saleId === selectedSaleId);
-		}
+
+	const updateSelectedSaleData = (value: number) => {
+		selectedSaleData = response.find((item) => item.saleId === value);
 	};
 
 	onMount(() => {
 		scheduleHandler();
 	});
 
-	const handleListBoxChange = (event: any) => {
-		const selectedValue = event.detail;
-		console.log(selectedValue);
-		selectedOption = event.detail;
-		updateSelectedSaleData();
+	const handleListBoxChange = (key: string, value: number) => {
+		// const selectedValue = event.detail;
+		// console.log(event);
+		// selectedOption = value;
+		updateSelectedSaleData(value);
 	};
+
 	const formatDate = (dateStr: string) => {
 		const date = new Date(dateStr);
 		const options: Intl.DateTimeFormatOptions = {
 			day: 'numeric',
-			month: 'long',
+			month: 'short',
 			year: 'numeric'
 		};
 		return date.toLocaleDateString('en-GB', options);
@@ -73,7 +72,7 @@
 	<label class="text-[1.3rem] font-bold">Select Payment</label>
 	<div class="w-[30rem] mt-3">
 		<ListBoxNew
-			key="floors"
+			key="payments"
 			{options}
 			bind:item={selectedOption}
 			{isOpen}
@@ -81,7 +80,7 @@
 		/>
 	</div>
 </div>
-{#if selectedOption !== null && selectedSaleData !== null}
+{#if selectedSaleData !== null}
 	<div class="bg-[#F2F5F7] rounded-2xl px-4 md:px-16 py-8 md:py-16 mt-8 text-[1.1rem]">
 		<div class="text-center flex-col">
 			<h3 class="text-[2rem] font-bold">Unit No: {selectedSaleData.SaleDetail[0].unitno}</h3>
@@ -111,16 +110,16 @@
 				<p class="whitespace-nowrap text-left">{formatDate(selectedSaleData.date)}</p>
 			</div>
 			<div class="flex flex-col items-center text-[1.3rem]">
-				<p>{selectedSaleData.SaleDetail[0].sellingprice}</p>
+				<p>{Math.round(selectedSaleData.SaleDetail[0].sellingprice).toLocaleString()}</p>
 			</div>
 			<div class="flex flex-col items-center text-[1.3rem]">
-				<p>{selectedSaleData.SaleDetail[0].promodiscount}</p>
+				<p>{Math.round(selectedSaleData.SaleDetail[0].promodiscount).toLocaleString()}</p>
 			</div>
 			<div class="flex flex-col items-center text-[1.3rem]">
-				<p>{selectedSaleData.SaleDetail[0].referraldiscount}</p>
+				<p>{Math.round(selectedSaleData.SaleDetail[0].referraldiscount).toLocaleString()}</p>
 			</div>
 			<div class="flex flex-col items-center text-[1.3rem]">
-				<p>{selectedSaleData.SaleDetail[0].netsellingprice}</p>
+				<p>{Math.round(selectedSaleData.SaleDetail[0].netsellingprice).toLocaleString()}</p>
 			</div>
 		</div>
 
@@ -146,11 +145,11 @@
 
 		{#each selectedSaleData.SaleSchedule as scheduleItem}
 			<div class="grid grid-cols-1 md:grid-cols-5 gap-2 justify-center items-start mt-8">
-				<div class="flex flex-col items-center text-[1.3rem]">
+				<div class="flex flex-col text-[1.3rem]">
 					<p class="whitespace-nowrap text-left">{scheduleItem.transactionType}</p>
 				</div>
 				<div class="flex flex-col items-center text-[1.3rem]">
-					<p>{scheduleItem.payableAmount}</p>
+					<p>{Math.round(scheduleItem.payableAmount).toLocaleString()}</p>
 				</div>
 				<div class="flex flex-col items-center text-[1.3rem]">
 					<p class="whitespace-nowrap">{formatDate(scheduleItem.dcheduleDate)}</p>

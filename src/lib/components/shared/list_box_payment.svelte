@@ -39,7 +39,6 @@
 		value = option[valueKey]; // Update the value to the selected option's value
 		item = option; // Update the item to the selected option
 		isOpen = false;
-
 		onChange(key, parseInt(value)); // Call the onChange function with the selected value
 	}
 	let label = '';
