@@ -3,9 +3,16 @@
 	import { page } from '$app/stores';
 	import Button from '$lib/components/shared/button.svelte';
 	import ThankyouCard from '$lib/components/thankyou/thankyou_card.svelte';
+	import { onMount } from 'svelte';
 
 	const voucherNo = $page.url.searchParams.get('JCVoucherNo');
 	const voucherExpiry = $page.url.searchParams.get('JCVoucherExpiry');
+
+	let dealDetails: any;
+
+	onMount(() => {
+		dealDetails = JSON.parse(localStorage.getItem('dealDetails') ?? '');
+	});
 </script>
 
 <div class="bg-[#F2F5F7] min-h-screen">
@@ -15,9 +22,11 @@
 		</div>
 
 		<div class="flex flex-col justify-center items-center mt-[1rem] font-bold">
-			<h2 class="text-[1.563rem] text-center">
-				Confirmation Payment Must be Paid within 3 days of Booking to avoid cancellation
-			</h2>
+			{#if !dealDetails.confirmationcheck}
+				<h2 class="text-[1.563rem] text-center">
+					Confirmation Payment Must be Paid within 3 days of Booking to avoid cancellation
+				</h2>
+			{/if}
 			<h3 class="mt-4">
 				Your transaction has been received successfully and your account will be updated accordingly
 			</h3>
@@ -26,7 +35,7 @@
 		<div class="flex justify-center">
 			<Button
 				className="mb-[0.563rem] mt-[1.6rem] w-[11.813rem] h-[2.5rem]"
-				label="Ok"
+				label="Go to Home"
 				onclick={() => {
 					goto('/');
 				}}

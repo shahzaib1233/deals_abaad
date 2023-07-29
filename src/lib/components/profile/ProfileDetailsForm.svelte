@@ -23,7 +23,11 @@
 		loading = true;
 		try {
 			const res = await updateApi({ ...data, dob: data.dob + 'T00:00:00.000Z' });
-			toast({ type: 'success', heading: 'Login Successfull', text: 'User login successfully' });
+			toast({
+				type: 'success',
+				heading: 'Changes Updated',
+				text: 'Your changes are updated successfully'
+			});
 			Cookies.set('email', res.data.email);
 			Cookies.set('contactno', res.data.contactno ?? '');
 			Cookies.set('fname', res.data.fname ?? '');
@@ -33,7 +37,9 @@
 			Cookies.set('country', res.data.country ?? '');
 			Cookies.set('gender', res.data.gender ?? '');
 			Cookies.set('dob', res.data.dob ?? '');
-		} catch (e) {}
+		} catch (e) {
+			toast({ type: 'error', heading: 'Error', text: 'Please ' });
+		}
 		loading = false;
 	};
 

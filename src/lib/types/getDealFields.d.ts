@@ -44,6 +44,7 @@ export interface GETDEALFIELDS {
 	yearly: number;
 	possession: number;
 	confirmationAmount: number;
+	confirmationCheck: boolean;
 	noofinstallments: number;
 	allotmentcheck: boolean;
 }

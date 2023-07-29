@@ -145,8 +145,8 @@
 				class="flex mt-[1rem] bg-[#F2F5F7] w-full md:w-[65%] h-[3rem] rounded-lg justify-left items-center"
 			>
 				<!-- <Radio class="ml-4" /> -->
-				<input type="radio" name="payment" id="card" class="ml-4" />
-				<label for="card" class="ml-[1rem]">Credit / Debit Card</label>
+				<input type="radio" name="payment" id="card" class="ml-4" checked />
+				<label for="card" class="ml-[1rem]">JazzCash/Credit Card</label>
 			</div>
 
 			<div>

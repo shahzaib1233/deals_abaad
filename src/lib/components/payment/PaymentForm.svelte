@@ -10,6 +10,8 @@
 	let selectedOption: Option | null = null;
 	let options: { value: string; label: string }[] = [];
 	let selectedSaleData: any = null;
+	let selectedInstallments: any = [];
+	let amountpayable = 0;
 
 	interface SaleData {
 		saleId: number;
@@ -18,7 +20,19 @@
 		value: string;
 		label: string;
 	}
+	const handleCheckboxChange = (scheduleItem: any) => {
+		if (scheduleItem.paymentstatus) return; // Ignore checked checkboxes
 
+		if (selectedInstallments.includes(scheduleItem)) {
+			// Uncheck action - remove installment amount from amountpayable
+			selectedInstallments = selectedInstallments.filter((item: any) => item !== scheduleItem);
+			amountpayable -= scheduleItem.payableAmount;
+		} else {
+			// Check action - add installment amount to amountpayable
+			selectedInstallments.push(scheduleItem);
+			amountpayable += scheduleItem.payableAmount;
+		}
+	};
 	const updateData = (saleIds: number[]) => {
 		const dataOptions = saleIds.map((saleId) => ({
 			value: saleId.toString(),
@@ -69,7 +83,8 @@
 </script>
 
 <div class="mt-[3rem]">
-	<label class="text-[1.3rem] font-bold">Select Payment</label>
+	<!-- svelte-ignore a11y-label-has-associated-control -->
+	<label class="text-[1.3rem] font-bold">Select Order</label>
 	<div class="w-[30rem] mt-3">
 		<ListBoxNew
 			key="payments"
@@ -158,8 +173,11 @@
 					{#if scheduleItem.paymentstatus}
 						<input type="checkbox" checked readonly disabled class="h-8 w-8 bg-[#4A6594] rounded" />
 					{:else}
-						<input type="checkbox" class="h-8 w-8 bg-[#F2F5F7] rounded border-gray-400" />
-						<!-- <Button className="" type="submit" {loading} label="Pay" /> -->
+						<input
+							type="checkbox"
+							class="h-8 w-8 bg-[#F2F5F7] rounded border-gray-400"
+							on:change={() => handleCheckboxChange(scheduleItem)}
+						/>
 					{/if}
 				</div>
 				<div class="flex flex-col items-center text-[1.3rem]">
@@ -171,11 +189,16 @@
 		{/each}
 
 		<hr class="border-t-2 border-gray-300 my-10 w-auto" />
+		<div class="mb-4">
+			<p class="text-xl font-bold">
+				Selected Payable Amount: {Math.round(amountpayable)}
+			</p>
+		</div>
+
 		<div class="">
 			<Button className="h-[3rem]" type="submit" {loading} label="Pay Installment" />
 		</div>
 	</div>
 {:else}
-	<!-- Optional: You can show a message when no option is selected -->
 	<p class="mt-4 text-red-600">Please select an option from the list.</p>
 {/if}

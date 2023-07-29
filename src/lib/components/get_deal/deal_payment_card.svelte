@@ -17,8 +17,6 @@
 
 	let confirmationAmount = 0;
 
-	let confirmationCheck = false;
-
 	let token = '';
 
 	tokenStore.subscribe((value) => {
@@ -79,6 +77,10 @@
 			fields.totalAmount = bookingAmount;
 		}
 	}
+
+	const handleCheckboxChange = (check: boolean) => {
+		fields.confirmationcheck = check;
+	};
 </script>
 
 <div class="bg-[#F2F5F7] min-w-[30rem] h-[max-content] p-[2rem] rounded-md">
@@ -128,7 +130,13 @@
 			</span>
 		</h2>
 		<h2 class="mt-3">
-			<input type="checkbox" id="camount" bind:checked={fields.confirmationcheck} />{' '}
+			<input
+				type="checkbox"
+				id="camount"
+				bind:checked={fields.confirmationcheck}
+				on:change={() => handleCheckboxChange(fields.confirmationcheck)}
+			/>
+
 			<label for="camount">Confirmation Amount</label>{' '}
 			<span>({fields.confirmationAmount.toLocaleString()} /-)</span>
 		</h2>
