@@ -7,7 +7,6 @@ export const load = async ({ params }) => {
 			isServer: true,
 			url: `deal/${params.id}`
 		});
-		console.log(data.data);
 
 		return { deal: data.data };
 	} catch (e) {

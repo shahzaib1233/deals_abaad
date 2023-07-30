@@ -37,7 +37,6 @@
 	let paymentPlan = 1;
 
 	onMount(() => {
-		console.log('plan.. ', plan[0]);
 		paymentData.downPayment = Math.round((saleprice / 100) * +plan[0].downpayment);
 		paymentData.possession = Math.round((saleprice / 100) * +plan[0].possessionamount);
 		paymentData.annualPayment = Math.round((price / 100) * +plan[0].annualpayment);
@@ -80,7 +79,6 @@
 
 	const handleCheckboxChange = (check: boolean) => {
 		fields.AmountconfirmationCheck = check;
-		console.log(fields.AmountconfirmationCheck);
 	};
 </script>
 

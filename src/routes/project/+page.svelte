@@ -8,7 +8,6 @@
 	const scheduleHandler = async () => {
 		try {
 			const res = await getProjectsApi();
-			console.log(res.data);
 			projects = res.data;
 		} catch (e) {}
 	};

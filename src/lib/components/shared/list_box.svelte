@@ -13,7 +13,6 @@
 	$: listbox = createListbox({ label: 'Actions', selected: list[0] });
 
 	function onSelect(e: Event) {
-		console.log('select', (e as CustomEvent).detail);
 		onChange(key, (e as CustomEvent).detail.selected.value);
 	}
 </script>

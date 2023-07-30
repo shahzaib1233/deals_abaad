@@ -25,7 +25,7 @@
 			header.classList.remove('absolute');
 			header.classList.add('fixed');
 			header.classList.add('top-0');
-			header.classList.add('z-[1]');
+			header.classList.add('z-[2]');
 			header.classList.add('bg-white');
 			header.classList.add('shadow-lg');
 

@@ -57,13 +57,8 @@
 		try {
 			const res = await getScheduleApi();
 			response = res.data;
-			console.log(response);
 			const saleIds = response.map((item) => item.saleId);
 			updateData(saleIds);
-			// if (options.length > 0) {
-			// 	selectedOption = options[1];
-			// 	updateSelectedSaleData();
-			// }
 		} catch (e) {}
 	};
 
@@ -76,9 +71,6 @@
 	});
 
 	const handleListBoxChange = (key: string, value: number) => {
-		// const selectedValue = event.detail;
-		// console.log(event);
-		// selectedOption = value;
 		updateSelectedSaleData(value);
 	};
 

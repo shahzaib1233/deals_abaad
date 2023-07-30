@@ -37,7 +37,6 @@
 		loading = true;
 		try {
 			const res = await createDealerApi(data);
-			console.log(referralcode);
 			referralcode = res.data.referralcode;
 			referralamount = res.data.referralamount;
 			handleToggleModal();

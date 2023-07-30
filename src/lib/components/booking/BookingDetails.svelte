@@ -38,13 +38,8 @@
 		try {
 			const res = await getBookingsApi();
 			response = res.data;
-			console.log(response);
 			const saleIds = response.map((item) => item.saleId);
 			updateData(saleIds);
-			// if (options.length > 0) {
-			// 	selectedOption = options[1];
-			// 	updateSelectedSaleData();
-			// }
 		} catch (e) {}
 	};
 	const updateSelectedSaleData = (value: number) => {

@@ -49,6 +49,7 @@
     "js-cookie": "^3.0.5",
     "svelte-headlessui": "^0.0.20",
     "svelte-transition": "^0.0.10",
+    "swiper": "^10.0.4",
     "tailwind-merge": "^1.14.0"
   }
 }

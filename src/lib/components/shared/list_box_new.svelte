@@ -21,10 +21,6 @@
 		const specificDiv = document.getElementById(key);
 
 		if (specificDiv && !specificDiv.contains(event.target)) {
-			// The click was outside the specific div
-			console.log('Clicked outside the specific div');
-
-			// Add your custom logic here
 			isOpen = false;
 		}
 	}
@@ -37,7 +33,6 @@
 	});
 
 	function onSelect(e: Event) {
-		console.log('select', (e as CustomEvent).detail);
 		onChange(value, (e as CustomEvent).detail.selected.value);
 	}
 	let isOpen: boolean = false;

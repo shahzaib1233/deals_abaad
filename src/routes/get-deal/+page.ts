@@ -13,7 +13,6 @@ export const load = async () => {
 			}
 		});
 
-		console.log(data.data);
 
 		return { paymentPlan: data.data, inventoryValue };
 	} catch (e) {

@@ -13,7 +13,6 @@
 
 	tokenStore.subscribe((value) => {
 		token = value;
-		console.log(value);
 	});
 
 	let fields = {

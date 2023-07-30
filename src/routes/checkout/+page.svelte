@@ -13,8 +13,6 @@
 	onMount(() => {
 		dealDtl = JSON.parse(localStorage.getItem('dealDetails') ?? '');
 		dealAdd = JSON.parse(localStorage.getItem('Deal_Details') ?? '');
-		console.log('data = ', dealAdd);
-		// console.log('fields = ', fields);
 	});
 
 	function openWindowWithPost(url: any, name: any, params: any) {
@@ -33,7 +31,6 @@
 		}
 
 		document.body.appendChild(form);
-		console.log(form);
 
 		form.submit();
 		document.body.removeChild(form);
@@ -138,10 +135,6 @@
 			pp_ProductID: productID
 		});
 	};
-	// onMount(() => {
-	// 	const dealDetails = JSON.parse(localStorage.getItem('dealDetails') ?? '');
-	// 	console.log(dealDetails);
-	// });
 </script>
 
 <div class="my-container pt-[10.25rem]">

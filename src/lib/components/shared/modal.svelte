@@ -9,8 +9,6 @@
 	let modal: HTMLDivElement;
 
 	const close = (e: MouseEvent) => {
-		console.log(e.target);
-		console.log(modal);
 		if (e.target == modal) dispatch('close');
 	};
 </script>

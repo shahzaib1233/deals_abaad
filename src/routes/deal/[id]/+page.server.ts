@@ -7,7 +7,6 @@ export const load = async ({ params }) => {
 		const data = await axiosFunction({
 			url: `category/${params.id}`
 		});
-		console.log(data.data);
 
 		return { category: data.data };
 	} catch (e) {

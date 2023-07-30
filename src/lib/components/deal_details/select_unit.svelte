@@ -1,13 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
 	export let data: any;
 
 	import Button from '../shared/button.svelte';
-	import ListBox from '../shared/list_box.svelte';
 	import ListBoxNew from '../shared/list_box_new.svelte';
 	import VoucherModal from './voucher_modal.svelte';
-	import { setInventory } from '$lib/stores/inventory';
 	import { goto } from '$app/navigation';
 	import { toast } from '$lib/stores/notification';
 
@@ -15,11 +11,12 @@
 		floors: 0,
 		units: 0
 	};
-	onMount(() => {
-		console.log('data= ', data);
-	});
+
 	const updateData = (key: string, value: number) => {
 		selectedData[`${key}`] = value;
+		if (key == 'floors') {
+			selectedData['units'] = 0;
+		}
 	};
 
 	interface GroupedData {
@@ -54,7 +51,6 @@
 	});
 
 	calculatedInventory = Object.values(groupedData);
-	console.log(calculatedInventory);
 
 	const floors: {
 		label: string;
@@ -79,29 +75,28 @@
 	let referralAmount = 0;
 
 	$: {
-		let prevPrice = Number(
-			calculatedInventory.find((item) => item.floorId == selectedData.floors.toString())?.price ?? 0
-		);
+		if (selectedData.units != 0) {
+			let prevPrice = Number(
+				calculatedInventory.find((item) => item.floorId == selectedData.floors.toString())?.price ??
+					0
+			);
 
-		let prevSale = Number(
-			calculatedInventory.find((item) => item.floorId == selectedData.floors.toString())?.saleper ??
-				0
-		);
+			let prevSale = Number(
+				calculatedInventory.find((item) => item.floorId == selectedData.floors.toString())
+					?.saleper ?? 0
+			);
 
-		salePrice = Math.round(prevPrice ?? 0);
-		discount = Math.round(prevSale ?? 0);
+			salePrice = Math.round(prevPrice ?? 0);
+			discount = Math.round(prevSale ?? 0);
 
-		price = Math.round(salePrice - (salePrice * discount) / 100 - referralAmount);
+			price = Math.round(salePrice - (salePrice * discount) / 100 - referralAmount);
+		} else {
+			salePrice = 0;
+			discount = 0;
 
-		console.log(salePrice);
-		console.log(discount);
-		console.log(referralAmount);
-		console.log(price);
+			price = 0;
+		}
 	}
-
-	// onMount(() => {
-	// 	selectedData.floors = floors[0].value;
-	// });
 
 	let showModal = false;
 	const handleToggleModal = () => {
@@ -166,7 +161,6 @@
 	<form class="mt-[1rem] flex flex-col" on:submit|preventDefault={submit}>
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label>Select Floor Number</label>
-		<!-- <ListBox list={floors} key="floors" onChange={updateData} className="w-full mb-4" /> -->
 		<ListBoxNew
 			key="floors"
 			options={floors}
@@ -175,12 +169,7 @@
 		/>
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label>Select Unit Number</label>
-		<!-- <ListBox
-			list={units ?? [{ value: 0, label: '' }]}
-			key="units"
-			onChange={updateData}
-			className="w-full"
-		/> -->
+
 		<ListBoxNew
 			key="units"
 			options={units ?? [{ value: 0, label: '' }]}

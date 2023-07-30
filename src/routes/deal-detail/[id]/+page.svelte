@@ -3,6 +3,7 @@
 	import ProjectDetails from '$lib/components/deal_details/project_details.svelte';
 	import SelectUnit from '$lib/components/deal_details/select_unit.svelte';
 	import Carousal from '$lib/components/shared/carousal.svelte';
+	import SwiperCarousal from '$lib/components/shared/swiper_carousal.svelte';
 	import { onMount } from 'svelte';
 
 	export let data;
@@ -10,7 +11,6 @@
 
 	onMount(() => {
 		bannerImage = localStorage.getItem('bannerImage');
-		console.log(data.deal);
 	});
 </script>
 
@@ -34,7 +34,8 @@
 			<span class="ml-4 font-bold">{data.deal.name}</span>
 		</div>
 		<div class="mt-[1.1rem]">
-			<Carousal />
+			<!-- <Carousal /> -->
+			<SwiperCarousal />
 		</div>
 	{/if}
 	<div class="flex gap-8 mt-8">

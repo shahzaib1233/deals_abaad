@@ -23,7 +23,6 @@
 			const email = Cookies.get('email');
 			const res = await otpApi({ email: email ?? '', otp: otp });
 			const status = res.data;
-			console.log(status);
 
 			toast({ type: 'success', heading: 'Otp Verified', text: 'OTP Verified Successfully' });
 			setTimeout(() => goto('/reset-password'), 1000);
