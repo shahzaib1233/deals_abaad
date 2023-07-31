@@ -4,6 +4,6 @@
 
 <main>
 	<div class="">
-		<Hero heading="Dealsabaad Project" image="/images/project-hero.png" />
+		<Hero heading="Bahria United Mobile Market" image="/images/project-hero.png" />
 	</div>
 </main>

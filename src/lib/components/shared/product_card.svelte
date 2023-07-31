@@ -28,7 +28,7 @@
 			<img
 				src={img}
 				alt=""
-				class="w-full h-[21.125rem] object-cover transition-all duration-500 image-zoom__img"
+				class="w-full h-[21.125rem] transition-all duration-500 image-zoom__img"
 			/>
 		</div>
 		{#if +discount > 0}
