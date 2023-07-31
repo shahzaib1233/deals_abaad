@@ -38,7 +38,7 @@
 		nomineeaddress: '',
 		nomineedeclaration: false,
 		confirmationcheck: false,
-		paymenttype: '',
+		paymenttype: 'jc',
 		paymentplanId: 1,
 		bookingamount: 0,
 		totalAmount: 0,
@@ -64,7 +64,6 @@
 		noofinstallments: 0,
 		allotmentcheck: false,
 		AmountconfirmationCheck: false,
-		confirmationCheck: false
 	};
 
 	// inventoyStore.subscribe((value) => {
