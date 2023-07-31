@@ -120,7 +120,6 @@
 			className="md:w-[21.75rem]"
 			withAsterisk
 			required
-			type="country"
 			bind:value={fields.country}
 		/>
 	</div>

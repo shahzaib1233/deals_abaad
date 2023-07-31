@@ -72,8 +72,8 @@
 				<img class="w-14 h-14" src="/images/user-icon.png" alt="profile" />
 			</div>
 			<div class="ml-[1rem]">
-				<p class="font-bold text-[1.2rem]">athar rasool</p>
-				<p>atharrasool210@gmail.com</p>
+				<p class="font-bold text-[1.2rem]">{data.fname + ' ' + data.lname}</p>
+				<p>{data.email}</p>
 			</div>
 		</div>
 		<hr class="border-t-2 border-gray-300 my-6" />
