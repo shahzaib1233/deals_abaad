@@ -7,10 +7,10 @@
 		<h2 class="text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%] mb-[0.625rem]">
 			How it work
 		</h2>
-		<p class="text-[#4B4B4B] text-[1rem] md:text-[1.313rem] max-w-[45.5rem] text-center">
+		<!-- <p class="text-[#4B4B4B] text-[1rem] md:text-[1.313rem] max-w-[45.5rem] text-center">
 			Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is
 			simply dummy text
-		</p>
+		</p> -->
 		<div class="w-full flex flex-wrap justify-center mt-[4.5rem] gap-[2.5rem] lg:gap-[3rem]">
 			<HowItWorksCard
 				img="/icons/search.svg"
