@@ -51,7 +51,7 @@
 
 		const amount = +dealDtl.totalAmount * 100;
 		const billReference = res.data.saleId;
-		const description = 'Product test description';
+		const description = `${dealDtl.floor} - ${dealDtl.unitno}`;
 		const isRegisteredCustomer = 'No';
 		const language = 'EN';
 		const txnCurrency = 'PKR';
@@ -60,21 +60,18 @@
 			.toISOString()
 			.replace(/[-:]/g, '')
 			.slice(0, -5);
-		const txnRefNumber =
-			'TEST' +
-			new Date().toISOString().replace(/[-:]/g, '').slice(0, -9) +
-			Math.floor(Math.random() * 91 + 10);
+		const txnRefNumber = res.data.saleId;
 
 		const txnType = ''; // Leave it empty
 		const version = '2.0';
 		const subMerchantID = ''; // Leave it empty
 		const bankID = ''; // Leave it empty
-		const productID = ''; // Leave it empty
+		const productID = dealDtl.inventoryId; // Leave it empty
 		const ppmpf_1 = dealDtl.name; // use to store extra details (use AlphaNumeric only)
 		const ppmpf_2 = dealDtl.address; // use to store extra details (use AlphaNumeric only)
 		const ppmpf_3 = dealDtl.mobileno; // use to store extra details (use AlphaNumeric only)
-		const ppmpf_4 = ''; // use to store extra details (use AlphaNumeric only)
-		const ppmpf_5 = ''; // use to store extra details (use AlphaNumeric only)
+		const ppmpf_4 = dealAdd.projectId; // use to store extra details (use AlphaNumeric only)
+		const ppmpf_5 = +dealDtl.totalAmount; // use to store extra details (use AlphaNumeric only)
 
 		const hashArray = [
 			amount,
