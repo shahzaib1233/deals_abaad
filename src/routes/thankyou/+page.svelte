@@ -22,7 +22,7 @@
 		</div>
 
 		<div class="flex flex-col justify-center items-center mt-[1rem] font-bold">
-			{#if !dealDetails.AmountconfirmationCheck}
+			{#if dealDetails?.confirmationcheck == false}
 				<h2 class="text-[1.563rem] text-center">
 					Confirmation Payment Must be Paid within 3 days of Booking to avoid cancellation
 				</h2>
@@ -32,12 +32,19 @@
 			</h3>
 		</div>
 		<ThankyouCard {voucherNo} {voucherExpiry} />
-		<div class="flex justify-center">
+		<div class="flex justify-center gap-4">
 			<Button
 				className="mb-[0.563rem] mt-[1.6rem] w-[11.813rem] h-[2.5rem]"
 				label="Go to Home"
 				onclick={() => {
 					goto('/');
+				}}
+			/>
+			<Button
+				className="mb-[0.563rem] mt-[1.6rem] w-[11.813rem] h-[2.5rem]"
+				label="Payment Schedule"
+				onclick={() => {
+					goto('/payment');
 				}}
 			/>
 		</div>
