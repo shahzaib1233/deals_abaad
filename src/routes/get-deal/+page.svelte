@@ -80,12 +80,13 @@
 
 	onMount(() => {
 		fields.inventoryId = data.inventoryValue.inventoryId;
-		fields.totalAmount = data.inventoryValue.netsellingprice;
+		fields.totalAmount = data.inventoryValue.price;
 		fields.sellingprice = data.inventoryValue.saleprice;
 		fields.promodiscount = (data.inventoryValue.saleprice * data.inventoryValue.discount) / 100;
 		fields.referraldiscount = data.inventoryValue.referralamount;
 		fields.floor = data.inventoryValue.floor;
 		fields.unitno = data.inventoryValue.unitno;
+		fields.registrationno = data.inventoryValue.unitno;
 		fields.bookingamount = data.inventoryValue.bookingPrice;
 		fields.projectId = data.inventoryValue.projectId;
 
