@@ -206,7 +206,7 @@
 		<hr class="border-t-2 border-gray-300 my-10 w-auto" />
 		<div class="mb-4">
 			<p class="text-xl font-bold">
-				Selected Payable Amount: {Math.round(amountpayable)}
+				Selected Payable Amount: {Math.round(amountpayable).toLocaleString()}
 			</p>
 		</div>
 
