@@ -47,6 +47,17 @@
 	onMount(() => {
 		window.onscroll = () => scrollFunction();
 	});
+	const navigateToLoginPage = () => {
+		// Parse the current URL
+		const url = new URL(window.location.href);
+
+		// Extract the path component (e.g., "/blogs")
+		const path = url.pathname;
+
+		// Store only the path component in the cookie
+		Cookies.set('previousRoute', path, { expires: 1, path: '/' });
+		goto('/login'); // Replace with your actual login page route
+	};
 </script>
 
 <header class="absolute w-full z-[2]" bind:this={header}>
@@ -103,7 +114,7 @@
 						</svelte:fragment> -->
 					</Popover>
 				{:else}
-					<Button label="Login" onclick={() => goto('/login')} />
+					<Button label="Login" onclick={navigateToLoginPage} />
 				{/if}
 			</div>
 		</div>

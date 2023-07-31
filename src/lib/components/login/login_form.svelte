@@ -3,10 +3,10 @@
 	import { loginApi } from '$lib/modules/user/api/user_api';
 	import { toast } from '$lib/stores/notification';
 	import Cookies from 'js-cookie';
-
 	import Button from '../shared/button.svelte';
 	import TextField from '../shared/text_field.svelte';
 	import { setToken } from '$lib/stores/token';
+	import { onMount } from 'svelte';
 
 	let loading = false;
 
@@ -14,7 +14,7 @@
 		email: '',
 		password: ''
 	};
-
+	let previousRoute = Cookies.get('previousRoute');
 	const submit = async () => {
 		loading = true;
 		try {
@@ -35,10 +35,11 @@
 
 			setToken(res.data.accessToken);
 
-			setTimeout(() => goto('/'), 1000);
+			setTimeout(() => goto(previousRoute ?? '/'), 1000);
 		} catch (e) {}
 		loading = false;
 	};
+	onMount(() => {});
 </script>
 
 <form class="flex flex-col w-[25rem]" on:submit|preventDefault={submit}>
