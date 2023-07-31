@@ -23,7 +23,8 @@
 		<div class="flex flex-wrap">
 			{#each data?.project?.ProjectsFeature as item}
 				<div class="flex items-center mb-2 mr-4">
-					<img src="/images/bookings/water.png" alt="" />
+					<img src="{import.meta.env.VITE_BASE_URL}deal/icon/{item.feature.icon}" alt="" />
+
 					<span class="ml-2">{item.feature.name}</span>
 				</div>
 			{/each}
@@ -54,7 +55,7 @@
 </div>
 
 <hr class="border-t-2 border-gray-300 my-6" />
-<div class="">
+<!-- <div class="">
 	<h2 class="text-[1.3rem] font-bold">Rating</h2>
 	<div class="flex items-center mt-[1rem]">
 		<span class="text-[2.8rem]">4.9</span>
@@ -97,15 +98,34 @@
 		</div>
 	</div>
 	<hr class="border-t-2 border-gray-300 my-6" />
-</div>
-<h2 class="text-[1.3rem] font-bold">Location</h2>
-<div class="flex items-center mt-[1rem]">
-	<iframe
-		title="Map"
-		width="100%"
-		height="400"
-		style="border: 0"
-		src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.678901234567!2d-74.0059!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDM1JzA4LjQiTiA3NMKwMjQnMjMuMyJX!5e0!3m2!1sen!2sus!4v1626189763605!5m2!1sen!2sus"
-		allowFullScreen
-	/>
-</div>
+</div> -->
+{#if data.project.locationIframe != ''}
+	<h2 class="text-[1.3rem] font-bold">Location</h2>
+	<div class="flex items-center mt-[1rem]">
+		<iframe
+			title="Map"
+			width="100%"
+			height="400"
+			style="border: 0"
+			src={data.project.locationIframe}
+			allowFullScreen
+		/>
+	</div>
+	<hr class="border-t-2 border-gray-300 my-6" />
+{/if}
+{#if data.project.video != ''}
+	<h2 class="text-[1.3rem] font-bold">Video</h2>
+	<div class="flex items-center mt-[1rem]">
+		<iframe
+			width="100%"
+			height="500"
+			src={'https://www.youtube.com/embed/' + data.project.video}
+			title="YouTube video player"
+			frameborder="0"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+			allowfullscreen
+		/>
+	</div>
+
+	<hr class="border-t-2 border-gray-300 my-6" />
+{/if}

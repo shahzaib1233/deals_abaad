@@ -49,7 +49,7 @@
 	});
 </script>
 
-<header class="absolute w-full" bind:this={header}>
+<header class="absolute w-full z-[2]" bind:this={header}>
 	<div class="mt-4 lg:mt-0 my-container text-[1.188rem] font-[600]">
 		<div
 			class="hidden lg:flex justify-between py-4 border-b-[1.5px] border-white"

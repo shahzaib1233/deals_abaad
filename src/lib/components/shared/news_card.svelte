@@ -1,12 +1,20 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
 	export let img: string;
 	export let name: string;
 	export let date: string;
 	export let desc: string;
+	export let urlEndPoint: string;
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	class="flex-1 border border-[#C3C2C2] rounded-3xl overflow-hidden min-w-[15rem] md:min-w-[25rem] cursor-pointer hover:shadow-lg transition-all duration-500 image-zoom"
+	on:click={() => {
+		goto(`/blog-detail-${urlEndPoint}`);
+	}}
 >
 	<div class="overflow-hidden">
 		<img

@@ -55,7 +55,7 @@
 	}
 </script>
 
-<header class="absolute w-full" bind:this={header}>
+<header class="absolute w-full z-[2]" bind:this={header}>
 	<div class="mt-4 lg:mt-0 my-container text-[1.188rem] font-[600]">
 		<div class="hidden lg:flex justify-between py-4 border-b-[1.5px]" bind:this={topBar}>
 			<div class="flex items-center gap-2">
@@ -65,46 +65,7 @@
 			<div class="flex items-center gap-6">
 				<Button label="Dealer Registrations" onclick={() => goto('/dealer-registration')} />
 				{#if token}
-					<Popover>
-						<svelte:fragment slot="body">
-							<button
-								class="bg-[#FFD624] hover:bg-[#FFD624] w-[4rem] rounded-md flex items-center justify-center h-[2.4rem]"
-							>
-								<img src="/icons/user.svg" alt="" />
-							</button>
-						</svelte:fragment>
-						<svelte:fragment slot="menu">
-							<ul class="flex flex-col w-full text-[1rem] cursor-pointer">
-								<li class="w-full">
-									<button on:click={() => redirectHandler('/profile')} class="pt-2 px-4 w-full flex"
-										>Profile</button
-									>
-								</li>
-								<li>
-									<button on:click={() => redirectHandler('/payment')} class="pt-2 px-4 w-full flex"
-										>Payment</button
-									>
-								</li>
-								<li>
-									<button on:click={() => redirectHandler('/booking')} class="pt-2 px-4 w-full flex"
-										>My booking</button
-									>
-								</li>
-								<li>
-									<button
-										on:click={() => redirectHandler('/saved-ads')}
-										class="pt-2 px-4 w-full flex">My saved ads</button
-									>
-								</li>
-								<li>
-									<button on:click={() => redirectHandler('/wallet')} class="py-2 px-4 w-full flex"
-										>Wallet</button
-									>
-								</li>
-								<li on:click={() => logout} class="border-t py-2 px-4 w-full">Logout</li>
-							</ul>
-						</svelte:fragment>
-					</Popover>
+					<Popover />
 				{:else}
 					<Button label="Login" onclick={() => goto('/login')} />
 				{/if}

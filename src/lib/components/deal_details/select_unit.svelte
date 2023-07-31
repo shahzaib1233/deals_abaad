@@ -6,7 +6,7 @@
 	import VoucherModal from './voucher_modal.svelte';
 	import { goto } from '$app/navigation';
 	import { toast } from '$lib/stores/notification';
-
+	import { onMount } from 'svelte';
 	let selectedData: any = {
 		floors: 0,
 		units: 0
@@ -137,9 +137,12 @@
 
 		goto('/get-deal');
 	};
+	onMount(() => {
+		console.log('data=== ', data);
+	});
 </script>
 
-<div class="bg-[#F2F5F7] px-10 py-10 rounded-md w-full">
+<div class="bg-[#F2F5F7] px-10 py-10 rounded-md w-full sticky top-20">
 	<div
 		class="bg-[#4A6594] rounded-md h-[3rem] flex items-center justify-center mb-[1rem] w-[100%] min-w-[25rem]"
 	>
@@ -151,7 +154,8 @@
 		label="View Floor Plan"
 		onclick={() => {
 			window.open(
-				'https://www.islamicbooksforfree.com/Upload/files/Kitaplar/PDF/ingilizce/1-Endless_Bliss-I_07_02_2022.pdf',
+				// 'https://www.islamicbooksforfree.com/Upload/files/Kitaplar/PDF/ingilizce/1-Endless_Bliss-I_07_02_2022.pdf',
+				`${import.meta.env.VITE_BASE_URL}deal/pdf/${data.project.floorPlan}`,
 				'newwindow',
 				'width=1000,height=700'
 			);

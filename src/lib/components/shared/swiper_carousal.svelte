@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+
+	export let images: string[];
 
 	if (browser) {
 		onMount(async () => {
@@ -19,9 +21,11 @@
 
 <div class="swiper mySwiper">
 	<div class="swiper-wrapper">
-		<div class="swiper-slide"><img src="/images/detail.png" alt="" /></div>
-		<div class="swiper-slide"><img src="/images/detail.png" alt="" /></div>
-		<div class="swiper-slide"><img src="/images/detail.png" alt="" /></div>
+		{#each images as image}
+			<div class="swiper-slide">
+				<img src="{import.meta.env.VITE_BASE_URL}deal/img/{image}" alt="" />
+			</div>
+		{/each}
 	</div>
 	<div class="swiper-button-next" />
 	<div class="swiper-button-prev" />
@@ -46,7 +50,7 @@
 	.swiper-slide img {
 		display: block;
 		width: 100%;
-		height: 100%;
+		height: 596px;
 		object-fit: cover;
 	}
 </style>

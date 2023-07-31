@@ -8,9 +8,11 @@
 
 	export let data;
 	let bannerImage: any;
+	let images: string[] = [];
 
 	onMount(() => {
 		bannerImage = localStorage.getItem('bannerImage');
+		images = data.deal.DealImages.map((image: any) => image.imagePath);
 	});
 </script>
 
@@ -35,7 +37,7 @@
 		</div>
 		<div class="mt-[1.1rem]">
 			<!-- <Carousal /> -->
-			<SwiperCarousal />
+			<SwiperCarousal {images} />
 		</div>
 	{/if}
 	<div class="flex gap-8 mt-8">
