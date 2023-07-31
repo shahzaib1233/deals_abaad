@@ -6,6 +6,7 @@
 
 	export let voucherNo: any;
 	export let voucherExpiry: any;
+	export let transtype: any;
 
 	onMount(() => {
 		dealDetails = JSON.parse(localStorage.getItem('dealDetails') ?? '');
@@ -19,10 +20,18 @@
 		<div class="grid grid-cols-2 gap-y-2">
 			<p class="text-sm md:text-base whitespace-nowrap">Order Id</p>
 			<p class="text-sm md:text-base whitespace-nowrap">{orderId}</p>
-			<p class="text-sm md:text-base whitespace-nowrap">Voucher No</p>
-			<p class="text-sm md:text-base whitespace-nowrap">{voucherNo}</p>
-			<p class="text-sm md:text-base whitespace-nowrap">Voucher Expiry Date</p>
-			<p class="text-sm md:text-base whitespace-nowrap">{voucherExpiry}</p>
+			{#if voucherNo}
+				<p class="text-sm md:text-base whitespace-nowrap">Transaction Type</p>
+				<p class="text-sm md:text-base whitespace-nowrap">{transtype}</p>
+			{/if}
+			{#if voucherNo}
+				<p class="text-sm md:text-base whitespace-nowrap">Voucher No</p>
+				<p class="text-sm md:text-base whitespace-nowrap">{voucherNo}</p>
+			{/if}
+			{#if voucherExpiry}
+				<p class="text-sm md:text-base whitespace-nowrap">Voucher Expiry Date</p>
+				<p class="text-sm md:text-base whitespace-nowrap">{voucherExpiry}</p>
+			{/if}
 		</div>
 
 		<h2 class="text-xl md:text-2xl font-bold mb-4 mt-4">About Customer</h2>

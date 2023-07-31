@@ -9,6 +9,7 @@
 	const voucherExpiry = $page.url.searchParams.get('JCVoucherExpiry');
 	const responseMessage = $page.url.searchParams.get('resultmessage');
 	const resultResponse = $page.url.searchParams.get('resultresponse');
+	const transtype = $page.url.searchParams.get('transtype');
 
 	let dealDetails: any;
 
@@ -35,7 +36,7 @@
 				</h3>
 			{/if}
 		</div>
-		<ThankyouCard {voucherNo} {voucherExpiry} />
+		<ThankyouCard {transtype} {voucherNo} {voucherExpiry} />
 		<div class="flex justify-center gap-4">
 			<Button
 				className="mb-[0.563rem] mt-[1.6rem] w-[11.813rem] h-[2.5rem]"
