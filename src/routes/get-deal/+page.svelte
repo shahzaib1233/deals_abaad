@@ -38,7 +38,7 @@
 		nomineeaddress: '',
 		nomineedeclaration: false,
 		confirmationcheck: false,
-		paymenttype: 'jc',
+		paymenttype: 'JC',
 		paymentplanId: 1,
 		bookingamount: 0,
 		totalAmount: 0,
@@ -63,7 +63,7 @@
 		confirmationAmount: 0,
 		noofinstallments: 0,
 		allotmentcheck: false,
-		AmountconfirmationCheck: false,
+		AmountconfirmationCheck: false
 	};
 
 	// inventoyStore.subscribe((value) => {
@@ -82,16 +82,17 @@
 		fields.inventoryId = data.inventoryValue.inventoryId;
 		fields.totalAmount = data.inventoryValue.price;
 		fields.sellingprice = data.inventoryValue.saleprice;
-		fields.promodiscount = data.inventoryValue.discount;
+		fields.promodiscount = (data.inventoryValue.saleprice * data.inventoryValue.discount) / 100;
 		fields.referraldiscount = data.inventoryValue.referralamount;
 		fields.floor = data.inventoryValue.floor;
 		fields.unitno = data.inventoryValue.unitno;
+		fields.registrationno = data.inventoryValue.unitno;
 		fields.bookingamount = data.inventoryValue.bookingPrice;
 		fields.projectId = data.inventoryValue.projectId;
 
-		fields.downpayment = Math.round((fields.totalAmount / 100) * +data.paymentPlan[0].downpayment);
+		fields.downpayment = Math.round((fields.sellingprice / 100) * +data.paymentPlan[0].downpayment);
 		fields.possession = Math.round(
-			(fields.totalAmount / 100) * +data.paymentPlan[0].possessionamount
+			(fields.sellingprice / 100) * +data.paymentPlan[0].possessionamount
 		);
 		fields.yearly = Math.round((fields.totalAmount / 100) * +data.paymentPlan[0].annualpayment);
 		fields.biannual = Math.round(
@@ -110,8 +111,6 @@
 				fields.possession) /
 				fields.noofinstallments
 		);
-
-		// fields.bookingamount = fields.downpayment > 0 ? fields.downpayment : fields.monthly;
 	});
 
 	let paymentBtn: HTMLButtonElement;
