@@ -165,7 +165,7 @@
 		<span
 			>Rs
 			{#if fields.confirmationcheck}
-				{bookingAmount + confirmationAmount.toLocaleString()}
+				{(bookingAmount + confirmationAmount).toLocaleString()}
 			{:else}
 				{bookingAmount}
 			{/if}

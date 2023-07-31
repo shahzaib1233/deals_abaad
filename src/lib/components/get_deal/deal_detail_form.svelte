@@ -14,7 +14,6 @@
 	const submit = async (event: Event) => {
 		event.preventDefault();
 		try {
-			setPaymentFields(fields);
 			localStorage.setItem('dealDetails', JSON.stringify(fields));
 			goto('/checkout');
 		} catch (error) {
