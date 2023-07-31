@@ -13,22 +13,27 @@
 			<div class="flex-1 space-y-[2rem]">
 				<h2 class="text-[2.5rem] md:text-[3.438rem] font-extrabold">About Us</h2>
 				<p class="text-[1rem] md:text-[1.313rem] text-[#4B4B4B]">
-					A digital real state marketing platform that is established to undo the myth of the word,
-					“RISK” when it comes to real estate market. DealsAbaad&quot;s aim is to provide confidence
-					and integrity to people to trust this industry specially overseas investors. People who
-					are located in Pakistan can easily visit and satisfy their ambiguities and fears but what
-					about overseas investors? Due to lack of commitment, lack of information and
-					uncertainties, overseas investors resists in investing property online. We envision an
-					online market place for local and overseas investors where they can buy, sell or rent out
-					property. We believe in the phenomenon of life, until the heart beats, a person lives;
-					similarly at DealsAbaad we try to live everyday by re-inventing our processes conducting
-					research, adapting change, tapping creative platforms, bringing-in technological novelties
-					and finding out innovative solutions to all our clients who buy and sell properties. Our
-					objective doesn&quot;t revolve around offering or locking a fancy deal or selling a
-					property only. With diversified services that we offer we try our best to provide the
-					optimum solution to your problem and recommend something of value. We strongly believe
-					that it is immense to have a personal approach when interacting with clients, as it gives
-					a comprehensive understanding of how well we can serve them in choosing a property, either
+					A digital marketing platform that is established to undo the myth of the word, “RISK” when
+					it comes to market. DealsAbaad’s aim is to provide confidence and integrity as a marketing
+					agency to people on behalf of trusted builders working in Market to trust this industry
+					both local and overseas investors. People who are located in Pakistan can easily visit and
+					satisfy their ambiguities and fears but what about overseas investors? Due to lack of
+					commitment, lack of information and uncertainties, overseas investors resists in investing
+					online. We envision an online market place for local and overseas buyers where they can
+					buy, sell or rent out from reliable sellers who are signed up us as Marketing agency.
+				</p>
+				<p class="text-[1rem] md:text-[1.313rem] text-[#4B4B4B]">
+					We believe in the phenomenon of life, until the heart beats, a person lives; similarly at
+					DealsAbaad we try to live everyday by re-inventing our processes conducting research,
+					adapting change, tapping creative platforms, bringing-in technological novelties and
+					finding out innovative marketing solutions to all our clients.
+				</p>
+				<p class="text-[1rem] md:text-[1.313rem] text-[#4B4B4B]">
+					Our objective doesn’t revolve around offering or locking a fancy deal or marketing a only.
+					With diversified services that we offer we try our best to provide the optimum solution to
+					your problem and recommend something of value. We strongly believe that it is immense to
+					have a personal approach when interacting with target market, as it gives a comprehensive
+					understanding of how well we can serve them in choosing a offering by our clients, either
 					commercial or residential.
 				</p>
 			</div>
@@ -57,20 +62,21 @@
 					Vision statement
 				</h2>
 				<p class="text-[1rem] md:text-[1.313rem] text-[#4B4B4B]">
-					We envision ourselves a global digital real estate marketing platform that provides
-					confidence to it’s customers by providing variety of deals. We are passionate about
-					providing extra value that others simply don’t. Our core competency is the diversification
-					of services that we provide that make us unique from others. To be Pakistan’s leading
-					digital realty agency managing largest portfolio on property investment including buying,
-					selling and rental services for local and overseas Pakistanis and equipping ourselves with
-					the latest trends of technology.
+					Our vision is to lead the real estate marketing industry by leveraging modern media
+					strategies and offering affordable, cost-effective deals. We aim to redefine how people
+					buy and sell properties. By prioritizing accessibility, we empower individuals from
+					diverse backgrounds <b>to achieve homeownership goals</b>. Our firm will be known for
+					social media-driven, offer <b>affordable deals</b>, transforming lives and
+					<b>shaping the future of real estate</b>.
 				</p>
 				<h2 class="text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%]">Mission</h2>
 				<p class="text-[1rem] md:text-[1.313rem] text-[#4B4B4B]">
-					We are a believer in great integrity and constant results. Our mission statement clearly
-					defines our true purpose as a digital real estate company. To provide extraordinary
-					digital solutions to local and overseas investors on their property investments based on
-					real time information.
+					Our mission is to provide exceptional real estate marketing and construction services that
+					leverage the power of social media and introduce affordable and cost-effective deals. We
+					are dedicated to helping individuals and families achieve their homeownership dreams by
+					connecting them with the right properties at the right prices. Our mission is to make a
+					positive impact on the real estate market by promoting accessibility, affordability, and
+					customer satisfaction.
 				</p>
 			</div>
 		</div>
