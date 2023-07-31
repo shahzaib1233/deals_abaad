@@ -7,6 +7,8 @@
 
 	const voucherNo = $page.url.searchParams.get('JCVoucherNo');
 	const voucherExpiry = $page.url.searchParams.get('JCVoucherExpiry');
+	const responseMessage = $page.url.searchParams.get('resultmessage');
+	const resultResponse = $page.url.searchParams.get('resultresponse');
 
 	let dealDetails: any;
 
@@ -18,7 +20,7 @@
 <div class="bg-[#F2F5F7] min-h-screen">
 	<div class="my-container pt-[2.25rem] w-[60%]">
 		<div class="flex justify-center">
-			<h2 class="text-[3.063rem] font-bold">Congratulations!</h2>
+			<h2 class="text-[3.063rem] font-bold">Thank you!</h2>
 		</div>
 
 		<div class="flex flex-col justify-center items-center mt-[1rem] font-bold">
@@ -27,9 +29,11 @@
 					Confirmation Payment Must be Paid within 3 days of Booking to avoid cancellation
 				</h2>
 			{/if}
-			<h3 class="mt-4">
-				Your transaction has been received successfully and your account will be updated accordingly
-			</h3>
+			{#if responseMessage}
+				<h3 class="mt-4">
+					{responseMessage}
+				</h3>
+			{/if}
 		</div>
 		<ThankyouCard {voucherNo} {voucherExpiry} />
 		<div class="flex justify-center gap-4">
