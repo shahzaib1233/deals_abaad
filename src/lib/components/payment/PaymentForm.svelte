@@ -155,6 +155,9 @@
 			class="grid grid-cols-1 md:grid-cols-5 gap-2 mt-[6rem] justify-center bg-white h-[3.5rem] rounded-lg items-center"
 		>
 			<div class="flex flex-col items-center">
+				<h2 class="font-bold">Status</h2>
+			</div>
+			<div class="flex flex-col items-center">
 				<h2 class="font-bold">Transaction Type</h2>
 			</div>
 			<div class="flex flex-col items-center">
@@ -163,9 +166,7 @@
 			<div class="flex flex-col items-center">
 				<h2 class="font-bold">Due Date</h2>
 			</div>
-			<div class="flex flex-col items-center">
-				<h2 class="font-bold">Paid Amount</h2>
-			</div>
+
 			<div class="flex flex-col items-center">
 				<h2 class="font-bold">Paid Date</h2>
 			</div>
@@ -173,6 +174,17 @@
 
 		{#each selectedSaleData.SaleSchedule as scheduleItem}
 			<div class="grid grid-cols-1 md:grid-cols-5 gap-2 justify-center items-start mt-8">
+				<div class="flex flex-col items-center text-[1.3rem]">
+					{#if scheduleItem.paymentstatus}
+						<input type="checkbox" checked readonly disabled class="h-6 w-6 bg-[#4A6594] rounded" />
+					{:else}
+						<input
+							type="checkbox"
+							class="h-6 w-6 bg-[#F2F5F7] rounded border-gray-400"
+							on:change={() => handleCheckboxChange(scheduleItem)}
+						/>
+					{/if}
+				</div>
 				<div class="flex flex-col text-[1.3rem]">
 					<p class="whitespace-nowrap text-left">{scheduleItem.transactionType}</p>
 				</div>
@@ -182,20 +194,10 @@
 				<div class="flex flex-col items-center text-[1.3rem]">
 					<p class="whitespace-nowrap">{formatDate(scheduleItem.dcheduleDate)}</p>
 				</div>
-				<div class="flex flex-col items-center text-[1.3rem]">
-					{#if scheduleItem.paymentstatus}
-						<input type="checkbox" checked readonly disabled class="h-8 w-8 bg-[#4A6594] rounded" />
-					{:else}
-						<input
-							type="checkbox"
-							class="h-8 w-8 bg-[#F2F5F7] rounded border-gray-400"
-							on:change={() => handleCheckboxChange(scheduleItem)}
-						/>
-					{/if}
-				</div>
+
 				<div class="flex flex-col items-center text-[1.3rem]">
 					<p>
-						{scheduleItem.receivedDate == null ? 'Pending' : formatDate(scheduleItem.receivedDate)}
+						{scheduleItem.receivedDate == null ? '-' : formatDate(scheduleItem.receivedDate)}
 					</p>
 				</div>
 			</div>
@@ -212,6 +214,5 @@
 			<Button className="h-[3rem]" type="submit" {loading} label="Pay Installment" />
 		</div>
 	</div>
-	<p class="mt-4 text-red-600">Please select an option from the list.</p>
 	<!-- {:else} -->
 {/if}
