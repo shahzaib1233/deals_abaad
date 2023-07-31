@@ -82,7 +82,7 @@
 	};
 </script>
 
-<div class="bg-[#F2F5F7] min-w-[30rem] h-[max-content] p-[2rem] rounded-md">
+<div class="bg-[#F2F5F7] min-w-[30rem] h-[max-content] p-[2rem] rounded-md sticky top-10">
 	<div class="flex justify-between">
 		<div class="flex items-center">
 			<label for="plan1" class="text-[#4B4B4B] text-[1.125rem]">Payment Plan One</label>

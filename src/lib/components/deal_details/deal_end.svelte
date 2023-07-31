@@ -2,30 +2,34 @@
 	import { onDestroy, onMount } from 'svelte';
 	import Button from '../shared/button.svelte';
 
-	let hours = 2,
+	export let date: any;
+
+	let hours = 0,
 		minutes = 0,
 		seconds = 0;
 
 	let countdownInterval: NodeJS.Timer;
 
+	function updateCounter() {
+		const endDate = new Date(date).getTime();
+		const now = new Date().getTime();
+		const timeDifference = endDate - now;
+
+		if (timeDifference <= 0) {
+			clearInterval(countdownInterval);
+			hours = 0;
+			minutes = 0;
+			seconds = 0;
+		} else {
+			hours = Math.floor(timeDifference / (1000 * 60 * 60));
+			minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+			seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+		}
+	}
+
 	onMount(() => {
-		countdownInterval = setInterval(() => {
-			if (seconds > 0) {
-				seconds -= 1;
-			} else {
-				if (minutes > 0) {
-					minutes -= 1;
-					seconds = 59;
-				} else {
-					if (hours > 0) {
-						hours = hours - 1;
-						minutes = 59;
-						seconds = 59;
-					} else {
-					}
-				}
-			}
-		}, 1000);
+		updateCounter();
+		countdownInterval = setInterval(updateCounter, 1000);
 	});
 
 	onDestroy(() => clearInterval(countdownInterval));

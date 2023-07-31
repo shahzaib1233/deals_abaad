@@ -197,12 +197,14 @@
 	</div>
 	<div class="flex flex-col md:flex-row mt-[1rem]">
 		<TextField
+			type="cnic"
 			label="CNIC"
 			withAsterisk
 			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
 			bind:value={fields.nomineecnic}
 		/>
 		<TextField
+			type="phone"
 			label="Phone Number"
 			className="md:w-[21.75rem]"
 			withAsterisk

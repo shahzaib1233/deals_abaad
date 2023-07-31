@@ -142,7 +142,7 @@
 	});
 </script>
 
-<div class="bg-[#F2F5F7] px-10 py-10 rounded-md w-full sticky top-20">
+<div class="bg-[#F2F5F7] px-10 py-10 rounded-md w-full sticky top-10">
 	<div
 		class="bg-[#4A6594] rounded-md h-[3rem] flex items-center justify-center mb-[1rem] w-[100%] min-w-[25rem]"
 	>

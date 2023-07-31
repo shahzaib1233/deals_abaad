@@ -4,7 +4,7 @@
 	export let paymentData: any;
 </script>
 
-<div class="bg-[#F2F5F7] h-[26rem] w-[30rem] p-[2rem] rounded-md">
+<div class="bg-[#F2F5F7] h-[26rem] w-[30rem] p-[2rem] rounded-md sticky top-[5rem]">
 	<h2 class="text-[1.3rem]">You’re paying,</h2>
 	<h2 class="mt-3 text-[2.813rem] font-bold">
 		{paymentData?.totalAmount.toLocaleString()}

@@ -68,6 +68,7 @@
 
 	onMount(() => {
 		scheduleHandler();
+		console.log(response);
 	});
 
 	const handleListBoxChange = (key: string, value: number) => {
@@ -85,19 +86,28 @@
 	};
 </script>
 
-<div class="mt-[3rem]">
-	<!-- svelte-ignore a11y-label-has-associated-control -->
-	<label class="text-[1.3rem] font-bold">Select Order</label>
-	<div class="w-[30rem] mt-3">
-		<ListBoxNew
-			key="payments"
-			{options}
-			bind:item={selectedOption}
-			{isOpen}
-			onChange={handleListBoxChange}
-		/>
+{#if response.length > 0}
+	<div class="mt-[3rem]">
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<label class="text-[1.3rem] font-bold">Select Order</label>
+		<div class="w-[30rem] mt-3">
+			<ListBoxNew
+				key="payments"
+				{options}
+				bind:item={selectedOption}
+				{isOpen}
+				onChange={handleListBoxChange}
+			/>
+		</div>
 	</div>
-</div>
+{:else}
+	<div class="my-container py-[5.25rem]">
+		<div class="flex flex-col items-center gap-[1rem] mt-[4rem] text-center">
+			<h2 class="text-3xl font-bold text-gray-600">No Orders Found</h2>
+			<p class="text-gray-500 text-[1.3rem]">Please Purchase a Deal First</p>
+		</div>
+	</div>
+{/if}
 {#if selectedSaleData !== null}
 	<div class="bg-[#F2F5F7] rounded-2xl px-4 md:px-16 py-8 md:py-16 mt-8 text-[1.1rem]">
 		<div class="text-center flex-col">
@@ -202,6 +212,6 @@
 			<Button className="h-[3rem]" type="submit" {loading} label="Pay Installment" />
 		</div>
 	</div>
-{:else}
 	<p class="mt-4 text-red-600">Please select an option from the list.</p>
+	<!-- {:else} -->
 {/if}

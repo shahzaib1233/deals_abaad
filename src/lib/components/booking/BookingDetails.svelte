@@ -84,18 +84,27 @@
 			</div>
 		</div>
 	</div>
-	<div class="mt-[3rem]">
-		<label class="text-[1.3rem] font-bold">Select Booking</label>
-		<div class="w-[30rem] mt-3">
-			<ListBoxNew
-				key="floors"
-				{options}
-				bind:item={selectedOption}
-				{isOpen}
-				onChange={handleListBoxChange}
-			/>
+	{#if response.length > 0}
+		<div class="mt-[3rem]">
+			<label class="text-[1.3rem] font-bold">Select Booking</label>
+			<div class="w-[30rem] mt-3">
+				<ListBoxNew
+					key="floors"
+					{options}
+					bind:item={selectedOption}
+					{isOpen}
+					onChange={handleListBoxChange}
+				/>
+			</div>
 		</div>
-	</div>
+	{:else}
+		<div class="my-container py-[5.25rem]">
+			<div class="flex flex-col items-center gap-[1rem] mt-[4rem] text-center">
+				<h2 class="text-3xl font-bold text-gray-600">No Bookings Found</h2>
+				<p class="text-gray-500 text-[1.3rem]">Please Book a Deal First</p>
+			</div>
+		</div>
+	{/if}
 	{#if selectedSaleData !== null}
 		<!-- {#each response as booking} -->
 		<div
@@ -239,9 +248,9 @@
 				/>
 			</div>
 		</div>
-		<!-- {/each} -->
-	{:else}
-		<!-- Optional: You can show a message when no option is selected -->
 		<p class="mt-4 text-red-600">Please select an option from the list.</p>
+		<!-- {/each} -->
+		<!-- {:else} -->
+		<!-- Optional: You can show a message when no option is selected -->
 	{/if}
 </div>

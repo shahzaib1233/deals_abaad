@@ -13,7 +13,10 @@
 	onMount(() => {
 		bannerImage = localStorage.getItem('bannerImage');
 		images = data.deal.DealImages.map((image: any) => image.imagePath);
+		// console.log(data.deal.endDate);
 	});
+
+	// localStorage.setItem('endDate', data.deal.endDate.split('T')[0]);
 </script>
 
 <main class="my-container pt-[10.25rem]">
@@ -42,7 +45,7 @@
 	{/if}
 	<div class="flex gap-8 mt-8">
 		<div class="flex-1">
-			<ApplyVoucher />
+			<ApplyVoucher date={data.deal.endDate.split('T')[0]} />
 			<ProjectDetails data={data.deal} />
 		</div>
 		<div class=""><SelectUnit data={data.deal} /></div>

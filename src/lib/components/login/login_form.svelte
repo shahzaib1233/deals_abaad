@@ -54,7 +54,7 @@
 		Don’t have an account?
 		<a href="/register" class="underline text-[#111111]"> Register Now </a>
 	</div>
-	<div class="flex items-center">
+	<!-- <div class="flex items-center">
 		<hr class="flex-1 mx-6" />
 		<span class="text-[#666666] text-[1.125rem]">OR</span>
 		<hr class="flex-1 mx-6" />
@@ -65,5 +65,5 @@
 		>
 			<img src="/logos/google.svg" /> Continue with Google
 		</div>
-	</button>
+	</button> -->
 </form>

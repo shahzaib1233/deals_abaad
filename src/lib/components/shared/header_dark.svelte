@@ -80,7 +80,7 @@
 					<li>
 						<a
 							href={item.path}
-							class={`${
+							class={`hover:text-[#FFD624] ${
 								$page.url.pathname == item.path ? 'text-[#FFD624]' : `${dark ? '' : 'text-white'}`
 							}`}
 						>

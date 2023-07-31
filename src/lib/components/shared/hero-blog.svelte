@@ -13,7 +13,7 @@
 	style={`background-image: url(${image});`}
 >
 	<h1
-		class="text-[3rem] md:text-[4.7rem] leading-[120%] text-white font-extrabold mt-[5rem] text-center relative z-[2]"
+		class="text-[3rem] md:text-[4.7rem] leading-[120%] text-white font-extrabold mt-[5rem] text-center relative z-[1]"
 	>
 		{heading}
 	</h1>
