@@ -170,7 +170,9 @@
 			<div class="flex flex-col items-center">
 				<h2 class="font-bold">Due Date</h2>
 			</div>
-
+			<div class="flex flex-col items-center">
+				<h2 class="font-bold">Paid Status</h2>
+			</div>
 			<div class="flex flex-col items-center">
 				<h2 class="font-bold">Paid Date</h2>
 			</div>

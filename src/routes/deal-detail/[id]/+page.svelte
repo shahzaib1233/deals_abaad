@@ -45,7 +45,7 @@
 	{/if}
 	<div class="flex gap-8 mt-8">
 		<div class="flex-1">
-			<ApplyVoucher date={data.deal.endDate.split('T')[0]} />
+			<ApplyVoucher date={data.deal.endDate.split('T')[0]} left={data.deal.DealInventory.length} />
 			<ProjectDetails data={data.deal} />
 		</div>
 		<div class=""><SelectUnit data={data.deal} /></div>

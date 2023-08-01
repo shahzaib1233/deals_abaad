@@ -23,10 +23,10 @@
 		floorId: string;
 		saleper: number;
 		floorName: string;
-		price: number;
-		unitno: string[];
+
 		dealId: number;
-		inventoryId: number;
+
+		inventoryData: { inventoryId: number[]; price: number[]; unitno: string[] }[];
 	}
 
 	let calculatedInventory: GroupedData[] = [];
@@ -40,13 +40,21 @@
 				floorId: floorId,
 				saleper: data.saleper,
 				dealId: item.dealId,
-				inventoryId: item.inventoryId,
 				floorName: item.inventory.floors.name,
-				price: item.inventory.totalSalePrice,
-				unitno: [item.inventory.unitno]
+				inventoryData: [
+					{
+						inventoryId: item.inventory.inventoryId,
+						price: item.inventory.totalSalePrice,
+						unitno: item.inventory.unitno
+					}
+				]
 			};
 		} else {
-			groupedData[floorId].unitno.push(item.inventory.unitno);
+			groupedData[floorId].inventoryData.push({
+				inventoryId: item.inventory.inventoryId,
+				price: item.inventory.totalSalePrice,
+				unitno: item.inventory.unitno
+			});
 		}
 	});
 
@@ -64,9 +72,9 @@
 
 	$: units = calculatedInventory
 		.find((item) => item.floorId == selectedData.floors.toString())
-		?.unitno.map((item: any) => ({
-			value: item,
-			label: item
+		?.inventoryData.map((item: any) => ({
+			value: item.unitno,
+			label: item.unitno
 		}));
 
 	let salePrice = 0;
@@ -77,8 +85,11 @@
 	$: {
 		if (selectedData.units != 0) {
 			let prevPrice = Number(
-				calculatedInventory.find((item) => item.floorId == selectedData.floors.toString())?.price ??
-					0
+				calculatedInventory
+					.find((item) => item.floorId == selectedData.floors.toString())
+					?.inventoryData.find(
+						(inventory) => inventory.unitno.toString() == selectedData.units.toString()
+					)?.price ?? 0
 			);
 
 			let prevSale = Number(
@@ -114,7 +125,10 @@
 		localStorage.setItem(
 			'inventory',
 			JSON.stringify({
-				inventoryId: Number(inventoryData?.inventoryId),
+				inventoryId: Number(
+					inventoryData?.inventoryData.find((inventory) => inventory.unitno == selectedData.units)
+						?.inventoryId
+				),
 				dealId: Number(inventoryData?.dealId),
 				price: price,
 				saleprice: salePrice,
