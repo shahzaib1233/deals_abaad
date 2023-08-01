@@ -20,24 +20,19 @@
 
 	const validatePhoneNumber = (event: any) => {
 		const inputValue = event.target.value;
-		const phoneNumberRegex = /^\d{0,11}$/;
-
+		const phoneNumberRegex = /^[0-9]{0,11}$/;
 		if (!phoneNumberRegex.test(inputValue)) {
 			if (inputValue.length > 11) {
 				toast({
 					type: 'error',
-					heading: 'Phone Limit Exceeded',
+					heading: 'Phone Number Limit Exceeded',
 					text: 'Please Enter Only 11 Digits'
 				});
 			}
-			event.preventDefault();
+
 			event.target.value = previousValidPhoneValue;
 		} else {
-			const newValue = inputValue.startsWith('0')
-				? '0' + inputValue.replace(/^0+/, '')
-				: inputValue;
-			event.target.value = newValue;
-			previousValidPhoneValue = newValue;
+			previousValidPhoneValue = inputValue;
 		}
 	};
 	const validateCnicNumber = (event: any) => {
@@ -51,6 +46,7 @@
 					text: 'Please Enter Only 13 Digits'
 				});
 			}
+
 			event.target.value = previousCnicPhoneValue;
 		} else {
 			previousCnicPhoneValue = inputValue;
@@ -94,7 +90,7 @@
 	{:else if type == 'phone'}
 		<input
 			{required}
-			type="number"
+			type="text"
 			bind:value
 			{placeholder}
 			class="flex-1 focus:outline-none px-3 py-2 rounded-md border border-[#ced4da] text-[1rem] {className}"

@@ -7,15 +7,32 @@
 	import TextField from '../shared/text_field.svelte';
 	import Cookies from 'js-cookie';
 	import dayjs from 'dayjs';
+	import { toast } from '$lib/stores/notification';
 
 	export let fields: GETDEALFIELDS;
 	export let paymentBtn: HTMLButtonElement;
 
 	const submit = async (event: Event) => {
 		event.preventDefault();
+
 		try {
-			localStorage.setItem('dealDetails', JSON.stringify(fields));
-			goto('/checkout');
+			if (fields.cnic.toString().length < 13) {
+				toast({
+					type: 'error',
+					heading: 'Cnic Limit Error',
+					text: 'Enter 13 Digits'
+				});
+			} else if (fields.mobileno.toString().length < 11) {
+				console.log(fields.mobileno);
+				toast({
+					type: 'error',
+					heading: 'Phone Number Limit Error',
+					text: 'Enter 11 Digits'
+				});
+			} else {
+				localStorage.setItem('dealDetails', JSON.stringify(fields));
+				goto('/checkout');
+			}
 		} catch (error) {
 			console.log('Error:', error);
 		}
