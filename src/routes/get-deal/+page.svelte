@@ -117,7 +117,7 @@
 </script>
 
 <div class="my-container pt-[10.25rem]">
-	<div class="flex gap-8">
+	<div class="flex flex-col sm:flex-col-reverse md:flex-col lg:flex-row gap-8">
 		<div>
 			{#if token != '' && token != undefined}
 				<DealDetailForm bind:fields bind:paymentBtn />

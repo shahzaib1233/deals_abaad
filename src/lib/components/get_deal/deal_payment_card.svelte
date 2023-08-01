@@ -82,7 +82,9 @@
 	};
 </script>
 
-<div class="bg-[#F2F5F7] min-w-[30rem] h-[max-content] p-[2rem] rounded-md sticky top-10">
+<div
+	class="bg-[#F2F5F7] min-w-[16rem] sm: min-w-[30rem] h-[max-content] p-[2rem] rounded-md sticky top-[3rem]"
+>
 	<div class="flex justify-between">
 		<div class="flex items-center">
 			<label for="plan1" class="text-[#4B4B4B] text-[1.125rem]">Payment Plan One</label>
@@ -103,11 +105,11 @@
 		<h2 class="mt-3">
 			Down Payment
 			<span class="ml-4">
-				{Math.round(paymentData.downPayment).toLocaleString()}/-{' '}
+				{Math.round(paymentData.downPayment).toLocaleString()}/-
 			</span>
 		</h2>
 		<h2 class="mt-3">
-			Monthly ({paymentData.noOfInstallments.toLocaleString()}){' '}
+			Monthly ({paymentData.noOfInstallments.toLocaleString()})
 			<span class="ml-4">
 				{paymentData.amountPerInstallment.toLocaleString()}/-
 			</span>
@@ -115,9 +117,9 @@
 
 		{#if paymentData.annualPayment > 0}
 			<h2 class="mt-3">
-				Yearly ({(paymentData.noOfInstallments / 12).toFixed(0).toLocaleString()}){' '}
+				Yearly ({(paymentData.noOfInstallments / 12).toFixed(0).toLocaleString()})
 				<span class="ml-4">
-					{paymentData.annualPayment.toLocaleString()}/-{' '}
+					{paymentData.annualPayment.toLocaleString()}/-
 				</span>
 			</h2>
 		{/if}
@@ -125,7 +127,7 @@
 		<h2 class="mt-3">
 			Possession{' '}
 			<span class="ml-4">
-				{paymentData.possession.toLocaleString()}/-{' '}
+				{paymentData.possession.toLocaleString()}/-
 			</span>
 		</h2>
 		<h2 class="mt-3">
@@ -162,8 +164,8 @@
 	{/if}
 	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
 		<span>Total</span>
-		<span
-			>Rs
+		<span>
+			Rs
 			{#if fields.confirmationcheck}
 				{(bookingAmount + confirmationAmount).toLocaleString()}
 			{:else}

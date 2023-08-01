@@ -52,4 +52,9 @@
 		width: 100%;
 		height: 596px;
 	}
+	@media (max-width: 768px) {
+		.swiper-slide img {
+			height: auto;
+		}
+	}
 </style>

@@ -60,10 +60,10 @@
 
 <form class="my-container pt-[14.25rem]" on:submit|preventDefault={submit}>
 	<div
-		class="bg-[#F2F5F7] min-h-[35.5rem] rounded-2xl flex flex-col items-left justify-left px-20 py-20"
+		class="bg-[#F2F5F7] min-h-[35.5rem] rounded-2xl flex flex-col items-left justify-left px-10 md:px-20 py-10 md:py-20"
 	>
 		<div
-			class="w-64 h-12 absolute top-273 left-288 font-semibold text-4xl leading-12 text-left text-[#1A202C]"
+			class="w-64 h-12 absolute top-273 left-288 font-semibold text-2xl md:text-4xl leading-12 text-left text-[#1A202C]"
 		>
 			My Profile
 		</div>
@@ -72,20 +72,23 @@
 				<img class="w-14 h-14" src="/images/user-icon.png" alt="profile" />
 			</div>
 			<div class="ml-[1rem]">
-				<p class="font-bold text-[1.2rem]">{data.fname + ' ' + data.lname}</p>
-				<p>{data.email}</p>
+				<p class="font-bold text-[1rem] md:text-[1.2rem]">{data.fname + ' ' + data.lname}</p>
+				<p class="text-[1rem] md:text-[1.2rem]">{data.email}</p>
 			</div>
 		</div>
 		<hr class="border-t-2 border-gray-300 my-6" />
 
 		<!-- {#if data} -->
 		{#if Object.values(data).some((value) => value !== '')}
-			<div class="flex flex-col md:flex-row justify-center items-center">
+			<div class="flex flex-col md:flex-row justify-center items-center mt-4">
 				<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
 					<h2>First Name</h2>
 				</div>
 				<div class="flex items-start pl-4 mb-4 md:mb-0">
-					<TextField bind:value={data.fname} className="w-[23rem]" />
+					<TextField
+						bind:value={data.fname}
+						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
+					/>
 				</div>
 			</div>
 			<div class="flex flex-col md:flex-row justify-center items-center mt-4">
@@ -93,7 +96,10 @@
 					<h2>Last Name</h2>
 				</div>
 				<div class="flex items-start pl-4 mb-4 md:mb-0">
-					<TextField bind:value={data.lname} className="w-[23rem]" />
+					<TextField
+						bind:value={data.lname}
+						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
+					/>
 				</div>
 			</div>
 			<div class="flex flex-col md:flex-row justify-center items-center mt-4">
@@ -101,7 +107,10 @@
 					<h2>Gender</h2>
 				</div>
 				<div class="flex items-start pl-4">
-					<TextField bind:value={data.gender} className="w-[23rem]" />
+					<TextField
+						bind:value={data.gender}
+						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
+					/>
 				</div>
 			</div>
 
@@ -110,7 +119,11 @@
 					<h2>Date Of Birth</h2>
 				</div>
 				<div class="flex items-start pl-4">
-					<TextField bind:value={data.dob} type="date" className="w-[23rem]" />
+					<TextField
+						bind:value={data.dob}
+						type="date"
+						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
+					/>
 				</div>
 			</div>
 
@@ -119,7 +132,10 @@
 					<h2>Country</h2>
 				</div>
 				<div class="flex items-start pl-4">
-					<TextField bind:value={data.country} className="w-[23rem]" />
+					<TextField
+						bind:value={data.country}
+						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
+					/>
 				</div>
 			</div>
 
@@ -128,7 +144,10 @@
 					<h2>City</h2>
 				</div>
 				<div class="flex items-start pl-4">
-					<TextField bind:value={data.city} className="w-[23rem]" />
+					<TextField
+						bind:value={data.city}
+						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
+					/>
 				</div>
 			</div>
 
@@ -137,7 +156,10 @@
 					<h2>Email</h2>
 				</div>
 				<div class="flex items-start pl-4">
-					<TextField bind:value={data.email} className="w-[23rem]" />
+					<TextField
+						bind:value={data.email}
+						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
+					/>
 				</div>
 			</div>
 
@@ -148,7 +170,11 @@
 					<h2>Contact Number</h2>
 				</div>
 				<div class="flex items-start pl-4">
-					<TextField bind:value={data.contactno} type="phone" className="w-[23rem]" />
+					<TextField
+						bind:value={data.contactno}
+						type="phone"
+						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
+					/>
 				</div>
 			</div>
 			<div class="flex flex-col md:flex-row justify-center items-start mt-4">

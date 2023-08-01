@@ -164,7 +164,7 @@
 
 <div class="bg-[#F2F5F7] px-10 py-10 rounded-md w-full sticky top-10">
 	<div
-		class="bg-[#4A6594] rounded-md h-[3rem] flex items-center justify-center mb-[1rem] w-[100%] min-w-[25rem]"
+		class="bg-[#4A6594] rounded-md h-[3rem] flex items-center justify-center mb-[1rem] w-[100%] min-w-[10rem] md:min-w-[25rem]"
 	>
 		<span class="text-white text-[1.3rem]">Select Your Unit</span>
 	</div>
@@ -174,7 +174,6 @@
 		label="View Floor Plan"
 		onclick={() => {
 			window.open(
-				// 'https://www.islamicbooksforfree.com/Upload/files/Kitaplar/PDF/ingilizce/1-Endless_Bliss-I_07_02_2022.pdf',
 				`${import.meta.env.VITE_BASE_URL}deal/pdf/${data.project.floorPlan}`,
 				'newwindow',
 				'width=1000,height=700'

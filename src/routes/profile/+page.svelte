@@ -4,5 +4,4 @@
 
 <div>
 	<ProfileDetailsForm />
-
 </div>

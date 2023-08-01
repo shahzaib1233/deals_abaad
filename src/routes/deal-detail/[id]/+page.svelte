@@ -28,7 +28,7 @@
 
 	{#if data.deal}
 		<div
-			class="text-[1.6rem] mt-[2rem] bg-[#FFD624] text-[#000000] rounded-lg h-[3rem] w-[50%] flex items-center justify-left"
+			class="text-[1.2rem] md:text-[1.6rem] mt-[2rem] bg-[#FFD624] text-[#000000] rounded-lg h-[3rem] w-full md:w-[50%] flex items-center justify-left"
 		>
 			<span class="ml-4 font-bold">{data.deal.name}</span>
 		</div>
@@ -37,11 +37,17 @@
 			<SwiperCarousal {images} />
 		</div>
 	{/if}
-	<div class="flex gap-8 mt-8">
-		<div class="flex-1">
-			<ApplyVoucher date={data.deal.endDate.split('T')[0]} left={data.deal.DealInventory.length} />
-			<ProjectDetails data={data.deal} />
+
+	<div class="mt-8 flex flex-col gap-8 md:flex-row">
+		<div class="flex flex-col md:flex-row md:items-start md:space-x-8">
+			<div>
+				<ApplyVoucher
+					date={data.deal.endDate.split('T')[0]}
+					left={data.deal.DealInventory.length}
+				/>
+				<ProjectDetails data={data.deal} />
+			</div>
+			<div class="mt-8 md:mt-0"><SelectUnit data={data.deal} /></div>
 		</div>
-		<div class=""><SelectUnit data={data.deal} /></div>
 	</div>
 </main>
