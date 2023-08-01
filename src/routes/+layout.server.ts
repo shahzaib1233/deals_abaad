@@ -2,11 +2,11 @@ import axiosFunction from '$lib/utils/network.js';
 
 export const load = async ({ cookies }) => {
 	const token = cookies.get('token');
-	const dropdown = await axiosFunction({
-		url: 'home/dropdown',
+	const deals = await axiosFunction({
+		url: 'deal',
 		isServer: true
 	});
-	console.log(dropdown.data);
+	console.log(deals.data);
 
-	return { token, dropdown: dropdown.data };
+	return { token, deals: deals.data };
 };

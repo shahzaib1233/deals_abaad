@@ -76,7 +76,7 @@
 
 	{#if !showLayout}
 		<GetInTouch />
-		<Footer dropdown={data.dropdown} />
+		<Footer dealsData={data.deals} />
 	{/if}
 {/if}
 <Toast />

@@ -1,9 +1,8 @@
 <script lang="ts">
-	export let dropdown: any;
-	// lwt data = dropdown.projects;
-	console.log(dropdown);
+	export let dealsData: any;
 
-	let data = dropdown.project.slice(0, 6);
+	let selectedData = dealsData.slice(0, 6);
+	console.log(selectedData);
 </script>
 
 <footer class="bg-[#161E2C]">
@@ -31,35 +30,17 @@
 			<div class="flex-1 min-w-[15rem]">
 				<h1 class="text-white font-bold text-[1.563rem] mb-[1.5rem]">Deals</h1>
 				<ul class="space-y-4">
-					{#each data as dropdownData}
+					{#each selectedData as data}
 						<li>
-							<a href="#" class="text-white text-[1.188rem] font-medium"> {dropdownData.name} </a>
+							<a href="/deal-detail/{data.id}" class="text-white text-[1.188rem] font-medium">
+								{data.desc}
+							</a>
 						</li>
 					{/each}
-					<!-- <li>
-						<a href="#" class="text-white text-[1.188rem] font-medium"> Ultra Four Room Deal </a>
-					</li>
-					<li>
-						<a href="#" class="text-white text-[1.188rem] font-medium">
-							Extra Value Four Room Deal
-						</a>
-					</li>
-					<li>
-						<a href="#" class="text-white text-[1.188rem] font-medium">
-							Surprise Deal on Mobile Shops
-						</a>
-					</li>
-					<li>
-						<a href="#" class="text-white text-[1.188rem] font-medium">
-							Booking Karain Aap, Down Payment
-						</a>
-					</li>
-					<li>
-						<a href="#" class="text-white text-[1.188rem] font-medium"> Dega Dealsabaad </a>
-					</li> -->
 				</ul>
 			</div>
 			<div class="">
+				<!-- svelte-ignore a11y-missing-attribute -->
 				<iframe
 					src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FDealsAbaad&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=2739160196330113"
 					width="300"

@@ -2,8 +2,7 @@ import axiosFunction from '$lib/utils/network';
 
 export const load = async () => {
 	try {
-		const [ category, deals] = await Promise.all([
-			
+		const [category, deals, dropdown] = await Promise.all([
 			axiosFunction({
 				url: 'category',
 				isServer: true
@@ -11,10 +10,14 @@ export const load = async () => {
 			axiosFunction({
 				url: 'deal',
 				isServer: true
+			}),
+			axiosFunction({
+				url: 'home/dropdown',
+				isServer: true
 			})
 		]);
 
-		return {  category: category.data, deals: deals.data };
+		return { category: category.data, deals: deals.data, dropdown: dropdown.data };
 	} catch (e) {
 		return { deal: null };
 	}
