@@ -58,9 +58,7 @@
 				/>
 			</div>
 			<div class="flex-1 space-y-[2rem]">
-				<h2 class="text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%]">
-					Vision statement
-				</h2>
+				<h2 class="text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%]">Vision</h2>
 				<p class="text-[1rem] md:text-[1.313rem] text-[#4B4B4B]">
 					Our vision is to lead the real estate marketing industry by leveraging modern media
 					strategies and offering affordable, cost-effective deals. We aim to redefine how people

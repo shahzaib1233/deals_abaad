@@ -22,7 +22,7 @@
 <div class="swiper mySwiper">
 	<div class="swiper-wrapper">
 		{#each images as image}
-			<div class="swiper-slide">
+			<div class="swiper-slide" data-swiper-autoplay="1000">
 				<img src="{import.meta.env.VITE_BASE_URL}deal/img/{image}" alt="" />
 			</div>
 		{/each}
@@ -51,6 +51,5 @@
 		display: block;
 		width: 100%;
 		height: 596px;
-		object-fit: cover;
 	}
 </style>

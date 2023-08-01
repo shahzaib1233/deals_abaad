@@ -14,7 +14,7 @@
 	let selectedSaleData: any = null;
 	let selectedInstallments: any = [];
 	let amountpayable = 0;
-
+	let isLoading = true;
 	interface SaleData {
 		saleId: number;
 	}
@@ -58,6 +58,7 @@
 			response = res.data;
 			const saleIds = response.map((item) => item.saleId);
 			updateData(saleIds);
+			isLoading = false;
 		} catch (e) {}
 	};
 
@@ -85,7 +86,11 @@
 	};
 </script>
 
-{#if response.length > 0}
+{#if isLoading}
+	<div class="flex justify-center items-center h-[10rem]">
+		<Spinner />
+	</div>
+{:else if response.length > 0}
 	<div class="mt-[3rem]">
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label class="text-[1.3rem] font-bold">Select Order</label>
@@ -100,10 +105,6 @@
 		</div>
 	</div>
 {:else if response.length == 0}
-	<div class="flex justify-center items-center h-[10rem]">
-		<Spinner />
-	</div>
-{:else}
 	<div class="my-container py-[5.25rem]">
 		<div class="flex flex-col items-center gap-[1rem] mt-[4rem] text-center">
 			<h2 class="text-3xl font-bold text-gray-600">No Orders Found</h2>

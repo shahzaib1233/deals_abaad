@@ -22,13 +22,7 @@
 <main class="my-container pt-[10.25rem]">
 	{#if bannerImage && bannerImage !== ''}
 		<div class="w-full">
-			<div
-				class="h-[13rem] md:h-[27rem] w-full rounded-2xl bg-no-repeat bg-center aspect-w-2 aspect-h-1"
-				style="
-        background-image: url({`${bannerImage}`});
-        background-size: 100%;
-      "
-			/>
+			<img class="h-[13rem] md:h-[27rem] w-full rounded-2xl" src={bannerImage} />
 		</div>
 	{/if}
 

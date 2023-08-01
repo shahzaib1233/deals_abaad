@@ -17,6 +17,7 @@
 	let selectedOption: Option | null = null;
 	let options: { value: string; label: string }[] = [];
 	let selectedSaleData: any = null; // Replace 'any' with the appropriate type
+	let isLoading = true;
 
 	interface SaleData {
 		saleId: number;
@@ -41,6 +42,7 @@
 			response = res.data;
 			const saleIds = response.map((item) => item.saleId);
 			updateData(saleIds);
+			isLoading = false;
 		} catch (e) {}
 	};
 	const updateSelectedSaleData = (value: number) => {
@@ -85,7 +87,11 @@
 			</div>
 		</div>
 	</div>
-	{#if response.length > 0}
+	{#if isLoading}
+		<div class="flex justify-center items-center h-[10rem]">
+			<Spinner />
+		</div>
+	{:else if response.length > 0}
 		<div class="mt-[3rem]">
 			<label class="text-[1.3rem] font-bold">Select Booking</label>
 			<div class="w-[30rem] mt-3">
@@ -99,10 +105,6 @@
 			</div>
 		</div>
 	{:else if response.length == 0}
-		<div class="flex justify-center items-center h-[10rem]">
-			<Spinner />
-		</div>
-	{:else}
 		<div class="my-container py-[5.25rem]">
 			<div class="flex flex-col items-center gap-[1rem] mt-[4rem] text-center">
 				<h2 class="text-3xl font-bold text-gray-600">No Bookings Found</h2>
