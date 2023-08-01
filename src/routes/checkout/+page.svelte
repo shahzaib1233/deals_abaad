@@ -45,9 +45,9 @@
 		const merchantID = 'MC58600';
 		const password = 'b15x11ax94';
 		const hashKey = 'c1v8sz0z30';
-		const returnURL = 'http://testgrid.co:5000/thankyou';
+		const returnURL = 'https://dealsabaad.com/thankyou';
 
-		const postURL = 'http://testgrid.co/dealsabaadapi/checkout_jc.php';
+		const postURL = 'https://testgrid.co/dealsabaadapi/checkout_jc.php';
 
 		const amount = +dealDtl.totalAmount * 100;
 		const billReference = res.data.saleId;
@@ -70,7 +70,7 @@
 		const ppmpf_1 = dealDtl.name; // use to store extra details (use AlphaNumeric only)
 		const ppmpf_2 = dealDtl.address; // use to store extra details (use AlphaNumeric only)
 		const ppmpf_3 = dealDtl.mobileno; // use to store extra details (use AlphaNumeric only)
-		const ppmpf_4 = dealAdd.projectId; // use to store extra details (use AlphaNumeric only)
+		const ppmpf_4 = `${dealDtl.projectId} - ${dealDtl.inventoryId} - ${dealDtl.floor} - ${dealDtl.unitno}`; // use to store extra details (use AlphaNumeric only)
 		const ppmpf_5 = +dealDtl.totalAmount; // use to store extra details (use AlphaNumeric only)
 
 		const hashArray = [

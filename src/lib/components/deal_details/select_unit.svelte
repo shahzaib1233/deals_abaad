@@ -43,7 +43,7 @@
 				floorName: item.inventory.floors.name,
 				inventoryData: [
 					{
-						inventoryId: item.inventory.inventoryId,
+						inventoryId: item.inventoryId,
 						price: item.inventory.totalSalePrice,
 						unitno: item.inventory.unitno
 					}
@@ -51,7 +51,7 @@
 			};
 		} else {
 			groupedData[floorId].inventoryData.push({
-				inventoryId: item.inventory.inventoryId,
+				inventoryId: item.inventoryId,
 				price: item.inventory.totalSalePrice,
 				unitno: item.inventory.unitno
 			});
@@ -122,13 +122,19 @@
 		const inventoryData = calculatedInventory.find(
 			(inventory) => inventory.floorId == selectedData.floors
 		);
+
+		console.log(
+			inventoryData?.inventoryData.find(
+				(inventory) => inventory.unitno.toString() == selectedData.units.toString()
+			)
+		);
+
 		localStorage.setItem(
 			'inventory',
 			JSON.stringify({
-				inventoryId: Number(
-					inventoryData?.inventoryData.find((inventory) => inventory.unitno == selectedData.units)
-						?.inventoryId
-				),
+				inventoryId: inventoryData?.inventoryData.find(
+					(inventory) => inventory.unitno.toString() == selectedData.units.toString()
+				)?.inventoryId,
 				dealId: Number(inventoryData?.dealId),
 				price: price,
 				saleprice: salePrice,
