@@ -3,6 +3,7 @@
 	import Button from '../shared/button.svelte';
 
 	export let date: any;
+	export let left: any;
 
 	let hours = 0,
 		minutes = 0,
@@ -39,7 +40,7 @@
 	<div class="w-full mb-4 sm:mb-0">
 		<div class="rounded-md h-[4rem] flex items-center justify-between w-full mt-[1rem]">
 			<div class="text-black text-[1.4rem] font-bold">Deal Ends In</div>
-			<div class="text-black text-[1.3rem]">HURRY UP ONLY 5 FLATS LEFT</div>
+			<div class="text-black text-[1.3rem]">HURRY UP ONLY {left} FLATS LEFT</div>
 		</div>
 		<div class="flex justify-left space-x-4 mt-2">
 			<div
