@@ -3,6 +3,7 @@
 	import Cookies from 'js-cookie';
 	import { onMount } from 'svelte';
 	import ListBoxNew from '../shared/list_box_payment.svelte';
+	import Spinner from '$lib/components/shared/spinner.svelte';
 
 	let data = {
 		fname: '',
@@ -96,6 +97,10 @@
 					onChange={handleListBoxChange}
 				/>
 			</div>
+		</div>
+	{:else if response.length == 0}
+		<div class="flex justify-center items-center h-[10rem]">
+			<Spinner />
 		</div>
 	{:else}
 		<div class="my-container py-[5.25rem]">
@@ -248,7 +253,6 @@
 				/>
 			</div>
 		</div>
-		<p class="mt-4 text-red-600">Please select an option from the list.</p>
 		<!-- {/each} -->
 		<!-- {:else} -->
 		<!-- Optional: You can show a message when no option is selected -->

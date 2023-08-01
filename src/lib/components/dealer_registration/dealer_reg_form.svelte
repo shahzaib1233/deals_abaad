@@ -60,10 +60,10 @@
 		bind:value={data.contactno}
 		required
 		placeholder="Phone Number"
-		type="number"
+		type="phone"
 		className="mb-4"
 	/>
-	<TextField bind:value={data.nic} required placeholder="N.I.C" type="number" className="mb-4" />
+	<TextField bind:value={data.nic} required placeholder="N.I.C" type="cnic" className="mb-4" />
 	<TextField bind:value={data.business_city} required placeholder="City" className="mb-4" />
 	<TextField bind:value={data.business_name} placeholder="Agency Name" className="mb-4" />
 	<TextField

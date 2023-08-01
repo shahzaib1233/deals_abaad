@@ -37,7 +37,7 @@
 		<TextField placeholder="Last Name" bind:value={data.lname} />
 	</div>
 	<TextField placeholder="Email" type="email" bind:value={data.email} className="mb-4" />
-	<TextField placeholder="Phone" type="number" bind:value={data.contactno} className="mb-4" />
+	<TextField placeholder="Phone" type="phone" bind:value={data.contactno} className="mb-4" />
 	<TextField placeholder="Password" type="password" bind:value={data.password} className="mb-4" />
 	<TextField
 		placeholder="Confirm Password"

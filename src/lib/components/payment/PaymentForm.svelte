@@ -4,6 +4,7 @@
 	import { getScheduleApi } from '$lib/modules/payment/api/payment_api';
 	import { toast } from '$lib/stores/notification';
 	import { onMount } from 'svelte';
+	import Spinner from '$lib/components/shared/spinner.svelte';
 
 	let loading = false;
 	let response: SaleData[] = [];
@@ -22,10 +23,9 @@
 		label: string;
 	}
 	const handleCheckboxChange = (scheduleItem: any) => {
-		if (scheduleItem.paymentstatus) return; // Ignore checked checkboxes
+		if (scheduleItem.paymentstatus) return;
 
 		if (selectedInstallments.includes(scheduleItem)) {
-			// Uncheck action - remove installment amount from amountpayable
 			selectedInstallments = selectedInstallments.filter((item: any) => item !== scheduleItem);
 			amountpayable -= scheduleItem.payableAmount;
 			toast({
@@ -34,7 +34,6 @@
 				text: 'This Amount is Deducted from Payable Amount'
 			});
 		} else {
-			// Check action - add installment amount to amountpayable
 			selectedInstallments.push(scheduleItem);
 			amountpayable += scheduleItem.payableAmount;
 			toast({
@@ -100,6 +99,10 @@
 			/>
 		</div>
 	</div>
+{:else if response.length == 0}
+	<div class="flex justify-center items-center h-[10rem]">
+		<Spinner />
+	</div>
 {:else}
 	<div class="my-container py-[5.25rem]">
 		<div class="flex flex-col items-center gap-[1rem] mt-[4rem] text-center">
@@ -108,6 +111,7 @@
 		</div>
 	</div>
 {/if}
+
 {#if selectedSaleData !== null}
 	<div class="bg-[#F2F5F7] rounded-2xl px-4 md:px-16 py-8 md:py-16 mt-8 text-[1.1rem]">
 		<div class="text-center flex-col">
