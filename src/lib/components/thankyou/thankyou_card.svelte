@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Cookies from 'js-cookie';
 	import { onMount } from 'svelte';
 
 	let dealDetails: any;
@@ -37,13 +38,13 @@
 		<h2 class="text-xl md:text-2xl font-bold mb-4 mt-4">About Customer</h2>
 		<div class="grid grid-cols-2 gap-y-2">
 			<p class="text-sm md:text-base whitespace-nowrap">Name</p>
-			<p class="text-sm md:text-base whitespace-nowrap">{dealDetails?.name}</p>
+			<p class="text-sm md:text-base whitespace-nowrap">{Cookies.get('name')}</p>
 			<p class="text-sm md:text-base whitespace-nowrap">Address</p>
-			<p class="text-sm md:text-base whitespace-nowrap">{dealDetails?.address}</p>
+			<p class="text-sm md:text-base whitespace-nowrap">{Cookies.get('address')}</p>
 			<p class="text-sm md:text-base whitespace-nowrap">Phone</p>
-			<p class="text-sm md:text-base whitespace-nowrap">{dealDetails?.mobileno}</p>
+			<p class="text-sm md:text-base whitespace-nowrap">{Cookies.get('contactno')}</p>
 			<p class="text-sm md:text-base whitespace-nowrap">Email</p>
-			<p class="text-sm md:text-base whitespace-nowrap">{dealDetails?.email}</p>
+			<p class="text-sm md:text-base whitespace-nowrap">{Cookies.get('email')}</p>
 		</div>
 		<!-- <h2 class="text-xl md:text-2xl font-bold mt-4">Product Detail</h2>
 		<div class="grid grid-cols-2 gap-y-2">

@@ -5,19 +5,21 @@
 	import { toast } from '$lib/stores/notification';
 	import { onMount } from 'svelte';
 	import Spinner from '$lib/components/shared/spinner.svelte';
+	import axiosFunction from '$lib/utils/network';
+	import dayjs from 'dayjs';
+	import CryptoJS from 'crypto-js';
 
 	let loading = false;
-	let response: SaleData[] = [];
+	let response: any[] = [];
 	let isOpen = false;
 	let selectedOption: Option | null = null;
 	let options: { value: string; label: string }[] = [];
 	let selectedSaleData: any = null;
 	let selectedInstallments: any = [];
+	let selectedInventories: any = [];
 	let amountpayable = 0;
 	let isLoading = true;
-	interface SaleData {
-		saleId: number;
-	}
+
 	interface Option {
 		value: string;
 		label: string;
@@ -56,6 +58,8 @@
 		try {
 			const res = await getScheduleApi();
 			response = res.data;
+			console.log(response);
+
 			const saleIds = response.map((item) => item.saleId);
 			updateData(saleIds);
 			isLoading = false;
@@ -83,6 +87,127 @@
 			year: 'numeric'
 		};
 		return date.toLocaleDateString('en-GB', options);
+	};
+
+	function openWindowWithPost(url: any, name: any, params: any) {
+		var form = document.createElement('form');
+		form.setAttribute('method', 'post');
+		form.setAttribute('action', url);
+		form.setAttribute('target', name);
+		for (var i in params) {
+			if (params.hasOwnProperty(i)) {
+				var input = document.createElement('input');
+				input.type = 'hidden';
+				input.name = i;
+				input.value = params[i];
+				form.appendChild(input);
+			}
+		}
+
+		document.body.appendChild(form);
+
+		form.submit();
+		document.body.removeChild(form);
+	}
+
+	const submit = async () => {
+		// const dealDetails = JSON.parse(localStorage.getItem('dealDetails') ?? '');
+		// const res = await axiosFunction({ url: 'sale/create', method: 'POST', data: dealDetails });
+
+		const merchantID = 'MC58600';
+		const password = 'b15x11ax94';
+		const hashKey = 'c1v8sz0z30';
+		const returnURL = 'https://dealsabaad.com/thankyou';
+
+		const postURL = 'https://testgrid.co/dealsabaadapi/checkout_jc.php';
+
+		const amount = amountpayable * 100;
+		const billReference = selectedInstallments
+			.map((installment: any) => installment.id)
+			.toString()
+			.replaceAll(',', 'm');
+		const description = `${selectedSaleData.SaleDetail[0].floor} - ${selectedSaleData.SaleDetail[0].unitno}`;
+		const isRegisteredCustomer = 'No';
+		const language = 'EN';
+		const txnCurrency = 'PKR';
+		const txnDateTime = new Date().toISOString().replace(/[-:]/g, '').slice(0, -5);
+		const txnExpiryDateTime = new Date(Date.now() + 24 * 60 * 60 * 1000)
+			.toISOString()
+			.replace(/[-:]/g, '')
+			.slice(0, -5);
+		const txnRefNumber = selectedSaleData.saleId;
+
+		const txnType = ''; // Leave it empty
+		const version = '2.0';
+		const subMerchantID = ''; // Leave it empty
+		const bankID = ''; // Leave it empty
+		const productID = selectedSaleData.SaleDetail[0].inventoryId; // Leave it empty
+		const ppmpf_1 = selectedSaleData.name; // use to store extra details (use AlphaNumeric only)
+		const ppmpf_2 = selectedSaleData.address; // use to store extra details (use AlphaNumeric only)
+		const ppmpf_3 = selectedSaleData.mobileno; // use to store extra details (use AlphaNumeric only)
+		const ppmpf_4 = `${selectedSaleData.SaleDetail[0].projectId} - ${selectedSaleData.SaleDetail[0].inventoryId} - ${selectedSaleData.SaleDetail[0].floor} - ${selectedSaleData.SaleDetail[0].unitno}`; // use to store extra details (use AlphaNumeric only)
+		const ppmpf_5 = 'schedule'; // use to store extra details (use AlphaNumeric only)
+
+		const hashArray = [
+			amount,
+			bankID,
+			billReference,
+			description,
+			isRegisteredCustomer,
+			language,
+			merchantID,
+			password,
+			productID,
+			returnURL,
+			txnCurrency,
+			txnDateTime,
+			txnExpiryDateTime,
+			txnRefNumber,
+			txnType,
+			version,
+			ppmpf_1,
+			ppmpf_2,
+			ppmpf_3,
+			ppmpf_4,
+			ppmpf_5
+		];
+
+		let sortedArray = hashKey;
+		for (let i = 0; i < hashArray.length; i++) {
+			if (hashArray[i] !== 'undefined' && hashArray[i] !== null && hashArray[i] !== '') {
+				sortedArray += '&' + hashArray[i];
+			}
+		}
+
+		const secureHash = CryptoJS.HmacSHA256(sortedArray, hashKey).toString();
+
+		localStorage.setItem('orderId', selectedSaleData.saleId);
+
+		openWindowWithPost(postURL, '_self', {
+			pp_Version: version,
+			pp_TxnType: txnType,
+			pp_Language: language,
+			pp_MerchantID: merchantID,
+			pp_SubMerchantID: subMerchantID,
+			pp_Password: password,
+			pp_TxnRefNo: txnRefNumber,
+			pp_Amount: amount,
+			pp_IsRegisteredCustomer: isRegisteredCustomer,
+			pp_TxnCurrency: txnCurrency,
+			pp_TxnDateTime: dayjs().format('YYYYMMDDHHmmss'),
+			pp_TxnExpiryDateTime: dayjs().add(8, 'days').format('YYYYMMDDHHmmss'),
+			pp_BillReference: billReference,
+			pp_Description: description,
+			pp_ReturnURL: returnURL,
+			pp_SecureHash: secureHash,
+			ppmpf_1: ppmpf_1,
+			ppmpf_2: ppmpf_2,
+			ppmpf_3: ppmpf_3,
+			ppmpf_4: ppmpf_4,
+			ppmpf_5: ppmpf_5,
+			pp_BankID: bankID,
+			pp_ProductID: productID
+		});
 	};
 </script>
 
@@ -114,7 +239,10 @@
 {/if}
 
 {#if selectedSaleData !== null}
-	<div class="bg-[#F2F5F7] rounded-2xl px-4 md:px-16 py-8 md:py-16 mt-8 text-[1.1rem]">
+	<form
+		on:submit|preventDefault={submit}
+		class="bg-[#F2F5F7] rounded-2xl px-4 md:px-16 py-8 md:py-16 mt-8 text-[1.1rem]"
+	>
 		<div class="text-center flex-col">
 			<h3 class="text-[2rem] font-bold">Unit No: {selectedSaleData.SaleDetail[0].unitno}</h3>
 			<h3 class="text-[2rem] font-bold">Floor: {selectedSaleData.SaleDetail[0].floor}</h3>
@@ -174,40 +302,69 @@
 			<div class="flex flex-col items-center">
 				<h2 class="font-bold">Paid Status</h2>
 			</div>
-			<div class="flex flex-col items-center">
-				<h2 class="font-bold">Paid Date</h2>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-5 gap-2 justify-center items-start mt-8">
+			<div class="flex flex-col items-center text-[1.3rem]">
+				<input type="checkbox" checked readonly disabled class="h-6 w-6 bg-[#4A6594] rounded" />
+			</div>
+			<div class="flex flex-col text-[1.3rem]">
+				<p class="whitespace-nowrap text-left">Booking Amount</p>
+			</div>
+			<div class="flex flex-col items-center text-[1.3rem]">
+				<p>{Math.round(selectedSaleData.bookingamount).toLocaleString()}</p>
+			</div>
+			<div class="flex flex-col items-center text-[1.3rem]">
+				<p class="whitespace-nowrap">{formatDate(selectedSaleData.date)}</p>
+			</div>
+
+			<div class="flex flex-col items-center text-[1.3rem]">
+				<p>
+					{formatDate(selectedSaleData.date)}
+				</p>
 			</div>
 		</div>
 
 		{#each selectedSaleData.SaleSchedule as scheduleItem}
-			<div class="grid grid-cols-1 md:grid-cols-5 gap-2 justify-center items-start mt-8">
-				<div class="flex flex-col items-center text-[1.3rem]">
-					{#if scheduleItem.paymentstatus}
-						<input type="checkbox" checked readonly disabled class="h-6 w-6 bg-[#4A6594] rounded" />
-					{:else}
-						<input
-							type="checkbox"
-							class="h-6 w-6 bg-[#F2F5F7] rounded border-gray-400"
-							on:change={() => handleCheckboxChange(scheduleItem)}
-						/>
-					{/if}
-				</div>
-				<div class="flex flex-col text-[1.3rem]">
-					<p class="whitespace-nowrap text-left">{scheduleItem.transactionType}</p>
-				</div>
-				<div class="flex flex-col items-center text-[1.3rem]">
-					<p>{Math.round(scheduleItem.payableAmount).toLocaleString()}</p>
-				</div>
-				<div class="flex flex-col items-center text-[1.3rem]">
-					<p class="whitespace-nowrap">{formatDate(scheduleItem.dcheduleDate)}</p>
-				</div>
+			{#if scheduleItem.payableAmount != 0}
+				<div class="grid grid-cols-1 md:grid-cols-5 gap-2 justify-center items-start mt-8">
+					<div class="flex flex-col items-center text-[1.3rem]">
+						{#if scheduleItem.paymentstatus}
+							<input
+								type="checkbox"
+								checked
+								readonly
+								disabled
+								class="h-6 w-6 bg-[#4A6594] rounded"
+							/>
+						{:else}
+							<input
+								type="checkbox"
+								class="h-6 w-6 bg-[#F2F5F7] rounded border-gray-400"
+								on:change={() => handleCheckboxChange(scheduleItem)}
+							/>
+						{/if}
+					</div>
+					<div class="flex flex-col text-[1.3rem]">
+						<p class=" text-left">
+							{scheduleItem.transactionType}
+							{#if scheduleItem.confirmstatus} / Confirmation Amount {/if}
+						</p>
+					</div>
+					<div class="flex flex-col items-center text-[1.3rem]">
+						<p>{Math.round(scheduleItem.payableAmount).toLocaleString()}</p>
+					</div>
+					<div class="flex flex-col items-center text-[1.3rem]">
+						<p class="whitespace-nowrap">{formatDate(scheduleItem.dcheduleDate)}</p>
+					</div>
 
-				<div class="flex flex-col items-center text-[1.3rem]">
-					<p>
-						{scheduleItem.receivedDate == null ? '-' : formatDate(scheduleItem.receivedDate)}
-					</p>
+					<div class="flex flex-col items-center text-[1.3rem]">
+						<p>
+							{scheduleItem.receivedDate == null ? '-' : formatDate(scheduleItem.receivedDate)}
+						</p>
+					</div>
 				</div>
-			</div>
+			{/if}
 		{/each}
 
 		<hr class="border-t-2 border-gray-300 my-10 w-auto" />
@@ -220,6 +377,6 @@
 		<div class="">
 			<Button className="h-[3rem]" type="submit" {loading} label="Pay Installment" />
 		</div>
-	</div>
+	</form>
 	<!-- {:else} -->
 {/if}
