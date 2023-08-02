@@ -206,12 +206,38 @@
 				class="mt-[1.5rem] flex text-[#4B4B4B] text-[1rem] font-bold cursor-pointer"
 				on:click={handleToggleModal}
 			>
-				<img src="/images/checkout/voucher.png" alt="32" class="mt-2 sm:mt-0 h-[2rem] sm:" />
-				<span class="ml-4">Apply Voucher / Referral Code</span>
+				<img src="/images/checkout/voucher.png" alt="32" class="mt-2 sm:mt-0 h-[1.6rem] sm:" />
+				<span class="w-full ml-4 text-[0.9rem] md:text-[1rem]">Apply Voucher / Referral Code</span>
 			</div>
 		{/if}
 
-		<div class="flex justify-between mt">
+		<div class="flex flex-col md:flex-row justify-between mt">
+			<span class="text-left mt-4 text-[1rem] md:text-[1.2rem]"> *Standard Price </span>
+			<span class="text-left mt-2 mb-4 text-[1rem] md:text-[1.2rem]">
+				Rs. {salePrice?.toLocaleString()}/-
+			</span>
+		</div>
+		<div class="flex flex-col md:flex-row justify-between">
+			<span class="text-left mt-4 text-[1rem] md:text-[1.2rem]">
+				*Discount ({discount?.toLocaleString()}%)
+			</span>
+			<span class="text-left mt-2 mb-4 text-[1rem] md:text-[1.2rem]">
+				Rs. {Math.round((salePrice * discount) / 100).toLocaleString()}/-
+			</span>
+		</div>
+		<div class="flex flex-col md:flex-row justify-between">
+			<span class="text-left mt-4 text-[1rem] md:text-[1.2rem]"> *Referral Discount</span>
+			<span class="text-left mt-2 mb-4 text-[1rem] md:text-[1.2rem]">
+				Rs. {referralAmount?.toLocaleString()}/-
+			</span>
+		</div>
+		<div class="flex flex-col md:flex-row justify-between">
+			<span class="text-left mt-2 text-[1rem] md:text-[1.2rem] font-bold"> *Net Unit Price </span>
+			<span class="text-left mt-2 mb-4 text-[1rem] md:text-[1.2rem] font-bold">
+				Rs. {price?.toLocaleString()}/-
+			</span>
+		</div>
+		<!-- <div class="flex justify-between mt">
 			<span class="text-left mt-4 text-[1rem] md:text-[1.4rem]"> *Standard Price </span>
 			<span class="text-left mt-2 mb-4 text-[1rem] md:text-[1.4rem]">
 				Rs. {salePrice?.toLocaleString()}/-
@@ -236,7 +262,7 @@
 			<span class="text-left mt-2 mb-4 text-[1rem] md:text-[1.4rem] font-bold">
 				Rs. {price?.toLocaleString()}/-
 			</span>
-		</div>
+		</div> -->
 		<Button
 			className="bg-[#FFD624] hover:bg-[#FFD624] h-[2.5rem] text-[#1A202C] rounded-md ml-0 sm:ml-0"
 			type="submit"

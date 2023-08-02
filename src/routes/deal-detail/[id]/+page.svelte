@@ -37,9 +37,9 @@
 
 	{#if data.deal}
 		<div
-			class="text-[1.2rem] md:text-[1.6rem] mt-[2rem] bg-[#FFD624] text-[#000000] rounded-lg h-[3rem] w-full md:w-[50%] flex items-center justify-left"
+			class="text-[0.9rem] md:text-[1.6rem] mt-[2rem] bg-[#FFD624] text-[#000000] rounded-lg min-h-[3rem] md:h-[3rem] w-full md:w-[50%] flex items-center justify-left"
 		>
-			<span class="ml-4 font-bold">{data.deal.name}</span>
+			<span class="ml-4 font-bold">{data.deal.project?.name}</span>
 		</div>
 		<div class="mt-[1.1rem]">
 			<SwiperCarousal {images} />

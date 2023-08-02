@@ -1,7 +1,7 @@
 <div class="">
 	<div class="my-container flex flex-col items-center justify-center">
 		<h2 class="text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%] mb-[0.625rem]">
-			Current project
+			Our Partners
 		</h2>
 		<div class="flex flex-wrap gap-[2.5rem] mt-[2.75rem] justify-center items-center">
 			<div

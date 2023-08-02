@@ -87,7 +87,9 @@
 >
 	<div class="flex justify-between">
 		<div class="flex items-center">
-			<label for="plan1" class="text-[#4B4B4B] text-[1.125rem]">Payment Plan One</label>
+			<label for="plan1" class="text-[#4B4B4B] text-[1rem] md:text-[1.125rem]"
+				>Payment Plan One</label
+			>
 			<input
 				type="radio"
 				color="yellow"
@@ -101,7 +103,7 @@
 			/>
 		</div>
 	</div>
-	<div class="mt-[2rem] text-[1.188rem]">
+	<div class="mt-[2rem] text-[1rem] md:text-[1.188rem]">
 		<h2 class="mt-3">
 			Down Payment
 			<span class="ml-4">
@@ -152,17 +154,17 @@
 	</div>
 	<hr class="border-gray-300 border-1 mt-2" />
 
-	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
+	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1rem] md:text-[1.25rem]">
 		<span>Booking Amount</span>
 		<span>Rs {bookingAmount.toLocaleString()} </span>
 	</div>
 	{#if fields.AmountconfirmationCheck}
-		<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
+		<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1rem] md:text-[1.25rem]">
 			<span>Confirmation Amount</span>
 			<span>Rs {confirmationAmount.toLocaleString()} </span>
 		</div>
 	{/if}
-	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1.25rem]">
+	<div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1rem] md:text-[1.25rem]">
 		<span>Total</span>
 		<span>
 			Rs

@@ -39,24 +39,30 @@
 <div class="flex flex-wrap">
 	<div class="w-full mb-4 sm:mb-0">
 		<div class="rounded-md h-[4rem] flex items-center justify-between w-full mt-[1rem]">
-			<div class="text-black text-[1.4rem] font-bold">Deal Ends In</div>
-			<div class="text-black text-[1.3rem] ml-[1rem] md:ml-0">HURRY UP ONLY {left} FLATS LEFT</div>
+			<div
+				class="text-black w-[50%] text-[1.2rem] md:text-[1.4rem] font-bold whitespace-nowrap sm:"
+			>
+				Deal Ends In
+			</div>
+			<div class="text-black text-[1rem] md:text-[1.3rem] ml-[1rem] md:ml-0">
+				HURRY UP ONLY {left} FLATS LEFT
+			</div>
 		</div>
 		<div class="flex justify-left space-x-4 mt-2">
 			<div
-				class="bg-[#4A6594] rounded-md h-[3.738rem] mt-[1.5rem] md:mt-0 flex-1 flex flex-col items-center justify-center"
+				class="bg-[#4A6594] rounded-md h-[3.738rem] mt-[1rem] md:mt-0 flex-1 flex flex-col items-center justify-center"
 			>
 				<h2 class="text-white font-bold text-[1.3rem]">{hours}</h2>
 				<h2 class="text-white">HOURS</h2>
 			</div>
 			<div
-				class="bg-[#4A6594] rounded-md h-[3.738rem] mt-[1.5rem] md:mt-0 flex-1 flex flex-col items-center justify-center"
+				class="bg-[#4A6594] rounded-md h-[3.738rem] mt-[1rem] md:mt-0 flex-1 flex flex-col items-center justify-center"
 			>
 				<h2 class="text-white font-bold text-[1.3rem]">{minutes}</h2>
 				<h2 class="text-white">MIN</h2>
 			</div>
 			<div
-				class="bg-[#4A6594] rounded-md h-[3.738rem] mt-[1.5rem] md:mt-0 flex-1 flex flex-col items-center justify-center"
+				class="bg-[#4A6594] rounded-md h-[3.738rem] mt-[1rem] md:mt-0 flex-1 flex flex-col items-center justify-center"
 			>
 				<h2 class="text-white font-bold text-[1.3rem]">{seconds}</h2>
 				<h2 class="text-white">SEC</h2>
