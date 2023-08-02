@@ -8,6 +8,9 @@
 	import Cookies from 'js-cookie';
 	import Popover from './popover.svelte';
 	import { tokenStore } from '$lib/stores/token';
+	import MyDrawer from './my_drawer.svelte';
+
+	let open = false;
 
 	let dark = true;
 
@@ -89,8 +92,15 @@
 					</li>
 				{/each}
 			</ul>
-			<img src="/icons/menu.svg" alt="" class="w-8 flex lg:hidden cursor-pointer" />
+			<img
+				src="/icons/menu-dark.svg"
+				alt=""
+				class="w-8 flex lg:hidden cursor-pointer"
+				on:click={() => (open = true)}
+			/>
 		</div>
 	</div>
 	<!-- <NavDrawer opened={opened} open={open} close={close} /> -->
 </header>
+
+<MyDrawer bind:open />

@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -32,6 +32,9 @@ dependencies:
   js-cookie:
     specifier: ^3.0.5
     version: 3.0.5
+  svelte-drawer-component:
+    specifier: ^1.2.2
+    version: 1.2.2
   svelte-headlessui:
     specifier: ^0.0.20
     version: 0.0.20(svelte@4.0.5)
@@ -3291,6 +3294,10 @@ packages:
       - stylus
       - sugarss
     dev: true
+
+  /svelte-drawer-component@1.2.2:
+    resolution: {integrity: sha512-FyVaqwydJZfO266ERLbSsn9WojXwC5Mhc2pTOoZPTHcYopCdnINw+vKPuDnb/2osLEbDNnCE/2+MSgJsR9r56Q==}
+    dev: false
 
   /svelte-eslint-parser@0.32.1(svelte@4.0.5):
     resolution: {integrity: sha512-GCSfeIzdgk53CaOzK+s/+l2igfTno3mWGkwoDYAwPes/rD9Al2fc7ksfopjx5UL87S7dw1eL73F6wNYiiuhzIA==}

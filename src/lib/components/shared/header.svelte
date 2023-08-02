@@ -8,6 +8,9 @@
 	import Cookies from 'js-cookie';
 	import Popover from './popover.svelte';
 	import { setToken, tokenStore } from '$lib/stores/token';
+	import MyDrawer from './my_drawer.svelte';
+
+	let open = false;
 
 	let dark = false;
 
@@ -73,46 +76,7 @@
 			<div class="flex items-center gap-6">
 				<Button label="Dealer Registrations" onclick={() => goto('/dealer-registration')} />
 				{#if token}
-					<Popover>
-						<!-- <svelte:fragment slot="body">
-							<button
-								class="bg-[#FFD624] hover:bg-[#FFD624] w-[4rem] rounded-md flex items-center justify-center h-[2.4rem]"
-							>
-								<img src="/icons/user.svg" alt="" />
-							</button>
-						</svelte:fragment>
-						<svelte:fragment slot="menu">
-							<ul class="flex flex-col w-full text-[1rem] cursor-pointer">
-								<li class="w-full">
-									<button on:click={() => redirectHandler('/profile')} class="pt-2 px-4 w-full flex"
-										>Profile</button
-									>
-								</li>
-								<li>
-									<button on:click={() => redirectHandler('/payment')} class="pt-2 px-4 w-full flex"
-										>Payment</button
-									>
-								</li>
-								<li>
-									<button on:click={() => redirectHandler('/booking')} class="pt-2 px-4 w-full flex"
-										>My booking</button
-									>
-								</li>
-								<li>
-									<button
-										on:click={() => redirectHandler('/saved-ads')}
-										class="pt-2 px-4 w-full flex">My saved ads</button
-									>
-								</li>
-								<li>
-									<button on:click={() => redirectHandler('/wallet')} class="py-2 px-4 w-full flex"
-										>Wallet</button
-									>
-								</li>
-								<li on:click={logout} class="border-t py-2 px-4 w-full">Logout</li>
-							</ul>
-						</svelte:fragment> -->
-					</Popover>
+					<Popover />
 				{:else}
 					<Button label="Login" onclick={navigateToLoginPage} />
 				{/if}
@@ -140,8 +104,24 @@
 					</li>
 				{/each}
 			</ul>
-			<img src="/icons/menu.svg" alt="" class="w-8 flex lg:hidden cursor-pointer" />
+			{#if dark}
+				<img
+					src="/icons/menu-dark.svg"
+					alt=""
+					class="w-8 flex lg:hidden cursor-pointer"
+					on:click={() => (open = true)}
+				/>
+			{:else}
+				<img
+					src="/icons/menu.svg"
+					alt=""
+					class="w-8 flex lg:hidden cursor-pointer"
+					on:click={() => (open = true)}
+				/>
+			{/if}
 		</div>
 	</div>
 	<!-- <NavDrawer opened={opened} open={open} close={close} /> -->
 </header>
+
+<MyDrawer bind:open />

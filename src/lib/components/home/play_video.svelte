@@ -31,7 +31,7 @@
 				class="bg-[#F70000] hover:bg-[#F70000] w-[15rem] md:w-[17rem] h-[4rem] text-[1.188rem] font-[600] mt-[3rem] rounded-md"
 				on:click={videoPlayer}
 			>
-				<span class="flex relative justify-center items-center w-[17rem]">
+				<span class="flex relative justify-center items-center w-[15rem] md:w-[17rem]">
 					<p class="text-white text-[1.1rem] md:text-[1.375rem] font-semibold mt-[-0.25rem]">
 						Play Videos
 					</p>
