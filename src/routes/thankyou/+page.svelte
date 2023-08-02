@@ -24,14 +24,14 @@
 			<h2 class="text-[2.063rem] md:text-[3.063rem] font-bold text-center">Thank you!</h2>
 		</div>
 
-		<div class="flex flex-col justify-center items-center mt-[1rem] font-bold">
+		<div class="flex flex-col justify-center items-center mt-[1rem] font-bold text-center">
 			{#if dealDetails?.confirmationcheck == false}
 				<h2 class="text-[1rem] md:text-[1.563rem] text-center">
 					Confirmation Payment Must be Paid within 3 days of Booking to avoid cancellation
 				</h2>
 			{/if}
 			{#if responseMessage}
-				<h3 class="mt-4">
+				<h3 class="mt-4 text-center">
 					{responseMessage}
 				</h3>
 			{/if}
