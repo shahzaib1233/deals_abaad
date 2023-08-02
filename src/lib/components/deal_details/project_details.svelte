@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let data: any;
+	console.log('abhi wala data = ', data);
 </script>
 
 <div class="">
@@ -13,7 +14,7 @@
 <div class="">
 	<h2 class="text-[1.3rem] font-bold">Description</h2>
 	<h2 class="text-[#4B4B4B] mt-[1rem] text-[1.1rem]">
-		{data?.desc}
+		{data?.project.description}
 	</h2>
 	<hr class="border-t-2 border-gray-300 my-6" />
 </div>
@@ -35,22 +36,25 @@
 <div class="">
 	<h2 class="text-[1.3rem] font-bold">Address</h2>
 	<ul class="list-disc list-inside text-[#4B4B4B] mt-[1rem] text-[1.1rem]">
-		<li class="mt-2">Name: {data?.project?.description}</li>
 		<li class="mt-2">Address: {data?.project?.address}</li>
-		<li class="mt-2">Area: {data?.project?.description}</li>
+		<li class="mt-2">Location: {data?.project?.location.name}</li>
+		<li class="mt-2">Property Type: {data?.project?.propertylocation.name}</li>
 	</ul>
 
 	<hr class="border-t-2 border-gray-300 my-6" />
 </div>
+
 <h2 class="text-[1.3rem] font-bold">Other details</h2>
 <div class="flex flex-col md:flex-row items-center mt-[1rem] w-[60%]">
 	<div class="flex flex-wrap">
-		<div class="flex mb-2 mr-4">
-			<img src="/images/bookings/sq.png" alt="" />
-			<span class="ml-2 whitespace-nowrap">
-				{data?.project?.totalsize + ' ' + data?.project?.sizestype}
-			</span>
-		</div>
+		{#if data?.project?.totalsize != null}
+			<div class="flex mb-2 mr-4">
+				<img src="/images/bookings/sq.png" alt="" />
+				<span class="ml-2 whitespace-nowrap">
+					{data?.project?.totalsize + ' ' + data?.project?.sizestype}
+				</span>
+			</div>
+		{/if}
 	</div>
 </div>
 
