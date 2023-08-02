@@ -22,7 +22,7 @@
 <main class="my-container pt-[6rem] md:pt-[10.25rem]">
 	{#if bannerImage && bannerImage !== ''}
 		<div class="w-full">
-			<img class="h-[13rem] md:h-[27rem] w-full rounded-2xl" src={bannerImage} />
+			<img class=" w-full rounded-2xl" src={bannerImage} />
 		</div>
 	{/if}
 
@@ -33,21 +33,15 @@
 			<span class="ml-4 font-bold">{data.deal.name}</span>
 		</div>
 		<div class="mt-[1.1rem]">
-			<!-- <Carousal /> -->
 			<SwiperCarousal {images} />
 		</div>
 	{/if}
 
-	<div class="mt-8 flex flex-col gap-8 md:flex-row">
-		<div class="flex flex-col md:flex-row md:items-start md:space-x-8">
-			<div>
-				<ApplyVoucher
-					date={data.deal.endDate.split('T')[0]}
-					left={data.deal.DealInventory.length}
-				/>
-				<ProjectDetails data={data.deal} />
-			</div>
-			<div class="mt-8 md:mt-0"><SelectUnit data={data.deal} /></div>
+	<div class="mt-8 flex flex-col md:gap-8 md:flex-row">
+		<div>
+			<ApplyVoucher date={data.deal.endDate.split('T')[0]} left={data.deal.DealInventory.length} />
+			<ProjectDetails data={data.deal} />
 		</div>
+		<div class="mt-8 md:mt-0"><SelectUnit data={data.deal} /></div>
 	</div>
 </main>
