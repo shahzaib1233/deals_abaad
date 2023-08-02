@@ -191,7 +191,7 @@
 			bind:item={selectedData.floors}
 		/>
 		<!-- svelte-ignore a11y-label-has-associated-control -->
-		<label>Select Unit Number</label>
+		<label class="mt-[1rem]">Select Unit Number</label>
 
 		<ListBoxNew
 			key="units"
