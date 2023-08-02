@@ -8,6 +8,9 @@
 <div class="">
 	<Hero
 		image={`${import.meta.env.VITE_BASE_URL}category/img/${data.category.backgroundImage}`}
+		responsiveImage={`${import.meta.env.VITE_BASE_URL}category/img/${
+			data.category.responsiveBackgroundImage
+		}`}
 		heading=""
 		desc=""
 	/>

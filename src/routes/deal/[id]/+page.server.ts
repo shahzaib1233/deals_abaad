@@ -8,6 +8,8 @@ export const load = async ({ params }) => {
 			url: `category/${params.id}`
 		});
 
+		console.log(data.data);
+
 		return { category: data.data };
 	} catch (e) {
 		return { category: null };
