@@ -219,7 +219,7 @@
 	<div class="mt-[3rem]">
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label class="text-[1.3rem] font-bold">Select Order</label>
-		<div class="w-[30rem] mt-3">
+		<div class="w-[13rem] sm:w-[20rem] md:w-[30rem] mt-3">
 			<ListBoxNew
 				key="payments"
 				{options}
@@ -241,32 +241,66 @@
 {#if selectedSaleData !== null}
 	<form
 		on:submit|preventDefault={submit}
-		class="bg-[#F2F5F7] rounded-2xl px-4 md:px-16 py-8 md:py-16 mt-8 text-[1.1rem]"
+		class="bg-[#F2F5F7] rounded-2xl px-2 sm:px-4 md:px-16 py-2 sm:py-8 md:py-16 mt-8 text-[1.1rem]"
 	>
 		<div class="text-center flex-col">
-			<h3 class="text-[2rem] font-bold">Unit No: {selectedSaleData.SaleDetail[0].unitno}</h3>
-			<h3 class="text-[2rem] font-bold">Floor: {selectedSaleData.SaleDetail[0].floor}</h3>
+			<h3 class="text-[1rem] md:text-[2rem] font-bold">
+				Unit No: {selectedSaleData.SaleDetail[0].unitno}
+			</h3>
+			<h3 class="text-[1rem] md:text-[2rem] font-bold">
+				Floor: {selectedSaleData.SaleDetail[0].floor}
+			</h3>
 		</div>
 		<div
-			class="grid grid-cols-1 md:grid-cols-5 gap-2 mt-[6rem] justify-center bg-white h-[3.5rem] rounded-lg items-center"
+			class="flex flex-row md:flex-row bg-white h-[3.5rem] rounded-lg items-center mt-[3rem] sm:mt-[6rem] justify-between"
 		>
-			<div class="flex flex-col items-center">
-				<h2 class="font-bold">Booking Date</h2>
+			<div class="flex items-left md:items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Booking Date</h2>
 			</div>
-			<div class="flex flex-col items-center">
-				<h2 class="font-bold">Standard Selling Price</h2>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Standard Selling Price</h2>
 			</div>
-			<div class="flex flex-col items-center">
-				<h2 class="font-bold">Promo Discount</h2>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Promo Discount</h2>
 			</div>
-			<div class="flex flex-col items-center">
-				<h2 class="font-bold">Referral Discount</h2>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Referral Discount</h2>
 			</div>
-			<div class="flex flex-col items-center">
-				<h2 class="font-bold">Net Selling Price</h2>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Net Selling Price</h2>
 			</div>
 		</div>
-		<div class="grid grid-cols-1 md:grid-cols-5 gap-2 justify-center items-start mt-8">
+
+		<div
+			class="flex flex-row md:flex-row h-[3.5rem] rounded-lg items-center mt-4 sm:mt-[1.5rem] justify-between"
+		>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0 mr-[0.8rem] sm:mr-0">
+					{formatDate(selectedSaleData.date)}
+				</h2>
+			</div>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
+					{Math.round(selectedSaleData.SaleDetail[0].sellingprice).toLocaleString()}
+				</h2>
+			</div>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
+					{Math.round(selectedSaleData.SaleDetail[0].promodiscount).toLocaleString()}
+				</h2>
+			</div>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
+					{Math.round(selectedSaleData.SaleDetail[0].referraldiscount).toLocaleString()}
+				</h2>
+			</div>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
+					{Math.round(selectedSaleData.SaleDetail[0].netsellingprice).toLocaleString()}
+				</h2>
+			</div>
+		</div>
+		<!-- <div class="grid grid-cols-1 md:grid-cols-5 gap-2 justify-center items-start mt-8">
 			<div class="flex flex-col items-center text-[1.3rem]">
 				<p class="whitespace-nowrap text-left">{formatDate(selectedSaleData.date)}</p>
 			</div>
@@ -282,9 +316,9 @@
 			<div class="flex flex-col items-center text-[1.3rem]">
 				<p>{Math.round(selectedSaleData.SaleDetail[0].netsellingprice).toLocaleString()}</p>
 			</div>
-		</div>
+		</div> -->
 
-		<div
+		<!-- <div
 			class="grid grid-cols-1 md:grid-cols-5 gap-2 mt-[6rem] justify-center bg-white h-[3.5rem] rounded-lg items-center"
 		>
 			<div class="flex flex-col items-center">
@@ -302,30 +336,110 @@
 			<div class="flex flex-col items-center">
 				<h2 class="font-bold">Paid Status</h2>
 			</div>
+		</div> -->
+		<div
+			class="flex flex-row md:flex-row bg-white h-[3.5rem] rounded-lg items-center mt-[3rem] sm:mt-[6rem] justify-between"
+		>
+			<div class="flex items-left md:items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Status</h2>
+			</div>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Transaction Type</h2>
+			</div>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Payable Amount</h2>
+			</div>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Due Date</h2>
+			</div>
+			<div class="flex items-center justify-center md:w-1/5">
+				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Paid Status</h2>
+			</div>
 		</div>
 
-		<div class="grid grid-cols-1 md:grid-cols-5 gap-2 justify-center items-start mt-8">
-			<div class="flex flex-col items-center text-[1.3rem]">
-				<input type="checkbox" checked readonly disabled class="h-6 w-6 bg-[#4A6594] rounded" />
+		<div
+			class="flex flex-row md:flex-row h-[3.5rem] rounded-lg items-center mt-4 sm:mt-[1.5rem] justify-between"
+		>
+			<div class="flex items-center justify-center md:w-1/5">
+				<input
+					type="checkbox"
+					checked
+					readonly
+					disabled
+					class="h-3 md:h-6 w-3 md:w-6 bg-[#4A6594] rounded"
+				/>
 			</div>
-			<div class="flex flex-col text-[1.3rem]">
-				<p class="whitespace-nowrap text-left">Booking Amount</p>
+			<div class="flex items-center justify-center md:w-1/5">
+				<p class=" text-center text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
+					Booking Amount
+				</p>
 			</div>
-			<div class="flex flex-col items-center text-[1.3rem]">
-				<p>{Math.round(selectedSaleData.bookingamount).toLocaleString()}</p>
+			<div class="flex items-center justify-center md:w-1/5">
+				<p class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0 text-left sm:">
+					{Math.round(selectedSaleData.bookingamount).toLocaleString()}
+				</p>
 			</div>
-			<div class="flex flex-col items-center text-[1.3rem]">
-				<p class="whitespace-nowrap">{formatDate(selectedSaleData.date)}</p>
+			<div class="flex items-center justify-center md:w-1/5">
+				<p class=" text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
+					{formatDate(selectedSaleData.date)}
+				</p>
 			</div>
 
-			<div class="flex flex-col items-center text-[1.3rem]">
-				<p>
+			<div class="flex items-center justify-center md:w-1/5">
+				<p class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
 					{formatDate(selectedSaleData.date)}
 				</p>
 			</div>
 		</div>
 
 		{#each selectedSaleData.SaleSchedule as scheduleItem}
+			{#if scheduleItem.payableAmount != 0}
+				<div
+					class="flex flex-row md:flex-row h-[3.5rem] rounded-lg items-center mt-4 sm:mt-[1.5rem] justify-between"
+				>
+					<div class="flex items-center justify-center md:w-1/5">
+						{#if scheduleItem.paymentstatus}
+							<input
+								type="checkbox"
+								checked
+								readonly
+								disabled
+								class="h-3 md:h-6 w-3 md:w-6 bg-[#4A6594] rounded"
+							/>
+						{:else}
+							<input
+								type="checkbox"
+								class="h-3 md:h-6 w-3 md:w-6 rounded"
+								on:change={() => handleCheckboxChange(scheduleItem)}
+							/>
+						{/if}
+					</div>
+					<div class="flex items-center justify-center md:w-1/5">
+						<p class=" text-[0.8rem] sm:text-[1rem] font-bold font-bold mr-[0.8rem] sm:mr-0">
+							{scheduleItem.transactionType}
+							{#if scheduleItem.confirmstatus} <br />/ Confirmation Amount{/if}
+						</p>
+					</div>
+					<div class="flex items-center justify-center md:w-1/5">
+						<p class=" text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
+							{Math.round(scheduleItem.payableAmount).toLocaleString()}
+						</p>
+					</div>
+					<div class="flex items-center justify-center md:w-1/5">
+						<p class=" text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
+							{formatDate(scheduleItem.dcheduleDate)}
+						</p>
+					</div>
+
+					<div class="flex items-center justify-center md:w-1/5">
+						<p class=" text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
+							{scheduleItem.receivedDate == null ? '-' : formatDate(scheduleItem.receivedDate)}
+						</p>
+					</div>
+				</div>
+			{/if}
+		{/each}
+		<!-- {#each selectedSaleData.SaleSchedule as scheduleItem}
 			{#if scheduleItem.payableAmount != 0}
 				<div class="grid grid-cols-1 md:grid-cols-5 gap-2 justify-center items-start mt-8">
 					<div class="flex flex-col items-center text-[1.3rem]">
@@ -365,11 +479,11 @@
 					</div>
 				</div>
 			{/if}
-		{/each}
+		{/each} -->
 
 		<hr class="border-t-2 border-gray-300 my-10 w-auto" />
 		<div class="mb-4">
-			<p class="text-xl font-bold">
+			<p class="text-md md:text-xl font-bold">
 				Selected Payable Amount: {Math.round(amountpayable).toLocaleString()}
 			</p>
 		</div>

@@ -32,6 +32,9 @@
 			} else {
 				localStorage.setItem('dealDetails', JSON.stringify(fields));
 				goto('/checkout');
+				Cookies.set('name', fields.name);
+				Cookies.set('address', fields.address);
+				// console.log(fields.name);
 			}
 		} catch (error) {
 			console.log('Error:', error);

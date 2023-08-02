@@ -83,7 +83,7 @@
 </script>
 
 <div
-	class="bg-[#F2F5F7] min-w-[16rem] sm: min-w-[30rem] h-[max-content] p-[2rem] rounded-md sticky top-[3rem]"
+	class="bg-[#F2F5F7] min-w-[16rem] sm: w-full md:min-w-[30rem] h-[max-content] p-[2rem] rounded-md sticky top-[3rem]"
 >
 	<div class="flex justify-between">
 		<div class="flex items-center">

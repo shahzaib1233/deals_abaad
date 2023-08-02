@@ -10,7 +10,7 @@
 			><img src="/icons/close.svg" class="w-6 h-6" /></button
 		>
 		<ul class="flex flex-col gap-6">
-			<a href="/"><img src="/logos/logo-dark.svg" alt="" class="mt-6 w-[80%]" /></a>
+			<a href="/"><img src="/logos/logo-dark.svg" alt="" class="mt-6" /></a>
 			<li><a href="/">Home</a></li>
 			<li><a href="/about">About</a></li>
 			<li><a href="/deals">Deals</a></li>
