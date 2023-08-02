@@ -116,7 +116,7 @@
 	let paymentBtn: HTMLButtonElement;
 </script>
 
-<div class="my-container pt-[10.25rem]">
+<div class="my-container pt-[6rem] md:pt-[10.25rem]">
 	<div class="flex flex-col sm:flex-col-reverse md:flex-col lg:flex-row gap-8">
 		<div>
 			{#if token != '' && token != undefined}

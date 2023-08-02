@@ -19,14 +19,14 @@
 </script>
 
 <div class="bg-[#F2F5F7] min-h-screen">
-	<div class="my-container pt-[2.25rem] w-[60%]">
+	<div class="my-container pt-[2.25rem] md:w-[60%] sm:w-full">
 		<div class="flex justify-center">
-			<h2 class="text-[3.063rem] font-bold">Thank you!</h2>
+			<h2 class="text-[2.063rem] md:text-[3.063rem] font-bold text-center">Thank you!</h2>
 		</div>
 
 		<div class="flex flex-col justify-center items-center mt-[1rem] font-bold">
 			{#if dealDetails?.confirmationcheck == false}
-				<h2 class="text-[1.563rem] text-center">
+				<h2 class="text-[1rem] md:text-[1.563rem] text-center">
 					Confirmation Payment Must be Paid within 3 days of Booking to avoid cancellation
 				</h2>
 			{/if}
@@ -39,14 +39,14 @@
 		<ThankyouCard {transtype} {voucherNo} {voucherExpiry} />
 		<div class="flex justify-center gap-4">
 			<Button
-				className="mb-[0.563rem] mt-[1.6rem] w-[11.813rem] h-[2.5rem]"
+				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] md:h-[2.5rem] w-full h-[3rem] md:h-[2.5rem] "
 				label="Go to Home"
 				onclick={() => {
 					goto('/');
 				}}
 			/>
 			<Button
-				className="mb-[0.563rem] mt-[1.6rem] w-[11.813rem] h-[2.5rem]"
+				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] md:h-[2.5rem] w-full h-[3rem] md:h-[2.5rem]"
 				label="Payment Schedule"
 				onclick={() => {
 					goto('/payment');

@@ -9,7 +9,7 @@
 </script>
 
 <div
-	class="h-screen w-screen hero flex flex-col items-center justify-center"
+	class="h-[25rem] md:h-screen w-screen hero flex flex-col items-center justify-center"
 	style={`background-image: url(${image});`}
 >
 	<h1

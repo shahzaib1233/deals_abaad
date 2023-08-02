@@ -19,7 +19,7 @@
 	// localStorage.setItem('endDate', data.deal.endDate.split('T')[0]);
 </script>
 
-<main class="my-container pt-[10.25rem]">
+<main class="my-container pt-[6rem] md:pt-[10.25rem]">
 	{#if bannerImage && bannerImage !== ''}
 		<div class="w-full">
 			<img class="h-[13rem] md:h-[27rem] w-full rounded-2xl" src={bannerImage} />

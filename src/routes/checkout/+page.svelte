@@ -134,11 +134,11 @@
 	};
 </script>
 
-<div class="my-container pt-[10.25rem]">
+<div class="my-container pt-[6rem] md:pt-[10.25rem]">
 	<div class="flex flex-col md:flex-row gap-4">
 		<div class="w-full md:w-[65%]">
 			<form class="flex-1" on:submit|preventDefault={submit}>
-				<span class="text-[1.8rem] font-bold">Select Payment method</span>
+				<span class="text-[1.4rem] md:text-[1.8rem] font-bold">Select Payment method</span>
 
 				<div
 					class="flex mt-[1rem] bg-[#F2F5F7] w-full md:w-[65%] h-[3rem] rounded-lg justify-left items-center"

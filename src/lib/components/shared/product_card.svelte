@@ -39,13 +39,13 @@
 	</div>
 	<div class="p-6">
 		<div class="flex justify-between items-start">
-			<h6 class="font-bold text-[1.5rem]">{name}</h6>
+			<h6 class="font-bold text-[1rem] md:text-[1.5rem]">{name}</h6>
 			<div class="flex items-center gap-[2px] mt-[0.35rem]">
 				<img src="/icons/star.svg" alt="" />
 				<p class="text-[1.125rem]">{rating.toString()}</p>
 			</div>
 		</div>
-		<p class="my-4 text-[#4B4B4B] text-[1.25rem] max-w-[19.8rem] font-medium">
+		<p class="my-4 text-[#4B4B4B] text-[1rem] md:text-[1.25rem] max-w-[19.8rem] font-medium">
 			{desc}
 		</p>
 		<div class="flex justify-between">

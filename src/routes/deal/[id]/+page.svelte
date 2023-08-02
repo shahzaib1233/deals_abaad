@@ -12,7 +12,9 @@
 		desc=""
 	/>
 	<div class="my-container mt-[6.25rem]">
-		<h2 class="text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%] mb-[2.813rem]">
+		<h2
+			class="text-[1.5rem] md:text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%] mb-[2.813rem]"
+		>
 			{data.category.name}
 		</h2>
 		<div class="flex flex-wrap gap-[1.5rem]">

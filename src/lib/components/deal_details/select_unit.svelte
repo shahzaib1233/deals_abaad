@@ -206,32 +206,34 @@
 				class="mt-[1.5rem] flex text-[#4B4B4B] text-[1rem] font-bold cursor-pointer"
 				on:click={handleToggleModal}
 			>
-				<img src="/images/checkout/voucher.png" alt="32" />
-				<span class="ml-4">Apply Voucher/Referral Code</span>
+				<img src="/images/checkout/voucher.png" alt="32" class="mt-2 sm:mt-0 h-[2rem] sm:" />
+				<span class="ml-4">Apply Voucher / Referral Code</span>
 			</div>
 		{/if}
 
 		<div class="flex justify-between mt">
-			<span class="text-left mt-4 text-[1.2rem]"> *Standard Price </span>
-			<span class="text-left mt-2 mb-4 text-[1.4rem]">
+			<span class="text-left mt-4 text-[1rem] md:text-[1.4rem]"> *Standard Price </span>
+			<span class="text-left mt-2 mb-4 text-[1rem] md:text-[1.4rem]">
 				Rs. {salePrice?.toLocaleString()}/-
 			</span>
 		</div>
 		<div class="flex justify-between">
-			<span class="text-left mt-4 text-[1.2rem]"> *Discount ({discount?.toLocaleString()}%)</span>
-			<span class="text-left mt-2 mb-4 text-[1.4rem]">
+			<span class="text-left mt-4 text-[1rem] md:text-[1.4rem]">
+				*Discount ({discount?.toLocaleString()}%)</span
+			>
+			<span class="text-left mt-2 mb-4 text-[1rem] md:text-[1.4rem]">
 				Rs. {Math.round((salePrice * discount) / 100).toLocaleString()}/-
 			</span>
 		</div>
 		<div class="flex justify-between">
-			<span class="text-left mt-4 text-[1.2rem]"> *Referral Discount</span>
-			<span class="text-left mt-2 mb-4 text-[1.4rem]">
+			<span class="text-left mt-4 text-[1rem] md:text-[1.4rem]"> *Referral Discount</span>
+			<span class="text-left mt-2 mb-4 text-[1rem] md:text-[1.4rem]">
 				Rs. {referralAmount?.toLocaleString()}/-
 			</span>
 		</div>
 		<div class="flex justify-between">
-			<span class="text-left mt-2 text-[1.2rem] font-bold"> *Net Unit Price </span>
-			<span class="text-left mt-2 mb-4 text-[1.4rem] font-bold">
+			<span class="text-left mt-2 text-[1rem] md:text-[1.4rem] font-bold"> *Net Unit Price </span>
+			<span class="text-left mt-2 mb-4 text-[1rem] md:text-[1.4rem] font-bold">
 				Rs. {price?.toLocaleString()}/-
 			</span>
 		</div>

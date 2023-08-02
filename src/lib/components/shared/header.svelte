@@ -105,6 +105,8 @@
 				{/each}
 			</ul>
 			{#if dark}
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 				<img
 					src="/icons/menu-dark.svg"
 					alt=""
@@ -112,6 +114,8 @@
 					on:click={() => (open = true)}
 				/>
 			{:else}
+				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<img
 					src="/icons/menu.svg"
 					alt=""

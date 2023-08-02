@@ -42,7 +42,7 @@
 	onMount(() => {});
 </script>
 
-<form class="flex flex-col w-[25rem]" on:submit|preventDefault={submit}>
+<form class="flex flex-col w-[auto] sm:w-[25rem]" on:submit|preventDefault={submit}>
 	<h2 class="text-[2rem] md:text-[2.8rem] font-bold mb-[1.7rem]">Welcome Back</h2>
 	<TextField placeholder="Email" type="email" bind:value={data.email} className="mb-4" />
 	<TextField placeholder="Password" type="password" bind:value={data.password} className="mb-2" />
