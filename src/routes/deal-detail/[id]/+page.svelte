@@ -7,11 +7,14 @@
 	import { onMount } from 'svelte';
 
 	export let data;
+	let screenSize: number;
 	let bannerImage: any;
+	let responsiveBannerImage: any;
 	let images: string[] = [];
 
 	onMount(() => {
 		bannerImage = localStorage.getItem('bannerImage');
+		responsiveBannerImage = localStorage.getItem('responsiveBannerImage');
 		images = data.deal.DealImages.map((image: any) => image.imagePath);
 		// console.log(data.deal.endDate);
 	});
@@ -19,10 +22,16 @@
 	// localStorage.setItem('endDate', data.deal.endDate.split('T')[0]);
 </script>
 
+<svelte:window bind:innerWidth={screenSize} />
+
 <main class="my-container pt-[6rem] md:pt-[10.25rem]">
 	{#if bannerImage && bannerImage !== ''}
 		<div class="w-full">
-			<img class=" w-full rounded-2xl" src={bannerImage} />
+			{#if screenSize < 768}
+				<img class=" w-full rounded-2xl" src={responsiveBannerImage} />
+			{:else}
+				<img class=" w-full rounded-2xl" src={bannerImage} />
+			{/if}
 		</div>
 	{/if}
 

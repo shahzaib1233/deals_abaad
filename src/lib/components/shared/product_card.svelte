@@ -9,11 +9,13 @@
 	export let desc: string;
 	export let price: number;
 	export let bannerImage: string | null = null;
+	export let responsiveBannerImage: string | null = null;
 </script>
 
 <div
 	on:click={() => {
 		localStorage.setItem('bannerImage', bannerImage ?? '');
+		localStorage.setItem('responsiveBannerImage', responsiveBannerImage ?? '');
 		goto(`/deal-detail/${productId}`);
 	}}
 	on:keyup={() => {

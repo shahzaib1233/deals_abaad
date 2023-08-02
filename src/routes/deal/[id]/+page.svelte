@@ -37,6 +37,9 @@
 				<ProductCard
 					productId={item.deal.id}
 					bannerImage={`${import.meta.env.VITE_BASE_URL}category/img/${data.category.bannerImage}`}
+					responsiveBannerImage={`${import.meta.env.VITE_BASE_URL}category/img/${
+						data.category.responsiveBannerImage
+					}`}
 					name={item.deal.name}
 					desc={item.deal.desc}
 					price={item.deal.price}
