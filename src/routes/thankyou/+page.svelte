@@ -39,14 +39,14 @@
 		<ThankyouCard {transtype} {voucherNo} {voucherExpiry} />
 		<div class="flex justify-center gap-4">
 			<Button
-				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] md:h-[2.5rem] w-full h-[3rem] md:h-[2.5rem] "
+				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] md:h-[2.5rem] w-full h-[3.5rem] md:h-[2.5rem] "
 				label="Go to Home"
 				onclick={() => {
 					goto('/');
 				}}
 			/>
 			<Button
-				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] md:h-[2.5rem] w-full h-[3rem] md:h-[2.5rem]"
+				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] md:h-[2.5rem] w-full h-[3.5rem] md:h-[2.5rem]"
 				label="Payment Schedule"
 				onclick={() => {
 					goto('/payment');
