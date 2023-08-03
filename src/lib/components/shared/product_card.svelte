@@ -50,7 +50,7 @@
 			<p class="text-[1.2rem] md:text-[1.5rem] font-medium">
 				Rs {price?.toLocaleString()}
 			</p>
-			<img src="/icons/heart.svg" alt="" />
+			<!-- <img src="/icons/heart.svg" alt="" /> -->
 		</div>
 	</div>
 </div>

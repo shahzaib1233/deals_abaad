@@ -1,11 +1,11 @@
 <script lang="ts">
 	import Button from './button.svelte';
 	import ListBox from './list_box_new.svelte';
-	import { getDropdownApi } from '$lib/modules/home/api/home_api';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 
 	export let dropdown: any;
+	export let selected: any = null;
 
 	const data: any = {
 		project: 0,
@@ -57,6 +57,15 @@
 				}))
 		  ]
 		: [{ label: 'All', value: 0 }];
+
+	onMount(() => {
+		if (selected) {
+			updateData('project', +selected.project);
+			updateData('cities', +selected.cities);
+			updateData('location', +selected.location);
+			updateData('property', +selected.property);
+		}
+	});
 </script>
 
 <div class="mt-12 bg-white rounded-2xl py-4 px-12 hidden lg:flex flex-col gap-[2rem]">
@@ -66,7 +75,13 @@
 			<label class="text-[1.18rem] font-medium"> Project </label>
 
 			<div class="w-[14rem] flex">
-				<ListBox options={project} key="project" onChange={updateData} bind:item={data.project} />
+				<ListBox
+					options={project}
+					key="project"
+					onChange={updateData}
+					bind:item={data.project}
+					bind:value={data.project}
+				/>
 			</div>
 
 			<!-- <Select name="project" id="project" class="max-w-[12.438rem]" /> -->
@@ -75,7 +90,13 @@
 			<label class="text-[1.18rem] font-medium"> All Cities </label>
 
 			<div class="w-[14rem] flex">
-				<ListBox options={cities} key="cities" onChange={updateData} bind:item={data.cities} />
+				<ListBox
+					options={cities}
+					key="cities"
+					onChange={updateData}
+					bind:item={data.cities}
+					bind:value={data.cities}
+				/>
 			</div>
 			<!-- <Select name="city" id="city" class="max-w-[12.438rem]" /> -->
 		</div>
@@ -88,6 +109,7 @@
 					key="location"
 					onChange={updateData}
 					bind:item={data.location}
+					bind:value={data.location}
 				/>
 			</div>
 			<!-- <Select name="location" id="location" class="max-w-[19.9rem]" /> -->
@@ -101,6 +123,7 @@
 					key="property"
 					onChange={updateData}
 					bind:item={data.property}
+					bind:value={data.property}
 				/>
 			</div>
 			<!-- <Select name="property category" id="property category" class="max-w-[12.438rem]" /> -->

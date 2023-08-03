@@ -7,7 +7,7 @@
 	<h2 class="text-[1.3rem] font-bold">Project details</h2>
 	<ul class="list-disc list-inside text-[#4B4B4B] mt-[1rem] text-[1.1rem]">
 		<li>Project Name: {data?.project?.name}</li>
-		<li>Price: {data?.price?.toLocaleString()}</li>
+		<li>Price: Rs. {data?.price?.toLocaleString()}</li>
 	</ul>
 	<hr class="border-t-2 border-gray-300 my-6" />
 </div>

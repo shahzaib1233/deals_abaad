@@ -19,6 +19,8 @@
 	let amountpayable = 0;
 	let isLoading = true;
 
+	let buttonDisabled = true;
+
 	interface Option {
 		value: string;
 		label: string;
@@ -43,6 +45,8 @@
 				text: 'This Amount is Added in Payable Amount Below'
 			});
 		}
+
+		buttonDisabled = selectedInstallments.length > 0 ? false : true;
 	};
 	const updateData = (saleIds: number[]) => {
 		const dataOptions = saleIds.map((saleId) => ({
@@ -488,7 +492,13 @@
 		</div>
 
 		<div class="">
-			<Button className="h-[3rem]" type="submit" {loading} label="Pay Installment" />
+			<Button
+				className="h-[3rem]"
+				type="submit"
+				{loading}
+				label="Pay Installment"
+				disabled={buttonDisabled}
+			/>
 		</div>
 	</form>
 	<!-- {:else} -->

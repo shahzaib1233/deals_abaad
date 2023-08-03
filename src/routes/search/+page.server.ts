@@ -19,8 +19,25 @@ export const load = async ({ url }) => {
 			getDropdownApi()
 		]);
 
-		return { search: search.data, dropdown: dropdown.data };
+		return {
+			search: search.data,
+			dropdown: dropdown.data,
+			selected: {
+				project,
+				cities,
+				location,
+				property
+			}
+		};
 	} catch (e) {
-		return { deal: null };
+		return {
+			deal: null,
+			selected: {
+				project: '0',
+				cities: '0',
+				location: '0',
+				property: '0'
+			}
+		};
 	}
 };

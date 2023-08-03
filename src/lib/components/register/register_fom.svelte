@@ -17,14 +17,28 @@
 		confirmPassword: ''
 	};
 
+	let previousRoute = Cookies.get('previousRoute');
+
 	const submit = async () => {
 		loading = true;
 		try {
 			const res = await registerApi(data);
 			// const status = res.data.otpstatus;
 			toast({ type: 'success', heading: 'User Registered', text: 'User registered successfully' });
-			Cookies.set('email', data.email);
-			setTimeout(() => goto('/login'), 1000);
+			Cookies.set('token', res.data.accessToken);
+			Cookies.set('email', res.data.email);
+			Cookies.set('contactno', res.data.contactno ?? '');
+			Cookies.set('fname', res.data.fname ?? '');
+			Cookies.set('lname', res.data.lname ?? '');
+			Cookies.set('address', res.data.address ?? '');
+			Cookies.set('city', res.data.city ?? '');
+			Cookies.set('country', res.data.country ?? '');
+			Cookies.set('zipcode', res.data.zipcode ?? '');
+			Cookies.set('cnic', res.data.cnic ?? '');
+			Cookies.set('gender', res.data.gender ?? '');
+			Cookies.set('dob', res.data.dob ?? '');
+			
+			setTimeout(() => goto(previousRoute ?? '/'), 1000);
 		} catch (e) {}
 		loading = false;
 	};
