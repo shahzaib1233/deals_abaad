@@ -190,6 +190,7 @@
 		<TextField
 			label="Full Name"
 			withAsterisk
+			required
 			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
 			bind:value={fields.nomineename}
 		/>
@@ -197,6 +198,7 @@
 			label="Father/Husband Name"
 			className="md:w-[21.75rem]"
 			withAsterisk
+			required
 			bind:value={fields.nomineeFatherHusbandname}
 		/>
 	</div>
@@ -204,6 +206,7 @@
 		<TextField
 			label="Relation"
 			withAsterisk
+			required
 			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
 			bind:value={fields.nomineerelation}
 		/>
@@ -212,6 +215,7 @@
 			type="date"
 			className="md:w-[21.75rem]"
 			withAsterisk
+			required
 			bind:value={fields.nomineedob}
 		/>
 	</div>
@@ -220,6 +224,7 @@
 			type="cnic"
 			label="CNIC"
 			withAsterisk
+			required
 			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
 			bind:value={fields.nomineecnic}
 		/>
@@ -228,6 +233,7 @@
 			label="Phone Number"
 			className="md:w-[21.75rem]"
 			withAsterisk
+			required
 			bind:value={fields.nomineephoneno}
 		/>
 	</div>
@@ -235,6 +241,7 @@
 		<TextField
 			label="Address"
 			withAsterisk
+			required
 			className="md:mr-3 md:w-[21.75rem] mb-2 md:mb-0"
 			bind:value={fields.nomineeaddress}
 		/>

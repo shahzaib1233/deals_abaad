@@ -16,7 +16,6 @@
 	let options: { value: string; label: string }[] = [];
 	let selectedSaleData: any = null;
 	let selectedInstallments: any = [];
-	let selectedInventories: any = [];
 	let amountpayable = 0;
 	let isLoading = true;
 

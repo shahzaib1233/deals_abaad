@@ -247,12 +247,12 @@
 		</span>
 	</div>
 	<Button
-		className="rounded-md w-[14.438rem] mt-6 h-[2.5rem]"
+		className="rounded-md w-[14.438rem] mt-6 h-[2.5rem] text-[0.9rem] md:text-[1.2rem]"
 		type="submit"
 		onclick={() => paymentHandler()}
 		label="Checkout"
 	/>
-	<h2 class="w-[90%] mt-6">
+	<h2 class="w-[90%] mt-6 text-[0.9rem] md:text-[1.2rem]">
 		Your personal data will be used to process your order, support your experience throughout this
 		website, and for other purposes described in our privacy policy.
 	</h2>
