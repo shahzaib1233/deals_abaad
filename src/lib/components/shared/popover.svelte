@@ -81,6 +81,11 @@
 									>My booking</button
 								>
 							</li>
+							<li>
+								<button on:click={() => redirectHandler('/checkout')} class="py-2 px-4 w-full flex"
+									>Checkout</button
+								>
+							</li>
 							<!-- <li>
 								<button on:click={() => redirectHandler('/saved-ads')} class="pt-2 px-4 w-full flex"
 									>My saved ads</button

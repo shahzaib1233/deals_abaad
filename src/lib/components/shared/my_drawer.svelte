@@ -21,7 +21,7 @@
 	tokenStore.subscribe((value) => {
 		token = value;
 	});
-	
+
 	export let open: boolean;
 </script>
 
