@@ -115,6 +115,7 @@
 		/>
 	{:else if type == 'password'}
 		<div class="flex-1 px-3 py-2 rounded-md border border-[#ced4da] text-[1rem] flex {className}">
+			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 			{#if passwordType == 'password'}
 				<input
 					{required}
@@ -123,6 +124,8 @@
 					{placeholder}
 					class="flex-1 focus:outline-none border-none focus:border-none p-0 focus:ring-transparent"
 				/>
+				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<img
 					src="/icons/eye.svg"
 					class="w-5 cursor-pointer"

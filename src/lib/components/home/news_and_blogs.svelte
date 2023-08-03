@@ -24,7 +24,7 @@
 		<NewsCard
 			name="Five Reasons to Make a Real Estate Investment Today"
 			desc="We all are living in a fast-paced world where everyone is looking to invest in the right sectors. We want to earn the best profit by investing less time and money."
-			img="/images/news-6.png"
+			img="/images/news-66.png"
 			date="November 24, 2021"
 			urlEndPoint="3"
 		/>

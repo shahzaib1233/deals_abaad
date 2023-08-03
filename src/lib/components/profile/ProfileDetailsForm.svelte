@@ -58,7 +58,7 @@
 	});
 </script>
 
-<form class="my-container pt-[14.25rem]" on:submit|preventDefault={submit}>
+<form class="my-container pt-[8rem] md:pt-[10.25rem]" on:submit|preventDefault={submit}>
 	<div
 		class="bg-[#F2F5F7] min-h-[35.5rem] rounded-2xl flex flex-col items-left justify-left px-10 md:px-20 py-10 md:py-20"
 	>
@@ -80,33 +80,33 @@
 
 		<!-- {#if data} -->
 		{#if Object.values(data).some((value) => value !== '')}
-			<div class="flex flex-col md:flex-row justify-center items-center mt-4">
+			<div class="flex flex-col md:flex-row justify-center items-left md:items-center mt-4">
 				<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
 					<h2>First Name</h2>
 				</div>
-				<div class="flex items-start pl-4 mb-4 md:mb-0">
+				<div class="flex items-start pl-0 md:pl-4 mb-4 md:mb-0">
 					<TextField
 						bind:value={data.fname}
 						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
 					/>
 				</div>
 			</div>
-			<div class="flex flex-col md:flex-row justify-center items-center mt-4">
+			<div class="flex flex-col md:flex-row justify-center items-left md:items-center mt-4">
 				<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
 					<h2>Last Name</h2>
 				</div>
-				<div class="flex items-start pl-4 mb-4 md:mb-0">
+				<div class="flex items-start pl-0 md:pl-4 mb-4 md:mb-0">
 					<TextField
 						bind:value={data.lname}
 						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
 					/>
 				</div>
 			</div>
-			<div class="flex flex-col md:flex-row justify-center items-center mt-4">
+			<div class="flex flex-col md:flex-row justify-center items-left md:items-center mt-4">
 				<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
 					<h2>Gender</h2>
 				</div>
-				<div class="flex items-start pl-4">
+				<div class="flex items-start pl-0 md:pl-4">
 					<TextField
 						bind:value={data.gender}
 						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
@@ -114,11 +114,11 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col md:flex-row justify-center items-center mt-4">
+			<div class="flex flex-col md:flex-row justify-center items-left md:items-center mt-4">
 				<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
 					<h2>Date Of Birth</h2>
 				</div>
-				<div class="flex items-start pl-4">
+				<div class="flex items-start pl-0 md:pl-4">
 					<TextField
 						bind:value={data.dob}
 						type="date"
@@ -127,11 +127,11 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col md:flex-row justify-center items-center mt-4">
+			<div class="flex flex-col md:flex-row justify-center items-left md:items-center mt-4">
 				<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
 					<h2>Country</h2>
 				</div>
-				<div class="flex items-start pl-4">
+				<div class="flex items-start pl-0 md:pl-4">
 					<TextField
 						bind:value={data.country}
 						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
@@ -139,11 +139,11 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col md:flex-row justify-center items-center mt-4">
+			<div class="flex flex-col md:flex-row justify-center items-left md:items-center mt-4">
 				<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
 					<h2>City</h2>
 				</div>
-				<div class="flex items-start pl-4">
+				<div class="flex items-start pl-0 md:pl-4">
 					<TextField
 						bind:value={data.city}
 						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
@@ -151,11 +151,11 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col md:flex-row justify-center items-center mt-4">
+			<div class="flex flex-col md:flex-row justify-center items-left md:items-center mt-4">
 				<div class="flex items-end pr-4 w-32 justify-start md:justify-end">
 					<h2>Email</h2>
 				</div>
-				<div class="flex items-start pl-4">
+				<div class="flex items-start pl-0 md:pl-4">
 					<TextField
 						bind:value={data.email}
 						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
@@ -163,13 +163,13 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col md:flex-row justify-center items-center mt-4">
+			<div class="flex flex-col md:flex-row justify-center items-left md:items-center mt-4">
 				<div
 					class="flex items-end pr-4 w-32 justify-start md:justify-end text-right whitespace-nowrap"
 				>
 					<h2>Contact Number</h2>
 				</div>
-				<div class="flex items-start pl-4">
+				<div class="flex items-start pl-0 md:pl-4">
 					<TextField
 						bind:value={data.contactno}
 						type="phone"
@@ -179,7 +179,7 @@
 			</div>
 			<div class="flex flex-col md:flex-row justify-center items-start mt-4">
 				<div class="flex items-start pr-4 w-32" />
-				<div class="flex items-start pl-4">
+				<div class="flex items-start pl-0 md:pl-4">
 					<Button
 						className="bg-[#FFD624] hover:bg-[#FFD624] text-[#1A202C] h-[3rem] "
 						type="submit"

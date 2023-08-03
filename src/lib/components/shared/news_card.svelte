@@ -20,18 +20,18 @@
 		<img
 			src={img}
 			alt=""
-			class="w-full h-[22rem] object-cover transition-all duration-500 image-zoom__img"
+			class="w-full h-[auto] object-cover transition-all duration-500 image-zoom__img"
 		/>
 	</div>
-	<div class="px-6 py-4">
+	<div class="p-4 md:p-6">
 		<div class="flex justify-between">
-			<p class="font-semibold text-[1.125rem] text-[#4B4B4B]">By Dealsabaad</p>
-			<p class="font-semibold text-[1.125rem] text-[#4B4B4B]">{date}</p>
+			<p class="font-semibold text-[1rem] md:text-[1.125rem] text-[#4B4B4B]">By Dealsabaad</p>
+			<p class="font-semibold text-[1rem] md:text-[1.125rem] text-[#4B4B4B] text-right">{date}</p>
 		</div>
-		<h6 class="text-[1.375rem] mt-2 font-bold">{name}</h6>
+		<h6 class="text-[1rem] md:text-[1.375rem] mt-2 font-bold">{name}</h6>
 		<p class="mt-1 text-[#4B4B4B]">{desc}</p>
-		<div class="flex items-center gap-4 mt-[0.625rem]">
-			<p class="text-[1.25rem]">Read more</p>
+		<div class="flex items-center gap-4 mt-[0.625rem] bottom-2">
+			<p class="text-[1rem] md:text-[1.25rem]">Read more</p>
 			<img src="/icons/arrow.svg" alt="" />
 		</div>
 	</div>
