@@ -143,7 +143,9 @@
 				floor: floors.find((floor) => floor.value == selectedData.floors)?.label ?? '',
 				unitno: units?.find((unit) => unit.value == selectedData.units)?.label ?? '',
 				bookingPrice: data.price,
-				projectId: data.projectId
+				projectId: data.projectId,
+				projectName: data.project?.name,
+				dealName: data?.name
 			})
 		);
 		localStorage.setItem(

@@ -16,7 +16,6 @@
 		bannerImage = localStorage.getItem('bannerImage');
 		responsiveBannerImage = localStorage.getItem('responsiveBannerImage');
 		images = data.deal.DealImages.map((image: any) => image.imagePath);
-		// console.log(data.deal.endDate);
 	});
 
 	// localStorage.setItem('endDate', data.deal.endDate.split('T')[0]);

@@ -3,6 +3,9 @@
 	import { onMount } from 'svelte';
 
 	let dealDetails: any;
+	let dealAdd: any;
+	let inventory: any;
+
 	let orderId: any;
 
 	export let voucherNo: any;
@@ -11,6 +14,9 @@
 
 	onMount(() => {
 		dealDetails = JSON.parse(localStorage.getItem('dealDetails') ?? '');
+		dealAdd = JSON.parse(localStorage.getItem('Deal_Details') ?? '');
+		inventory = JSON.parse(localStorage.getItem('inventory') ?? '');
+
 		orderId = JSON.parse(localStorage.getItem('orderId') ?? '');
 	});
 </script>
@@ -21,6 +27,22 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-y-2">
 			<p class="text-sm md:text-base whitespace-nowrap font-bold">Order Id</p>
 			<p class="text-sm md:text-base whitespace-nowrap">{orderId}</p>
+			<p class="text-sm md:text-base whitespace-nowrap font-bold">Deal Name</p>
+			<p class="text-sm md:text-base whitespace-nowrap">{inventory?.dealName}</p>
+			<p class="text-sm md:text-base whitespace-nowrap font-bold">Project Name</p>
+			<p class="text-sm md:text-base whitespace-nowrap">{inventory?.projectName}</p>
+			<p class="text-sm md:text-base whitespace-nowrap font-bold">Unit No</p>
+			<p class="text-sm md:text-base whitespace-nowrap">{dealDetails?.unitno}</p>
+			<p class="text-sm md:text-base whitespace-nowrap font-bold">Floor</p>
+			<p class="text-sm md:text-base whitespace-nowrap">{dealDetails?.floor}</p>
+			<p class="text-sm md:text-base whitespace-nowrap font-bold">Address</p>
+			<p class="text-sm md:text-base whitespace-nowrap">{dealAdd?.address}</p>
+			<p class="text-sm md:text-base whitespace-nowrap font-bold">City</p>
+			<p class="text-sm md:text-base whitespace-nowrap">{dealAdd?.city}</p>
+			<p class="text-sm md:text-base whitespace-nowrap font-bold">Price</p>
+			<p class="text-sm md:text-base whitespace-nowrap">
+				{dealDetails?.sellingprice.toLocaleString()}
+			</p>
 			{#if voucherNo}
 				<p class="text-sm md:text-base whitespace-nowrap font-bold">Transaction Type</p>
 				<p class="text-sm md:text-base whitespace-nowrap">{transtype}</p>
