@@ -70,31 +70,33 @@
 	};
 </script>
 
-<div class="my-container pt-[14.25rem]">
-	<div class="bg-[#F2F5F7] rounded-2xl flex flex-col items-left justify-left px-20 py-20">
+<div class="my-container pt-[8rem] md:pt-[14.25rem]">
+	<div class="bg-[#F2F5F7] rounded-2xl flex flex-col items-left justify-left px-6 md:px-10 py-10">
 		<div
-			class="w-64 h-12 absolute top-273 left-288 font-semibold text-4xl leading-12 text-left text-[#1A202C]"
+			class="w-64 h-12 absolute top-273 left-288 font-semibold text-2xl md:text-4xl leading-12 text-left text-[#1A202C]"
 		>
 			My Bookings
 		</div>
-		<div class="flex items-center mt-[5rem]">
-			<div class="flex justify-center">
+		<div class="flex gap-4 items-center mt-[4rem]">
+			<div class="hidden md:flex justify-center">
 				<img class="w-14 h-14" src="/images/user-icon.png" alt="profile" />
 			</div>
-			<div class="ml-[1rem]">
-				<p class="font-bold text-[1.2rem]">{data.fname + ' '}{data.lname}</p>
-				<p>{data.email}</p>
+			<div class="">
+				<p class="font-bold text-[1rem] md:text-[1.2rem]">{data.fname + ' ' + data.lname}</p>
+				<p class="text-[1rem] md:text-[1.2rem] break-words">{data.email}</p>
 			</div>
 		</div>
 	</div>
+
 	{#if isLoading}
 		<div class="flex justify-center items-center h-[10rem]">
 			<Spinner />
 		</div>
 	{:else if response.length > 0}
 		<div class="mt-[3rem]">
+			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<label class="text-[1.3rem] font-bold">Select Booking</label>
-			<div class="w-[30rem] mt-3">
+			<div class="w-[13rem] sm:w-[20rem] md:w-[30rem] mt-3">
 				<ListBoxNew
 					key="floors"
 					{options}

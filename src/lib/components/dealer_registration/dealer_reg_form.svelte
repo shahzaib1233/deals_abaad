@@ -49,7 +49,7 @@
 	};
 </script>
 
-<form class="flex flex-col" on:submit|preventDefault={submit}>
+<form class="flex flex-col my-6" on:submit|preventDefault={submit}>
 	<h2 class="text-[2rem] md:text-[2.8rem] font-bold mb-[1.7rem] text-left">Dealer Registration</h2>
 	<div class="mb-4 flex flex-col md:flex-row gap-4">
 		<TextField bind:value={data.fname} required placeholder="First Name" />

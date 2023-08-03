@@ -27,33 +27,34 @@
 
 <Drawer {open} size="80%" placement="left" on:clickAway={() => (open = false)}>
 	<div class="flex flex-col w-full h-full p-6">
-		<button class="self-end" on:click={() => (open = false)}
-			><img src="/icons/close.svg" class="w-6 h-6" /></button
-		>
-		<ul class="flex flex-col gap-6">
-			<a href="/"><img src="/logos/logo-dark.svg" alt="" class="mt-6" /></a>
+		<div class="flex justify-between">
+			<a href="/"><img src="/logos/logo-dark.svg" alt="" class=" w-[12rem]" /></a>
+			<button class="self-end" on:click={() => (open = false)}>
+				<img src="/icons/close.svg" class="w-6 h-6" />
+			</button>
+		</div>
+		<ul class="flex flex-col gap-6 mt-8">
 			{#if token}
-				<li><a href="/profile">Profile</a></li>
-				<li><a href="/payment">Payment</a></li>
-				<li><a href="/booking">My Bookings</a></li>
-				<li><a href="/">Home</a></li>
-				<li><a href="/about">About</a></li>
-				<li><a href="/deals">Deals</a></li>
-				<li><a href="/project">Project</a></li>
-				<li><a href="/blogs">News & Blogs</a></li>
-				<li><a href="/contact">Contact Us</a></li>
-				<li><a href="/dealer-registration">Dealer Registration</a></li>
-
+				<li><a href="/" class="hover:text-[#FFD624]">Home</a></li>
+				<li><a href="/about" class="hover:text-[#FFD624]">About</a></li>
+				<li><a href="/deals" class="hover:text-[#FFD624]">Deals</a></li>
+				<li><a href="/project" class="hover:text-[#FFD624]">Project</a></li>
+				<li><a href="/blogs" class="hover:text-[#FFD624]">News & Blogs</a></li>
+				<li><a href="/contact" class="hover:text-[#FFD624]">Contact Us</a></li>
+				<li><a href="/dealer-registration" class="hover:text-[#FFD624]">Dealer Registration</a></li>
+				<li><a href="/profile" class="hover:text-[#FFD624]">Profile</a></li>
+				<li><a href="/payment" class="hover:text-[#FFD624]">Payment</a></li>
+				<li><a href="/booking" class="hover:text-[#FFD624]">My Bookings</a></li>
 				<li><Button label="Logout" onclick={logout}>Logout</Button></li>
 			{:else}
 				<li><Button label="Login" onclick={navigateToLoginPage}>Login</Button></li>
-				<li><a href="/">Home</a></li>
-				<li><a href="/about">About</a></li>
-				<li><a href="/deals">Deals</a></li>
-				<li><a href="/project">Project</a></li>
-				<li><a href="/blogs">News & Blogs</a></li>
-				<li><a href="/contact">Contact Us</a></li>
-				<li><a href="/dealer-registration">Dealer Registration</a></li>
+				<li><a href="/" class="hover:text-[#FFD624]">Home</a></li>
+				<li><a href="/about" class="hover:text-[#FFD624]">About</a></li>
+				<li><a href="/deals" class="hover:text-[#FFD624]">Deals</a></li>
+				<li><a href="/project" class="hover:text-[#FFD624]">Project</a></li>
+				<li><a href="/blogs" class="hover:text-[#FFD624]">News & Blogs</a></li>
+				<li><a href="/contact" class="hover:text-[#FFD624]">Contact Us</a></li>
+				<li><a href="/dealer-registration" class="hover:text-[#FFD624]">Dealer Registration</a></li>
 			{/if}
 		</ul>
 	</div>

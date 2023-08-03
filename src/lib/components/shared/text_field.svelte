@@ -54,7 +54,7 @@
 	};
 </script>
 
-<div class="flex flex-col">
+<div class="flex flex-col flex-1">
 	{#if label != ''}
 		<label class="font-semibold"
 			>{label}{' '}

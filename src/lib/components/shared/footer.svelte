@@ -32,7 +32,7 @@
 				<ul class="space-y-4">
 					{#each selectedData as data}
 						<li>
-							<a href="/deal-detail/{data.id}" class="text-white text-[1.188rem] font-medium">
+							<a href="/deal-detail/{data.id}" class="text-white md:text-[1.188rem] font-medium">
 								{data.desc}
 							</a>
 						</li>
@@ -68,14 +68,18 @@
 			<p class="text-[1rem] text-center md:text-[1.125rem] font-medium text-white">
 				© 2023. All Rights Reserved By Dealsabaad
 			</p>
-			<div class="flex justify-center items-center gap-8 flex-wrap text-white">
+			<div
+				class="flex flex-col md:flex-row justify-center items-center w-full flex-wrap gap-2 md:gap-8 text-white"
+			>
 				<a href="/privacy">Privacy Policy</a>
 				<a href="/faq">FAQ</a>
 				<a href="/terms">Terms & Condition</a>
 				<a href="/refund">Refund Policy</a>
-				<img src="/logos/visa.svg" alt="" />
-				<img src="/logos/jazzcash.svg" alt="" />
-				<img src="/logos/mastercard.svg" alt="" />
+				<div class="flex gap-8 mt-8">
+					<img src="/logos/visa.svg" alt="" />
+					<img src="/logos/jazzcash.svg" alt="" />
+					<img src="/logos/mastercard.svg" alt="" />
+				</div>
 			</div>
 		</div>
 	</div>

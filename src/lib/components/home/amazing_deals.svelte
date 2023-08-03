@@ -1,13 +1,10 @@
 <script lang="ts">
-	import { createQuery } from '@tanstack/svelte-query';
 	import ProductCard from '../shared/product_card.svelte';
-	import Spinner from '../shared/spinner.svelte';
-	import { getDealsApi } from '$lib/modules/deal/api/deal_api';
 
 	export let deals: any;
 </script>
 
-<div class="my-container mb-[8.25rem]">
+<div class="my-container mb-[5rem] md:mb-[8.25rem]">
 	<h2
 		class="text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%] mb-[2.813rem] text-center"
 	>

@@ -10,7 +10,7 @@
 		<iframe
 			width="100%"
 			height="100%"
-			class="min-h-[35.5rem] rounded-2xl"
+			class="min-h-[25.5rem] md:min-h-[35.5rem] rounded-2xl"
 			src="https://www.youtube.com/embed/EfBM9oWOxTY?autoplay=1"
 			title="YouTube video player"
 			frameborder="0"
@@ -19,7 +19,7 @@
 		/>
 	{:else}
 		<div
-			class="hero min-h-[35.5rem] rounded-2xl flex flex-col items-center justify-center px-4"
+			class="hero min-h-[25.5rem] md:min-h-[35.5rem] rounded-2xl flex flex-col items-center justify-center px-4"
 			style="background-image: url(/images/video-bg.png)"
 		>
 			<h2

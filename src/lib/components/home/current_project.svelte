@@ -5,22 +5,22 @@
 		</h2>
 		<div class="flex flex-wrap gap-[2.5rem] mt-[2.75rem] justify-center items-center">
 			<div
-				class="bg-[#F2F5F7] w-[17.625rem] h-[11rem] rounded-2xl flex items-center justify-center p-8"
+				class="bg-[#F2F5F7] w-[15rem] md:w-[17.625rem] h-[11rem] rounded-2xl flex items-center justify-center p-8"
 			>
 				<img src="/images/project-1.png" alt="" />
 			</div>
 			<div
-				class="bg-[#F2F5F7] w-[17.625rem] h-[11rem] rounded-2xl flex items-center justify-center p-8"
+				class="bg-[#F2F5F7] w-[15rem] md:w-[17.625rem] h-[11rem] rounded-2xl flex items-center justify-center p-8"
 			>
 				<img src="/images/project-2.png" alt="" />
 			</div>
 			<div
-				class="bg-[#F2F5F7] w-[17.625rem] h-[11rem] rounded-2xl flex items-center justify-center p-8"
+				class="bg-[#F2F5F7] w-[15rem] md:w-[17.625rem] h-[11rem] rounded-2xl flex items-center justify-center p-8"
 			>
 				<img src="/images/current-projects/aq-logo.png" alt="" />
 			</div>
 			<div
-				class="bg-[#F2F5F7] w-[17.625rem] h-[11rem] rounded-2xl flex items-center justify-center p-8"
+				class="bg-[#F2F5F7] w-[15rem] md:w-[17.625rem] h-[11rem] rounded-2xl flex items-center justify-center p-8"
 			>
 				<img src="/images/current-projects/nara-builder.png" alt="" />
 			</div>

@@ -2,7 +2,7 @@
 	import CustomerTestimonialCard from './customer_testimonial_card.svelte';
 </script>
 
-<div class="my-[4rem]">
+<div class="my-4 md:my-[4rem]">
 	<div class="my-container py-[5rem] flex flex-col items-center justify-center">
 		<h2
 			class="text-[2.5rem] lg:text-[3.438rem] font-extrabold leading-[120%] mb-[0.625rem] text-center"

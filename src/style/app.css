@@ -7,11 +7,11 @@
 * {
 	font-family: 'Plus Jakarta Sans', sans-serif;
 	color: #1a202c;
-	
 }
 
 body {
 	overflow-x: hidden !important;
+	overflow-y: auto !important;
 }
 
 .my-container {
@@ -35,7 +35,7 @@ body {
 }
 
 .hero-blog:after {
-	content:"";
+	content: '';
 	position: absolute;
 	top: 0;
 	left: 0;

@@ -2,7 +2,7 @@
 	import HowItWorksCard from './how_it_works_card.svelte';
 </script>
 
-<div class="bg-[#F2F5F7] my-[8rem]">
+<div class="bg-[#F2F5F7] my-[2rem] md:my-[8rem]">
 	<div class="my-container py-[5rem] flex flex-col items-center justify-center">
 		<h2 class="text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%] mb-[0.625rem]">
 			How it work
