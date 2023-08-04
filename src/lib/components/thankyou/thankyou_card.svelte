@@ -17,7 +17,7 @@
 		dealAdd = JSON.parse(localStorage.getItem('Deal_Details') ?? '');
 		inventory = JSON.parse(localStorage.getItem('inventory') ?? '');
 
-		orderId = JSON.parse(localStorage.getItem('orderId') ?? '');
+		orderId = localStorage.getItem('orderId');
 	});
 </script>
 

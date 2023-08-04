@@ -21,7 +21,9 @@
 			/>
 			<GetInTouchCard icon="/icons/mail.svg" name="Write Us" desc="info@dealsabaad.com" />
 			<GetInTouchCard icon="/icons/call.svg" name="Call Us" desc="+92 304 111 7000" />
-			<GetInTouchCard icon="/icons/whatsapp.svg" name="Whatsapp Us" desc="+92 300 285 2856" />
+			<a href="https://wa.me/923002852856" target="_blank" class="flex-1">
+				<GetInTouchCard icon="/icons/whatsapp.svg" name="Whatsapp Us" desc="+92 300 285 2856" />
+			</a>
 		</div>
 	</div>
 </div>

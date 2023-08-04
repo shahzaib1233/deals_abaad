@@ -254,6 +254,21 @@
 				Floor: {selectedSaleData.SaleDetail[0].floor}
 			</h3>
 		</div>
+		<div class="mb-4">
+			<p class="text-md md:text-xl font-bold">
+				Selected Payable Amount: {Math.round(amountpayable).toLocaleString()}
+			</p>
+		</div>
+
+		<div class="">
+			<Button
+				className="h-[3rem]"
+				type="submit"
+				{loading}
+				label="Pay Installment"
+				disabled={buttonDisabled}
+			/>
+		</div>
 		<!-- <div
 			class="flex flex-col md:flex-row bg-white min-h-[3.5rem] rounded-lg md:items-center mt-[3rem] sm:mt-[6rem] justify-between gap-4 py-4 md:py-0 px-4 md:px-0"
 		>

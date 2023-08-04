@@ -24,8 +24,7 @@
 				Other projects
 			</h2>
 			<p class="text-[1rem] md:text-[1.313rem] text-[#4B4B4B] mb-[2.813rem] max-w-[52rem]">
-				Energy efficiency simply means using less energy to perform the same task – that is,
-				eliminating energy waste. Energy efficiency brings a variety of ecological benefits
+				DealsAbaad joined hands with market leaders in property market to serve our customer exceptionally with our unique offerings of discounted and affordable deals.
 			</p>
 			<div class="flex flex-wrap gap-[1.5rem]">
 				{#each projects as project}

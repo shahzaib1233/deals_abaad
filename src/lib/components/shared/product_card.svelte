@@ -23,7 +23,7 @@
 	}}
 	role="button"
 	tabindex={0}
-	class="flex-1 border border-[#C3C2C2] rounded-3xl overflow-hidden min-w-[15rem] md:min-w-[25rem] cursor-pointer hover:shadow-lg transition-all duration-500 image-zoom md:max-w-[33%]"
+	class="flex-1 border border-[#C3C2C2] rounded-3xl overflow-hidden min-w-[15rem] md:min-w-[25rem] cursor-pointer hover:shadow-lg transition-all duration-500 image-zoom md:max-w-[27rem]"
 >
 	<div class="relative">
 		<div class="w-full overflow-hidden">
@@ -35,18 +35,18 @@
 			</div>
 		{/if}
 	</div>
-	<div class="p-4 md:p-6">
-		<div class="flex justify-between items-start">
-			<h6 class="font-bold text-[1rem] md:text-[1.5rem]">{name}</h6>
-			<div class="flex items-center gap-[2px]">
+	<div class="">
+		<div class="flex justify-between items-start bg-[#4A6696] p-4 ">
+			<h6 class="font-bold text-[1rem] md:text-[1.5rem] text-white">{desc}</h6>
+			<div class="flex items-center gap-[2px] mr-4">
 				<img src="/icons/star.svg" alt="" />
-				<p class="text-[1.125rem]">{rating.toString()}</p>
+				<p class="text-[1.125rem] text-white">{rating.toString()}</p>
 			</div>
 		</div>
-		<p class="my-4 text-[#4B4B4B] text-[1rem] md:text-[1.25rem] max-w-[19.8rem] font-medium">
-			{desc}
+		<p class="my-4 text-[#4B4B4B] text-[1rem] md:text-[1.25rem] max-w-[19.8rem] font-medium px-4 md:px-6">
+			{name}
 		</p>
-		<div class="flex justify-between">
+		<div class="flex justify-between px-4 md:px-6 pb-6">
 			<p class="text-[1.2rem] md:text-[1.5rem] font-medium">
 				Rs {price?.toLocaleString()}
 			</p>
