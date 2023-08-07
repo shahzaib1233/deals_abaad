@@ -15,38 +15,45 @@
 
 	onMount(() => {
 		dealDetails = JSON.parse(localStorage.getItem('dealDetails') ?? '');
+		
 	});
 </script>
 
 <div class="bg-[#F2F5F7] min-h-screen">
 	<div class="my-container pt-[2.25rem] md:w-[60%] sm:w-full">
-		<div class="flex justify-center">
-			<h2 class="text-[2.063rem] md:text-[3.063rem] font-bold text-center">Thank you!</h2>
-		</div>
+		{#if resultResponse != 'JCN'}
+			<div class="flex justify-center">
+				<h2 class="text-[2.063rem] md:text-[3.063rem] font-bold text-center">Thank you!</h2>
+			</div>
+		{/if}
 
 		<div class="flex flex-col justify-center items-center mt-[1rem] font-bold text-center">
-			{#if dealDetails?.confirmationcheck == false}
+			{#if dealDetails?.confirmationcheck == false && resultResponse != 'JCN'}
 				<h2 class="text-[1rem] md:text-[1.563rem] text-center">
 					Confirmation Payment Must be Paid within 3 days of Booking to avoid cancellation
 				</h2>
 			{/if}
-			{#if responseMessage}
+			{#if responseMessage && resultResponse != 'JCN'}
 				<h3 class="mt-4 text-center">
 					{responseMessage}
 				</h3>
+			{:else}
+				<h2 class="text-[1rem] md:text-[1.563rem] text-center text-red-500">
+					{responseMessage}
+				</h2>
 			{/if}
 		</div>
 		<ThankyouCard {transtype} {voucherNo} {voucherExpiry} />
 		<div class="flex justify-center gap-4">
 			<Button
-				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] md:h-[2.5rem] w-full h-[3.5rem] md:h-[2.5rem] "
+				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] w-full h-[3.5rem] md:h-[2.5rem] "
 				label="Go to Home"
 				onclick={() => {
 					goto('/');
 				}}
 			/>
 			<Button
-				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] md:h-[2.5rem] w-full h-[3.5rem] md:h-[2.5rem]"
+				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] w-full h-[3.5rem] md:h-[2.5rem]"
 				label="Payment Schedule"
 				onclick={() => {
 					goto('/payment');

@@ -7,6 +7,7 @@
 	import { onMount } from 'svelte';
 	import CryptoJS from 'crypto-js';
 	import type { GETDEALFIELDS } from '$lib/types/getDealFields.js';
+	import Cookies from 'js-cookie';
 
 	let dealDtl: any;
 	let dealAdd: any;
@@ -43,6 +44,7 @@
 		const res = await axiosFunction({ url: 'sale/create', method: 'POST', data: dealDetails });
 
 		localStorage.setItem('orderId', res.data.saleId);
+		Cookies.set('orderId', res.data.saleId);
 
 		const merchantID = 'MC58600';
 		const password = 'b15x11ax94';

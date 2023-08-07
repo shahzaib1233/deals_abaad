@@ -6,7 +6,6 @@ export const load = async ({ cookies }) => {
 		url: 'deal',
 		isServer: true
 	});
-	console.log(deals.data);
 
 	return { token, deals: deals.data };
 };
