@@ -30,10 +30,24 @@
 					text: 'Enter 11 Digits'
 				});
 			} else {
-				localStorage.setItem('dealDetails', JSON.stringify(fields));
+				localStorage.setItem(
+					'dealDetails',
+					JSON.stringify({
+						...fields,
+						dob: `${fields.dob}T00:00:00Z`,
+						nomineedob: `${fields.nomineedob}T00:00:00Z`
+					})
+				);
+
+				Cookies.set('contactno', fields.mobileno ?? '');
+				Cookies.set('address', fields.address ?? '');
+				Cookies.set('city', fields.city ?? '');
+				Cookies.set('country', fields.country ?? '');
+				Cookies.set('zipcode', fields.zipcode ?? '');
+				Cookies.set('cnic', fields.cnic ?? '');
+				Cookies.set('dob', fields.dob ?? '');
 				goto('/checkout');
-				Cookies.set('name', fields.name);
-				Cookies.set('address', fields.address);
+
 				// console.log(fields.name);
 			}
 		} catch (error) {
