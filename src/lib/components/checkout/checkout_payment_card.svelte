@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { paymentStore } from '$lib/stores/payment';
 
 	export let paymentData: any;
 </script>

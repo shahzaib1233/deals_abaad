@@ -72,6 +72,8 @@
 	$: {
 		if (fields.confirmationcheck) {
 			fields.totalAmount = confirmationAmount + bookingAmount;
+		} else if (bookingAmount == 1) {
+			fields.totalAmount = bookingAmount + 0.5;
 		} else {
 			fields.totalAmount = bookingAmount;
 		}
@@ -208,6 +210,9 @@
 		<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold"> Booking Amount </span>
 		<span class="text-left mt-2 mb-4 text-[0.9rem] md:text-[1.2rem]">
 			Rs {bookingAmount.toLocaleString()}
+			{#if bookingAmount == 1}
+				(Bank Rs. 0.5)
+			{/if}
 		</span>
 	</div>
 	{#if fields.AmountconfirmationCheck}
@@ -241,6 +246,8 @@
 			Rs
 			{#if fields.confirmationcheck}
 				{(bookingAmount + confirmationAmount).toLocaleString()}
+			{:else if bookingAmount == 1}
+				{(bookingAmount + 0.5).toLocaleString()}
 			{:else}
 				{bookingAmount}
 			{/if}

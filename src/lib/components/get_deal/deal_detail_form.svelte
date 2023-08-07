@@ -30,6 +30,9 @@
 					text: 'Enter 11 Digits'
 				});
 			} else {
+				if (fields.bookingamount == 1 && !fields.confirmationcheck) {
+					fields.bookingamount = 1.5;
+				}
 				localStorage.setItem(
 					'dealDetails',
 					JSON.stringify({
