@@ -97,13 +97,7 @@
 		<div class="flex justify-center items-center mt-[1rem]">
 			<div class="w-[60%]">
 				<h2 class="text-[1.375rem] text-center">
-					{referralcode} is your referral code apply this code on your first purchase to get a discount
-					of Rs
-					{#if referralamount}
-						{referralamount}
-					{:else}
-						0
-					{/if}
+					{referralcode} is your referral code. Please get Dealer Discount against referral code from Dealsabaad Office
 				</h2>
 			</div>
 		</div>
