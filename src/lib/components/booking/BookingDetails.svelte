@@ -40,6 +40,8 @@
 		try {
 			const res = await getBookingsApi();
 			response = res.data;
+			console.log(response);
+
 			const saleIds = response.map((item) => item.saleId);
 			updateData(saleIds);
 			isLoading = false;
@@ -140,7 +142,16 @@
 					<span class="mb-2 text-[#4B4B4B]">
 						<div class="flex flex-col md:flex-row items-center">
 							<div class="flex flex-wrap">
-								<div class="flex items-center mb-2 mr-4">
+								{#each selectedSaleData.SaleDetail[0].project.ProjectsFeature as feature}
+									<div class="flex items-center mb-2 mr-4">
+										<img
+											src={`${import.meta.env.VITE_BASE_URL}project/icon/${feature.feature.icon}`}
+											alt=""
+										/>
+										<span class="ml-2">{feature.feature.name}</span>
+									</div>
+								{/each}
+								<!-- <div class="flex items-center mb-2 mr-4">
 									<img src="/images/bookings/water.png" alt="" />
 									<span class="ml-2">Water</span>
 								</div>
@@ -169,7 +180,7 @@
 								<div class="flex items-center mb-2 mr-4">
 									<img src="/images/bookings/tv.png" alt="" />
 									<span class="ml-2">TV & Internet Connections</span>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</span>
@@ -181,7 +192,7 @@
 				<h2 class="text-[1.3rem] font-bold">Project details</h2>
 				<ul class="list-disc list-inside text-[#4B4B4B] mt-[1rem] text-[1.1rem]">
 					<li>Project ID: {selectedSaleData.SaleDetail[0].project.id}</li>
-					<li>Price: {selectedSaleData.SaleDetail[0].sellingprice}</li>
+					<li>Price: Rs. {selectedSaleData.SaleDetail[0].sellingprice.toLocaleString()}</li>
 				</ul>
 				<hr class="border-t-2 border-gray-300 my-6 w-auto md:w-[60%]" />
 			</div>
@@ -229,13 +240,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-2 mr-[1rem] w-[60%] mt-[1rem] font-bold">
+			<!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mr-[1rem] w-[60%] mt-[1rem] font-bold">
 				<span class="mb-2">Down Payment 400,000/-</span>
 				<span class="mb-2">Possession 400,000/-</span>
 				<span class="mb-2">Yearly (4) 900,000/-</span>
 				<span class="mb-2">Monthly (48) 146,333/-</span>
 			</div>
-			<span class="text-[1.6rem] font-bold mt-[1rem]"> RS 146,333</span>
+			<span class="text-[1.6rem] font-bold mt-[1rem]"> RS 146,333</span> -->
 			<hr class="border-t-2 border-gray-300 my-6 w-auto md:w-[60%]" />
 			<div class="">
 				<h2 class="text-[1.3rem] font-bold">Rating</h2>
