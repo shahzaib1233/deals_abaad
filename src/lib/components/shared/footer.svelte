@@ -69,13 +69,13 @@
 				© 2023. All Rights Reserved By Dealsabaad
 			</p>
 			<div
-				class="flex flex-col md:flex-row justify-center items-center w-full flex-wrap gap-2 md:gap-8 text-white"
+				class="flex flex-col md:flex-row justify-center items-center flex-wrap gap-2 md:gap-8 text-white w-full md:w-auto"
 			>
 				<a href="/privacy">Privacy Policy</a>
 				<a href="/faq">FAQ</a>
 				<a href="/terms">Terms & Condition</a>
 				<a href="/refund">Refund Policy</a>
-				<div class="flex gap-8 mt-8">
+				<div class="flex gap-8 mt-8 md:mt-0 items-center">
 					<img src="/logos/visa.svg" alt="" />
 					<img src="/logos/jazzcash.svg" alt="" />
 					<img src="/logos/mastercard.svg" alt="" />
