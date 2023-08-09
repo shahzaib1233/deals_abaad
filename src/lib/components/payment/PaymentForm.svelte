@@ -246,7 +246,10 @@
 		on:submit|preventDefault={submit}
 		class="bg-[#F2F5F7] rounded-2xl px-2 sm:px-4 md:px-16 py-2 sm:py-8 md:py-16 mt-8 text-[1.1rem]"
 	>
-		<div class="text-center flex-col">
+		<div class="flex-col mb-8">
+			<h3 class="text-[1rem] md:text-[2rem] font-bold">
+				Project: {selectedSaleData.SaleDetail[0].project.name}
+			</h3>
 			<h3 class="text-[1rem] md:text-[2rem] font-bold">
 				Unit No: {selectedSaleData.SaleDetail[0].unitno}
 			</h3>
@@ -269,55 +272,7 @@
 				disabled={buttonDisabled}
 			/>
 		</div>
-		<!-- <div
-			class="flex flex-col md:flex-row bg-white min-h-[3.5rem] rounded-lg md:items-center mt-[3rem] sm:mt-[6rem] justify-between gap-4 py-4 md:py-0 px-4 md:px-0"
-		>
-			<div class="flex items-center md:justify-center md:w-1/5">
-				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Booking Date</h2>
-			</div>
-			<div class="flex items-center md:justify-center md:w-1/5">
-				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Standard Selling Price</h2>
-			</div>
-			<div class="flex items-center md:justify-center md:w-1/5">
-				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Promo Discount</h2>
-			</div>
-			<div class="flex items-center md:justify-center md:w-1/5">
-				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Referral Discount</h2>
-			</div>
-			<div class="flex items-center md:justify-center md:w-1/5">
-				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold">Net Selling Price</h2>
-			</div>
-		</div>
 
-		<div
-			class="flex flex-col md:flex-row min-h-[3.5rem] rounded-lg md:items-center mt-4 sm:mt-[1.5rem] justify-between gap-4 py-4 md:py-0 px-4 md:px-0"
-		>
-			<div class="flex items-center md:justify-center md:w-1/5">
-				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
-					{formatDate(selectedSaleData.date)}
-				</h2>
-			</div>
-			<div class="flex items-center md:justify-center md:w-1/5">
-				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
-					Rs. {Math.round(selectedSaleData.SaleDetail[0].sellingprice).toLocaleString()}
-				</h2>
-			</div>
-			<div class="flex items-center md:justify-center md:w-1/5">
-				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
-					Rs. {Math.round(selectedSaleData.SaleDetail[0].promodiscount).toLocaleString()}
-				</h2>
-			</div>
-			<div class="flex items-center md:justify-center md:w-1/5">
-				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
-					Rs. {Math.round(selectedSaleData.SaleDetail[0].referraldiscount).toLocaleString()}
-				</h2>
-			</div>
-			<div class="flex items-center md:justify-center md:w-1/5">
-				<h2 class="text-[0.8rem] sm:text-[1rem] font-bold mr-[0.8rem] sm:mr-0">
-					Rs. {Math.round(selectedSaleData.SaleDetail[0].netsellingprice).toLocaleString()}
-				</h2>
-			</div>
-		</div> -->
 		<div class="mt-[1rem]" style="overflow-x:auto;">
 			<table class="w-full">
 				<tr class="bg-white min-h-[3.5rem] py-4">
