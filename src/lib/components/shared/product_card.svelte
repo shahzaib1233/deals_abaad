@@ -36,14 +36,16 @@
 		{/if}
 	</div>
 	<div class="">
-		<div class="flex justify-between items-start bg-[#4A6696] p-4 ">
+		<div class="flex justify-between items-start bg-[#4A6696] p-4 min-h-[7rem]">
 			<h6 class="font-bold text-[1rem] md:text-[1.5rem] text-white">{desc}</h6>
 			<div class="flex items-center gap-[2px] mr-4">
 				<img src="/icons/star.svg" alt="" />
 				<p class="text-[1.125rem] text-white">{rating.toString()}</p>
 			</div>
 		</div>
-		<p class="my-4 text-[#4B4B4B] text-[1rem] md:text-[1.25rem] max-w-[19.8rem] font-medium px-4 md:px-6">
+		<p
+			class="my-4 text-[#4B4B4B] text-[1rem] md:text-[1.25rem] max-w-[19.8rem] font-medium px-4 md:px-6"
+		>
 			{name}
 		</p>
 		<div class="flex justify-between px-4 md:px-6 pb-6">
