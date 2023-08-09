@@ -210,7 +210,7 @@
 		<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold"> Booking Amount </span>
 		<span class="text-left mt-2 mb-4 text-[0.9rem] md:text-[1.2rem]">
 			Rs {bookingAmount.toLocaleString()}
-			{#if bookingAmount == 1}
+			{#if (bookingAmount == 1 && !fields.confirmationcheck)}
 				(Bank Rs. 0.5)
 			{/if}
 		</span>
