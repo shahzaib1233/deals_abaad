@@ -11,7 +11,7 @@
 			class="bg-[#4A6594] rounded-md h-[6rem] sm:h-[4rem] flex items-center justify-center w-full"
 		>
 			<span class="text-white ml-[1rem] text-[1rem] md:text-[1.2rem] w-[auto] text-center">
-				Apply Voucher/Referral Code to Get Exclusive Discount!
+				Apply Discount/Referral Code to Get Exclusive Discount!
 			</span>
 		</div>
 		<div class="mt-[1.5rem] md:mt-0">

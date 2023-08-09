@@ -28,12 +28,12 @@
 	};
 </script>
 
-<Modal title="Apply Voucher/Referral Code" open={showModal} on:close={() => handleToggleModal()}>
+<Modal title="Apply Discount/Referral Code" open={showModal} on:close={() => handleToggleModal()}>
 	<svelte:fragment slot="body">
 		<form slot="body" on:submit|preventDefault={submit}>
 			<input
 				required
-				placeholder="Voucher/Referral Code"
+				placeholder="Discount/Referral Code"
 				class="w-full focus:outline-none px-3 py-2 rounded-md border border-[#ced4da] text-[1rem]"
 				bind:value={data.referralcode}
 			/>
