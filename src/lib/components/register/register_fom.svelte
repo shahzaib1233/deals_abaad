@@ -5,6 +5,7 @@
 	import Cookies from 'js-cookie';
 	import Button from '../shared/button.svelte';
 	import TextField from '../shared/text_field.svelte';
+	import { setToken } from '$lib/stores/token';
 
 	let loading = false;
 
@@ -37,7 +38,9 @@
 			Cookies.set('cnic', res.data.cnic ?? '');
 			Cookies.set('gender', res.data.gender ?? '');
 			Cookies.set('dob', res.data.dob ?? '');
-			
+
+			setToken(res.data.accessToken);
+
 			setTimeout(() => goto(previousRoute ?? '/'), 1000);
 		} catch (e) {}
 		loading = false;
