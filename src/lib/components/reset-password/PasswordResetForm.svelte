@@ -21,7 +21,7 @@
 				email: Cookies.get('email')
 			});
 			const status = res.data.otpstatus;
-			toast({ type: 'success', heading: 'User Registered', text: 'User registered successfully' });
+			toast({ type: 'success', heading: 'User Registered', text: 'Password has been changed' });
 			// Cookies.set('email', data.email);
 			setTimeout(() => goto('/login'), 1000);
 		} catch (e) {}
