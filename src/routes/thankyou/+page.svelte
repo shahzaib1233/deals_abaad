@@ -30,7 +30,7 @@
 		<div class="flex flex-col justify-center items-center mt-[1rem] font-bold text-center">
 			{#if dealDetails?.confirmationcheck == false && resultResponse != 'JCN'}
 				<h2 class="text-[1rem] md:text-[1.563rem] text-center">
-					Confirmation Payment Must be Paid within 3 days of Booking to avoid cancellation
+					Confirmation Payment Must be Paid within 2 days of Booking to avoid cancellation
 				</h2>
 			{/if}
 			{#if responseMessage && resultResponse != 'JCN'}
