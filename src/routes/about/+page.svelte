@@ -1,11 +1,14 @@
 <script>
 	import AboutCard from '$lib/components/about/about_card.svelte';
+	import heroImg from '$lib/assets/images/about-hero.png';
+	import aboutUsImg from '$lib/assets/images/about-us.jpg';
+	import missionVisionImg from '$lib/assets/images/vision-mission.jpg';
 
 	import Hero from '$lib/components/shared/hero.svelte';
 </script>
 
 <main>
-	<Hero heading="About us" desc="Karay apkay khuwaboon ko abaad" image="/images/about-hero.png" />
+	<Hero heading="About us" desc="Karay apkay khuwaboon ko abaad" image={heroImg} />
 	<div class="">
 		<div
 			class="my-container flex flex-col lg:flex-row flex-wrap py-[4rem] md:py-[7rem] lg:py-[9rem]"
@@ -38,11 +41,7 @@
 				</p>
 			</div>
 			<div class="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
-				<img
-					src="/images/about-us.jpg"
-					alt=""
-					class="max-w-[39.75rem] object-contain w-[100%] lg:w-[80%]"
-				/>
+				<img src={aboutUsImg} alt="" class="max-w-[39.75rem] object-contain w-[100%] lg:w-[80%]" />
 			</div>
 		</div>
 	</div>
@@ -52,7 +51,7 @@
 		>
 			<div class="flex-1 flex justify-center lg:justify-start mt-8 lg:mt-0 order-1 lg:order-[-1]">
 				<img
-					src="/images/vision-mission.jpg"
+					src={missionVisionImg}
 					alt=""
 					class="max-w-[39.75rem] object-contain w-[100%] lg:w-[80%]"
 				/>

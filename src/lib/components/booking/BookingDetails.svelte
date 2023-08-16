@@ -151,36 +151,6 @@
 										<span class="ml-2">{feature.feature.name}</span>
 									</div>
 								{/each}
-								<!-- <div class="flex items-center mb-2 mr-4">
-									<img src="/images/bookings/water.png" alt="" />
-									<span class="ml-2">Water</span>
-								</div>
-
-								<div class="flex items-center mb-2 mr-4">
-									<img src="/images/bookings/parking.png" alt="" />
-									<span class="ml-2">Parking Area</span>
-								</div>
-
-								<div class="flex items-center mb-2 mr-4">
-									<img src="/images/bookings/electricity.png" alt="" />
-									<span class="ml-2">Electricity</span>
-								</div>
-								<div class="flex items-center mb-2 mr-4">
-									<img src="/images/bookings/security-cam.png" alt="" />
-									<span class="ml-2">Security Staff</span>
-								</div>
-								<div class="flex items-center mb-2 mr-4">
-									<img src="/images/bookings/maintenance.png" alt="" />
-									<span class="ml-2">Maintenance Staff</span>
-								</div>
-								<div class="flex items-center mb-2 mr-4">
-									<img src="/images/bookings/cctv.png" alt="" />
-									<span class="ml-2">CCTV Cameras</span>
-								</div>
-								<div class="flex items-center mb-2 mr-4">
-									<img src="/images/bookings/tv.png" alt="" />
-									<span class="ml-2">TV & Internet Connections</span>
-								</div> -->
 							</div>
 						</div>
 					</span>

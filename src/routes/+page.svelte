@@ -7,6 +7,7 @@
 	import PlayVideo from '$lib/components/home/play_video.svelte';
 	import CustomerTestimonial from '$lib/components/home/customer_testimonial.svelte';
 	import AmazingDeals from '$lib/components/home/amazing_deals.svelte';
+	import img from '$lib/assets/images/home-hero.png';
 
 	export let data;
 </script>
@@ -15,7 +16,7 @@
 	<Hero
 		heading="Deals of a lifetime"
 		desc="Grab these dream properties before they gone"
-		image="/images/home-hero.png"
+		image={img}
 		search={true}
 		dropdown={data.dropdown}
 	/>

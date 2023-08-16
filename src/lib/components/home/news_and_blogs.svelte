@@ -1,4 +1,8 @@
 <script>
+	import img1 from '$lib/assets/images/news-4.png';
+	import img2 from '$lib/assets/images/news-5.png';
+	import img3 from '$lib/assets/images/news-66.png';
+
 	import NewsCard from '$lib/components/shared/news_card.svelte';
 </script>
 
@@ -10,21 +14,21 @@
 		<NewsCard
 			name="Bahria United Mobile Market"
 			desc="Bahria United Mobile Market by GFS Builders and Developers is one of the best projects of Bahria Town Karachi says Mr. Rizwan Irfan "
-			img="/images/news-4.png"
+			img={img1}
 			date="22 May 23"
 			urlEndPoint="1"
 		/>
 		<NewsCard
 			name="Real Estate Vs. Stock"
 			desc="Are you confused about making a decision whether to invest in real estate or stocks? Stop worrying as we are here to help you out."
-			img="/images/news-5.png"
+			img={img2}
 			date="December 17, 2021"
 			urlEndPoint="2"
 		/>
 		<NewsCard
 			name="Five Reasons to Make a Real Estate Investment Today"
 			desc="We all are living in a fast-paced world where everyone is looking to invest in the right sectors. We want to earn the best profit by investing less time and money."
-			img="/images/news-66.png"
+			img={img3}
 			date="November 24, 2021"
 			urlEndPoint="3"
 		/>

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import img from '$lib/assets/images/video-bg.png';
+
 	let check = false;
 	const videoPlayer = () => {
 		check = true;
@@ -20,7 +22,7 @@
 	{:else}
 		<div
 			class="hero min-h-[25.5rem] md:min-h-[35.5rem] rounded-2xl flex flex-col items-center justify-center px-4"
-			style="background-image: url(/images/video-bg.png)"
+			style="background-image: url({img})"
 		>
 			<h2
 				class="text-white text-[2rem] md:text-[3.438rem] font-extrabold max-w-[49.7rem] text-center leading-[120%]"
