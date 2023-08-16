@@ -13,9 +13,16 @@
 	let dealAdd: any;
 	let inventory: any;
 	onMount(() => {
-		dealDtl = JSON.parse(localStorage.getItem('dealDetails') ?? '');
-		dealAdd = JSON.parse(localStorage.getItem('Deal_Details') ?? '');
-		inventory = JSON.parse(localStorage.getItem('inventory') ?? '');
+		if (localStorage.getItem('inventory')) {
+			dealDtl = JSON.parse(localStorage.getItem('dealDetails') ?? '');
+			if (dealDtl == '') {
+				console.log('hello ');
+			}
+			dealAdd = JSON.parse(localStorage.getItem('Deal_Details') ?? '');
+			inventory = JSON.parse(localStorage.getItem('inventory') ?? '');
+		} else {
+			goto('/');
+		}
 	});
 
 	function openWindowWithPost(url: any, name: any, params: any) {

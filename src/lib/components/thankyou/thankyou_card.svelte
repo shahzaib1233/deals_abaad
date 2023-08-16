@@ -20,7 +20,8 @@
 
 		orderId = localStorage.getItem('orderId');
 
-		localStorage.setItem('orderId', '');
+		localStorage.removeItem('orderId');
+		localStorage.removeItem('inventory');
 		Cookies.remove('orderId');
 	});
 </script>
