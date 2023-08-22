@@ -158,7 +158,9 @@
 				<div class="flex items-start pl-0 md:pl-4">
 					<TextField
 						bind:value={data.email}
+						type="email"
 						className="w-full md:w-[23rem] min-h-[2.5rem] md:min-h-[3rem]"
+						disabled
 					/>
 				</div>
 			</div>
