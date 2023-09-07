@@ -48,6 +48,11 @@
 
 	const submit = async () => {
 		const dealDetails = JSON.parse(localStorage.getItem('dealDetails') ?? '');
+		const inventory = JSON.parse(localStorage.getItem('inventory') ?? '');
+		dealDetails.dealId = inventory.dealId;
+		dealDetails.dealName = inventory.dealName;
+		console.log(dealDetails);
+
 		const res = await axiosFunction({ url: 'sale/create', method: 'POST', data: dealDetails });
 
 		localStorage.setItem('orderId', res.data.saleId);

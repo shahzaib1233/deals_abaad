@@ -26,6 +26,8 @@
 		label: string;
 	}
 	const handleCheckboxChange = (scheduleItem: any) => {
+		console.log(scheduleItem);
+
 		if (scheduleItem.paymentstatus) return;
 
 		if (selectedInstallments.includes(scheduleItem)) {
@@ -59,7 +61,11 @@
 
 	const scheduleHandler = async () => {
 		try {
+			console.log('1');
+
 			const res = await getScheduleApi();
+			console.log('2');
+
 			response = res.data;
 			console.log(response);
 

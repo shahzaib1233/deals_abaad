@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import { toast } from '../stores/notification';
 
 interface FetchProps {
-	method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+		method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 	url: string;
 	data?: any;
 	params?: any;

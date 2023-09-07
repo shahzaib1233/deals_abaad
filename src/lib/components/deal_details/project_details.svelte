@@ -1,6 +1,5 @@
 <script lang="ts">
 	export let data: any;
-	console.log('abhi wala data = ', data);
 </script>
 
 <div class="">
