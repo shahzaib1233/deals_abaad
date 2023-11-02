@@ -12,7 +12,7 @@
 	</h2>
 	<div class="flex flex-wrap gap-[1.5rem]">
 		{#each deals as item}
-			<ProductCard
+			<ProductCard	
 				productId={item.id}
 				name={item.name}
 				desc={item.desc}

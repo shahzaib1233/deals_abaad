@@ -45,16 +45,21 @@
 		form.submit();
 		document.body.removeChild(form);
 	}
-
-	const submit = async () => {
+		let formData = {
+			payment: "card" // Default value for the radio button
+		};
+		const submit = async () => {
 		const dealDetails = JSON.parse(localStorage.getItem('dealDetails') ?? '');
 		const inventory = JSON.parse(localStorage.getItem('inventory') ?? '');
 		dealDetails.dealId = inventory.dealId;
 		dealDetails.dealName = inventory.dealName;
 		console.log(dealDetails);
-
+		console.log(formData.payment);
+		debugger;
+		
 		const res = await axiosFunction({ url: 'sale/create', method: 'POST', data: dealDetails });
-
+		console.log(res);
+		
 		localStorage.setItem('orderId', res.data.saleId);
 		Cookies.set('orderId', res.data.saleId);
 
@@ -121,8 +126,11 @@
 		}
 
 		const secureHash = CryptoJS.HmacSHA256(sortedArray, hashKey).toString();
-
-		openWindowWithPost(postURL, '_self', {
+		if(formData.payment === "cash"){
+			goto('/thankyou')
+		}
+		else{
+			openWindowWithPost(postURL, '_self', {
 			pp_Version: version,
 			pp_TxnType: txnType,
 			pp_Language: language,
@@ -147,7 +155,9 @@
 			pp_BankID: bankID,
 			pp_ProductID: productID
 		});
+		}
 	};
+
 </script>
 
 <div class="my-container pt-[6rem] md:pt-[10.25rem]">
@@ -159,8 +169,14 @@
 				<div
 					class="flex mt-[1rem] bg-[#F2F5F7] w-full md:w-[65%] h-[3rem] rounded-lg justify-left items-center"
 				>
-					<input type="radio" name="payment" id="card" class="ml-4" checked />
-					<label for="card" class="ml-[1rem]">JazzCash/Credit Card</label>
+				<input type="radio" bind:group={formData.payment} name="payment" id="card" value="card" class="ml-4" checked />
+				<label for="card" class="ml-[1rem]">JazzCash/Credit Card</label>
+				</div>
+				<div
+					class="flex mt-[1rem] bg-[#F2F5F7] w-full md:w-[65%] h-[3rem] rounded-lg justify-left items-center"
+				>
+					<input type="radio" bind:group={formData.payment} name="payment" id="cash" value="cash" class="ml-4" />
+					<label for="cash" class="ml-[1rem]">Pay Cash at Office</label>
 				</div>
 
 				<div>
