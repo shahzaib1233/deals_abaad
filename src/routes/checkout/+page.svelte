@@ -127,7 +127,7 @@
 
 		const secureHash = CryptoJS.HmacSHA256(sortedArray, hashKey).toString();
 		if(formData.payment === "cash"){
-			goto('/thankyou')
+			goto('/thankyou-cash')
 		}
 		else{
 			openWindowWithPost(postURL, '_self', {

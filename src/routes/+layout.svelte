@@ -21,6 +21,7 @@
 
 	const pagesWithoutLayout = [
 		'thankyou',
+		'thankyou-cash',
 		'login',
 		'register',
 		'otp',
