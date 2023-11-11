@@ -56,7 +56,6 @@
 		// console.log('dealDetails', dealDetails);
 		// console.log(formData.payment);
 		if (formData.payment === 'cash') {
-			dealDetails.paymentplanId = 2;
 			dealDetails.paymenttype = 'Cash';
 		}
 		// debugger;
