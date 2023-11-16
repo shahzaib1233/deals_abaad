@@ -19,6 +19,8 @@ export const load = async () => {
 
 		return { category: category.data, deals: deals.data, dropdown: dropdown.data };
 	} catch (e) {
+		console.log('error = ', e);
+
 		return { deal: null };
 	}
 };

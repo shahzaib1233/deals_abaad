@@ -16,7 +16,7 @@
 		if (localStorage.getItem('inventory')) {
 			dealDtl = JSON.parse(localStorage.getItem('dealDetails') ?? '');
 			if (dealDtl == '') {
-				console.log('hello ');
+				// console.log('hello ');
 			}
 			dealAdd = JSON.parse(localStorage.getItem('Deal_Details') ?? '');
 			inventory = JSON.parse(localStorage.getItem('inventory') ?? '');
@@ -45,21 +45,24 @@
 		form.submit();
 		document.body.removeChild(form);
 	}
-		let formData = {
-			payment: "card" // Default value for the radio button
-		};
-		const submit = async () => {
+	let formData = {
+		payment: 'card' // Default value for the radio button
+	};
+	const submit = async () => {
 		const dealDetails = JSON.parse(localStorage.getItem('dealDetails') ?? '');
 		const inventory = JSON.parse(localStorage.getItem('inventory') ?? '');
 		dealDetails.dealId = inventory.dealId;
 		dealDetails.dealName = inventory.dealName;
-		console.log(dealDetails);
-		console.log(formData.payment);
-		debugger;
-		
+		// console.log('dealDetails', dealDetails);
+		// console.log(formData.payment);
+		if (formData.payment === 'cash') {
+			dealDetails.paymenttype = 'Cash';
+		}
+		// debugger;
+
 		const res = await axiosFunction({ url: 'sale/create', method: 'POST', data: dealDetails });
-		console.log(res);
-		
+		// console.log(res);
+
 		localStorage.setItem('orderId', res.data.saleId);
 		Cookies.set('orderId', res.data.saleId);
 
@@ -126,38 +129,36 @@
 		}
 
 		const secureHash = CryptoJS.HmacSHA256(sortedArray, hashKey).toString();
-		if(formData.payment === "cash"){
-			goto('/thankyou-cash')
-		}
-		else{
+		if (formData.payment === 'cash') {
+			goto('/thankyou-cash');
+		} else {
 			openWindowWithPost(postURL, '_self', {
-			pp_Version: version,
-			pp_TxnType: txnType,
-			pp_Language: language,
-			pp_MerchantID: merchantID,
-			pp_SubMerchantID: subMerchantID,
-			pp_Password: password,
-			pp_TxnRefNo: txnRefNumber,
-			pp_Amount: amount,
-			pp_IsRegisteredCustomer: isRegisteredCustomer,
-			pp_TxnCurrency: txnCurrency,
-			pp_TxnDateTime: dayjs().format('YYYYMMDDHHmmss'),
-			pp_TxnExpiryDateTime: dayjs().add(8, 'days').format('YYYYMMDDHHmmss'),
-			pp_BillReference: billReference,
-			pp_Description: description,
-			pp_ReturnURL: returnURL,
-			pp_SecureHash: secureHash,
-			ppmpf_1: ppmpf_1,
-			ppmpf_2: ppmpf_2,
-			ppmpf_3: ppmpf_3,
-			ppmpf_4: ppmpf_4,
-			ppmpf_5: ppmpf_5,
-			pp_BankID: bankID,
-			pp_ProductID: productID
-		});
+				pp_Version: version,
+				pp_TxnType: txnType,
+				pp_Language: language,
+				pp_MerchantID: merchantID,
+				pp_SubMerchantID: subMerchantID,
+				pp_Password: password,
+				pp_TxnRefNo: txnRefNumber,
+				pp_Amount: amount,
+				pp_IsRegisteredCustomer: isRegisteredCustomer,
+				pp_TxnCurrency: txnCurrency,
+				pp_TxnDateTime: dayjs().format('YYYYMMDDHHmmss'),
+				pp_TxnExpiryDateTime: dayjs().add(8, 'days').format('YYYYMMDDHHmmss'),
+				pp_BillReference: billReference,
+				pp_Description: description,
+				pp_ReturnURL: returnURL,
+				pp_SecureHash: secureHash,
+				ppmpf_1: ppmpf_1,
+				ppmpf_2: ppmpf_2,
+				ppmpf_3: ppmpf_3,
+				ppmpf_4: ppmpf_4,
+				ppmpf_5: ppmpf_5,
+				pp_BankID: bankID,
+				pp_ProductID: productID
+			});
 		}
 	};
-
 </script>
 
 <div class="my-container pt-[6rem] md:pt-[10.25rem]">
@@ -169,13 +170,28 @@
 				<div
 					class="flex mt-[1rem] bg-[#F2F5F7] w-full md:w-[65%] h-[3rem] rounded-lg justify-left items-center"
 				>
-				<input type="radio" bind:group={formData.payment} name="payment" id="card" value="card" class="ml-4" checked />
-				<label for="card" class="ml-[1rem]">JazzCash/Credit Card</label>
+					<input
+						type="radio"
+						bind:group={formData.payment}
+						name="payment"
+						id="card"
+						value="card"
+						class="ml-4"
+						checked
+					/>
+					<label for="card" class="ml-[1rem]">JazzCash/Credit Card</label>
 				</div>
 				<div
 					class="flex mt-[1rem] bg-[#F2F5F7] w-full md:w-[65%] h-[3rem] rounded-lg justify-left items-center"
 				>
-					<input type="radio" bind:group={formData.payment} name="payment" id="cash" value="cash" class="ml-4" />
+					<input
+						type="radio"
+						bind:group={formData.payment}
+						name="payment"
+						id="cash"
+						value="cash"
+						class="ml-4"
+					/>
 					<label for="cash" class="ml-[1rem]">Pay Cash at Office</label>
 				</div>
 

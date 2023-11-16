@@ -8,8 +8,12 @@
 	import CustomerTestimonial from '$lib/components/home/customer_testimonial.svelte';
 	import AmazingDeals from '$lib/components/home/amazing_deals.svelte';
 	import img from '$lib/assets/images/home-hero.png';
+	import { onMount } from 'svelte';
 
 	export let data;
+	onMount(() => {
+		console.log(data);
+	});
 </script>
 
 <main>
