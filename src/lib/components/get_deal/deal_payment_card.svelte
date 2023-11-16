@@ -14,7 +14,7 @@
 	export let price: number;
 	export let saleprice: number;
 	export let bookingAmount = 0;
-
+	
 	let confirmationAmount = 0;
 
 	let token = '';
@@ -35,13 +35,14 @@
 	};
 
 	let paymentPlan = 1;
+		console.log(plan);
 
-	onMount(() => {
-		paymentData.downPayment = Math.round((saleprice / 100) * +plan[0].downpayment);
-		paymentData.possession = Math.round((saleprice / 100) * +plan[0].possessionamount);
-		paymentData.annualPayment = Math.round((price / 100) * +plan[0].annualpayment);
-		paymentData.biannualPayments = Math.round((price / 100) * +plan[0].biannualpayments);
-		paymentData.quarterlyPayments = Math.round((price / 100) * +plan[0].quarterlypayments);
+		const calculation = () =>{
+				paymentData.downPayment = Math.round((saleprice / 100) * +plan[paymentPlan-1].downpayment);
+		paymentData.possession = Math.round((saleprice / 100) * +plan[paymentPlan-1].possessionamount);
+		paymentData.annualPayment = Math.round((price / 100) * +plan[paymentPlan-1].annualpayment);
+		paymentData.biannualPayments = Math.round((price / 100) * +plan[paymentPlan-1].biannualpayments);
+		paymentData.quarterlyPayments = Math.round((price / 100) * +plan[paymentPlan-1].quarterlypayments);
 		paymentData.noOfInstallments = +plan[0].noOfInstallments;
 		paymentData.amountPerInstallment = Math.round(
 			(price -
@@ -52,11 +53,14 @@
 				paymentData.possession) /
 				paymentData.noOfInstallments
 		);
-
+		
 		confirmationAmount = Math.round(
 			paymentData.downPayment > 0 ? paymentData.downPayment : paymentData.amountPerInstallment
 		);
 		fields.confirmationAmount = confirmationAmount;
+		}
+	onMount(() => {
+	calculation()
 	});
 
 	const paymentHandler = () => {
@@ -89,7 +93,7 @@
 >
 	<div class="flex justify-between">
 		<div class="flex items-center">
-			<label for="plan1" class="text-[#4B4B4B] text-[1rem] md:text-[1.125rem]"
+			<label for="plan1" class="text-[#4B4B4B] text-[1rem] md:text-[1rem]"
 				>Payment Plan One</label
 			>
 			<input
@@ -100,11 +104,31 @@
 				id="plan1"
 				on:change={() => {
 					paymentPlan = 1;
+						calculation()
+
 				}}
-				class="ml-[1rem] md:ml-[2.5rem]"
+				class="ml-[1rem] "
+			/>
+		</div>
+		<div class="flex items-center">
+			<label for="plan3" class="text-[#4B4B4B] text-[1rem] md:text-[1rem]"
+				>Customized Payment Plan</label
+			>
+			<input
+				type="radio"
+				color="yellow"
+				name="plan"
+				id="plan3"
+				on:change={() => {
+					paymentPlan = 2;
+						calculation()
+
+				}}
+				class="ml-[1rem] "
 			/>
 		</div>
 	</div>
+	<!-- {#if paymentPlan===1} -->
 	<div class="mt-[1rem] text-[1rem] md:text-[1.188rem]">
 		<!-- <h2 class="mt-3">
 			Down Payment
@@ -196,7 +220,7 @@
 		</p>
 		<h2 class="mt-[2rem] font-bold">BOOKING & PAYMENT DETAILS</h2>
 	</div>
-	<!-- <div class="flex justify-between mt-[1rem]">
+<!-- <div class="flex justify-between mt-[1rem]">
 		<span>Product</span>
 		<span>Subtotal</span>
 	</div> -->
@@ -263,4 +287,21 @@
 		Your personal data will be used to process your order, support your experience throughout this
 		website, and for other purposes described in our privacy policy.
 	</h2>
+	<!-- {:else} -->
+	<!-- <div class="flex justify-left mt-[2rem]">
+
+		<Button
+			className="rounded-md w-[14.438rem] mt-6 h-[2.5rem] text-[0.9rem] md:text-[1.2rem]"
+			type="submit"
+			onclick={() => paymentHandler()}
+			label="Purchase this Deal"
+		/>
+	</div>
+	<h2 class="w-[90%] mt-6 text-[0.9rem] md:text-[1.2rem]">
+		Your personal data will be used to process your order, support your experience throughout this
+		website, and for other purposes described in our privacy policy.
+	</h2> -->
+	<!-- {/if} -->
+	
+	
 </div>
