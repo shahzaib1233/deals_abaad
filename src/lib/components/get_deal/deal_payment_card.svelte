@@ -14,15 +14,12 @@
 	export let price: number;
 	export let saleprice: number;
 	export let bookingAmount = 0;
-	
+
 	let confirmationAmount = 0;
-
 	let token = '';
-
 	tokenStore.subscribe((value) => {
 		token = value;
 	});
-
 	let paymentData = {
 		sellingPrice: 0,
 		downPayment: 0,
@@ -34,33 +31,50 @@
 		noOfInstallments: 0
 	};
 
-	let paymentPlan = 1;
-		console.log(plan);
+	let paymentPlan = 0;
 
-		const calculation = () =>{
-				paymentData.downPayment = Math.round((saleprice / 100) * +plan[paymentPlan-1].downpayment);
-		paymentData.possession = Math.round((saleprice / 100) * +plan[paymentPlan-1].possessionamount);
-		paymentData.annualPayment = Math.round((price / 100) * +plan[paymentPlan-1].annualpayment);
-		paymentData.biannualPayments = Math.round((price / 100) * +plan[paymentPlan-1].biannualpayments);
-		paymentData.quarterlyPayments = Math.round((price / 100) * +plan[paymentPlan-1].quarterlypayments);
-		paymentData.noOfInstallments = +plan[0].noOfInstallments;
-		paymentData.amountPerInstallment = Math.round(
-			(price -
-				paymentData.downPayment -
-				paymentData.annualPayment -
-				paymentData.biannualPayments -
-				paymentData.quarterlyPayments -
-				paymentData.possession) /
-				paymentData.noOfInstallments
-		);
-		
-		confirmationAmount = Math.round(
-			paymentData.downPayment > 0 ? paymentData.downPayment : paymentData.amountPerInstallment
-		);
-		fields.confirmationAmount = confirmationAmount;
+	const calculation = () => {
+		if (plan[paymentPlan].noOfInstallments > 0) {
+			paymentData.downPayment = Math.round((saleprice / 100) * +plan[paymentPlan].downpayment);
+			paymentData.possession = Math.round((saleprice / 100) * +plan[paymentPlan].possessionamount);
+			paymentData.annualPayment = Math.round((price / 100) * +plan[paymentPlan].annualpayment);
+			paymentData.biannualPayments = Math.round(
+				(price / 100) * +plan[paymentPlan].biannualpayments
+			);
+			paymentData.quarterlyPayments = Math.round(
+				(price / 100) * +plan[paymentPlan].quarterlypayments
+			);
+			paymentData.noOfInstallments = +plan[paymentPlan].noOfInstallments;
+			paymentData.amountPerInstallment = Math.round(
+				(price -
+					paymentData.downPayment -
+					paymentData.annualPayment -
+					paymentData.biannualPayments -
+					paymentData.quarterlyPayments -
+					paymentData.possession) /
+					paymentData.noOfInstallments
+			);
+
+			confirmationAmount = Math.round(
+				paymentData.downPayment > 0 ? paymentData.downPayment : paymentData.amountPerInstallment
+			);
+			fields.confirmationAmount = confirmationAmount;
+			fields.paymentplanId = 1;
+		} else {
+			paymentData.downPayment = plan[paymentPlan].downpayment;
+			paymentData.possession = Math.round((saleprice / 100) * +plan[paymentPlan].possessionamount);
+			paymentData.annualPayment = plan[paymentPlan].annualpayment;
+			paymentData.biannualPayments = plan[paymentPlan].biannualpayments;
+			paymentData.quarterlyPayments = plan[paymentPlan].quarterlypayments;
+			paymentData.noOfInstallments = plan[paymentPlan].noOfInstallments;
+			paymentData.amountPerInstallment = plan[paymentPlan].amountPerInstallment;
+			fields.confirmationAmount = 0;
+			confirmationAmount = 0;
+			fields.paymentplanId = 3;
 		}
+	};
 	onMount(() => {
-	calculation()
+		calculation();
 	});
 
 	const paymentHandler = () => {
@@ -68,19 +82,39 @@
 			toast({ type: 'error', heading: 'Error', text: 'Please Login first' });
 			return;
 		}
+		fields.downpayment = paymentData.downPayment;
+		fields.possession = paymentData.possession;
+		fields.yearly = paymentData.annualPayment;
+		fields.biannual = paymentData.biannualPayments;
+		fields.quaterly = paymentData.quarterlyPayments;
+		fields.noofinstallments = paymentData.noOfInstallments;
+
+		console.log(fields);
+		debugger;
+
 		paymentBtn.click();
 		setPaymentFields(fields);
-		// goto('/checkout');
 	};
 
 	$: {
-		if (fields.confirmationcheck) {
-			fields.totalAmount = confirmationAmount + bookingAmount;
-		} else if (bookingAmount == 1) {
-			fields.totalAmount = bookingAmount + 0.5;
+		if (plan[paymentPlan].noOfInstallments > 0) {
+			if (fields.confirmationcheck) {
+				fields.totalAmount = confirmationAmount + bookingAmount;
+			} else if (bookingAmount == 1) {
+				fields.totalAmount = bookingAmount + 0.5;
+			} else {
+				fields.totalAmount = bookingAmount;
+			}
 		} else {
 			fields.totalAmount = bookingAmount;
 		}
+		// if (fields.confirmationcheck) {
+		// 	fields.totalAmount = confirmationAmount + bookingAmount;
+		// } else if (bookingAmount == 1) {
+		// 	fields.totalAmount = bookingAmount + 0.5;
+		// } else {
+		// 	fields.totalAmount = bookingAmount;
+		// }
 	}
 
 	const handleCheckboxChange = (check: boolean) => {
@@ -93,76 +127,58 @@
 >
 	<div class="flex justify-between">
 		<div class="flex items-center">
-			<label for="plan1" class="text-[#4B4B4B] text-[1rem] md:text-[1rem]"
-				>Payment Plan One</label
-			>
+			<label for="plan1" class="text-[#4B4B4B] text-[1rem] md:text-[1rem]">Payment Plan One</label>
 			<input
 				type="radio"
 				color="yellow"
-				checked={paymentPlan == 1}
+				checked={paymentPlan == 0}
 				name="plan"
 				id="plan1"
 				on:change={() => {
-					paymentPlan = 1;
-						calculation()
-
+					paymentPlan = 0;
+					calculation();
 				}}
-				class="ml-[1rem] "
+				class="ml-[1rem]"
 			/>
 		</div>
-		<div class="flex items-center">
-			<label for="plan3" class="text-[#4B4B4B] text-[1rem] md:text-[1rem]"
-				>Customized Payment Plan</label
-			>
-			<input
-				type="radio"
-				color="yellow"
-				name="plan"
-				id="plan3"
-				on:change={() => {
-					paymentPlan = 2;
-						calculation()
-
-				}}
-				class="ml-[1rem] "
-			/>
-		</div>
+		{#if plan.length > 1}
+			<div class="flex items-center">
+				<label for="plan3" class="text-[#4B4B4B] text-[1rem] md:text-[1rem]"
+					>Customized Payment Plan</label
+				>
+				<input
+					type="radio"
+					color="yellow"
+					name="plan"
+					id="plan3"
+					on:change={(row) => {
+						paymentPlan = 1;
+						calculation();
+					}}
+					class="ml-[1rem]"
+				/>
+			</div>
+		{/if}
 	</div>
-	<!-- {#if paymentPlan===1} -->
 	<div class="mt-[1rem] text-[1rem] md:text-[1.188rem]">
-		<!-- <h2 class="mt-3">
-			Down Payment
-			<span class="ml-4">
-				{Math.round(paymentData.downPayment).toLocaleString()}/-
-			</span>
-		</h2> -->
 		<div class="flex flex-col md:flex-row justify-between">
-			<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold"> Down Payment </span>
+			<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold">Down Payment </span>
 			<span class="text-left mt-2 mb-4 text-[0.9rem] md:text-[1.2rem]">
 				{Math.round(paymentData.downPayment).toLocaleString()}/-
 			</span>
 		</div>
-		<!-- <h2 class="mt-3">
-			Monthly ({paymentData.noOfInstallments.toLocaleString()})
-			<span class="ml-4">
-				{paymentData.amountPerInstallment.toLocaleString()}/-
-			</span>
-		</h2> -->
-		<div class="flex flex-col md:flex-row justify-between">
-			<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold">
-				Monthly ({paymentData.noOfInstallments.toLocaleString()})
-			</span>
-			<span class="text-left mt-2 mb-4 text-[0.9rem] md:text-[1.2rem]">
-				{paymentData.amountPerInstallment.toLocaleString()}/-
-			</span>
-		</div>
-		{#if paymentData.annualPayment > 0}
-			<!-- <h2 class="mt-3">
-				Yearly ({(paymentData.noOfInstallments / 12).toFixed(0).toLocaleString()})
-				<span class="ml-4">
-					{paymentData.annualPayment.toLocaleString()}/-
+
+		{#if paymentData.noOfInstallments > 0}
+			<div class="flex flex-col md:flex-row justify-between">
+				<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold">
+					Monthly ({paymentData.noOfInstallments.toLocaleString()})
 				</span>
-			</h2> -->
+				<span class="text-left mt-2 mb-4 text-[0.9rem] md:text-[1.2rem]">
+					{paymentData.amountPerInstallment.toLocaleString()}/-
+				</span>
+			</div>
+		{/if}
+		{#if paymentData.annualPayment > 0}
 			<div class="flex flex-col md:flex-row justify-between">
 				<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold">
 					Yearly ({(paymentData.noOfInstallments / 12).toFixed(0).toLocaleString()})
@@ -173,12 +189,6 @@
 			</div>
 		{/if}
 
-		<!-- <h2 class="mt-3">
-			Possession{' '}
-			<span class="ml-4">
-				{paymentData.possession.toLocaleString()}/-
-			</span>
-		</h2> -->
 		<div class="flex flex-col md:flex-row justify-between mt">
 			<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold">
 				Possession{' '}
@@ -187,63 +197,45 @@
 				{paymentData.possession.toLocaleString()}/-
 			</span>
 		</div>
-		<!-- <h2 class="mt-3">
-			<input
-				type="checkbox"
-				id="camount"
-				bind:checked={fields.confirmationcheck}
-				on:change={() => handleCheckboxChange(fields.confirmationcheck)}
-			/>
 
-			<label for="camount">Confirmation Amount</label>{' '}
-			<span>({fields.confirmationAmount.toLocaleString()} /-)</span>
-		</h2> -->
-		<div class="flex flex-col md:flex-row justify-between mt">
-			<span class="text-left mt-4 text-[1rem] md:text-[1.2rem]">
-				<input
-					type="checkbox"
-					id="camount"
-					bind:checked={fields.confirmationcheck}
-					on:change={() => handleCheckboxChange(fields.confirmationcheck)}
-					class="rounded-md h-[1.2rem] w-[1.2rem]"
-				/>
-				<label for="camount" class="ml-2 font-bold text-[0.9rem] md:text-[1.2rem]"
-					>Confirmation Amount</label
-				>{' '}
-			</span>
-			<span class="text-left mt-2 mb-4 text-[0.9rem] md:text-[1.2rem]">
-				({fields.confirmationAmount.toLocaleString()} /-)
-			</span>
-		</div>
-		<p class="mt-6 text-sm text-[grey]">
-			Please Pay confirmation amount Now or in max 2 days to avoid cancellation
-		</p>
+		{#if paymentData.noOfInstallments > 0}
+			<div class="flex flex-col md:flex-row justify-between mt">
+				<span class="text-left mt-4 text-[1rem] md:text-[1.2rem]">
+					<input
+						type="checkbox"
+						id="camount"
+						bind:checked={fields.confirmationcheck}
+						on:change={() => handleCheckboxChange(fields.confirmationcheck)}
+						class="rounded-md h-[1.2rem] w-[1.2rem]"
+					/>
+					<label for="camount" class="ml-2 font-bold text-[0.9rem] md:text-[1.2rem]"
+						>Confirmation Amount</label
+					>{' '}
+				</span>
+				<span class="text-left mt-2 mb-4 text-[0.9rem] md:text-[1.2rem]">
+					({fields.confirmationAmount.toLocaleString()} /-)
+				</span>
+			</div>
+			<p class="mt-6 text-sm text-[grey]">
+				Please Pay confirmation amount Now or in max 2 days to avoid cancellation
+			</p>
+		{/if}
+
 		<h2 class="mt-[2rem] font-bold">BOOKING & PAYMENT DETAILS</h2>
 	</div>
-<!-- <div class="flex justify-between mt-[1rem]">
-		<span>Product</span>
-		<span>Subtotal</span>
-	</div> -->
+
 	<hr class="border-gray-300 border-1 mt-2" />
 
-	<!-- <div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1rem] md:text-[1.25rem]">
-		<span>Booking Amount</span>
-		<span>Rs {bookingAmount.toLocaleString()} </span>
-	</div> -->
 	<div class="flex flex-col md:flex-row justify-between mt">
 		<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold"> Booking Amount </span>
 		<span class="text-left mt-2 mb-4 text-[0.9rem] md:text-[1.2rem]">
 			Rs {bookingAmount.toLocaleString()}
-			{#if (bookingAmount == 1 && !fields.confirmationcheck)}
+			{#if bookingAmount == 1 && !fields.confirmationcheck}
 				(Bank Rs. 0.5)
 			{/if}
 		</span>
 	</div>
-	{#if fields.AmountconfirmationCheck}
-		<!-- <div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1rem] md:text-[1.25rem]">
-			<span>Confirmation Amount</span>
-			<span>Rs {confirmationAmount.toLocaleString()} </span>
-		</div> -->
+	{#if paymentData.noOfInstallments > 0 && fields.AmountconfirmationCheck}
 		<div class="flex flex-col md:flex-row justify-between mt">
 			<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold">
 				Confirmation Amount
@@ -253,28 +245,29 @@
 			</span>
 		</div>
 	{/if}
-	<!-- <div class="flex justify-between mt-[1rem] text-[#1A202C] text-[1rem] md:text-[1.25rem]">
-		<span>Total</span>
-		<span>
-			Rs
-			{#if fields.confirmationcheck}
-				{(bookingAmount + confirmationAmount).toLocaleString()}
-			{:else}
-				{bookingAmount}
-			{/if}
-		</span>
-	</div> -->
+
 	<div class="flex flex-col md:flex-row justify-between mt">
 		<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold"> Total </span>
 		<span class="text-left mt-2 mb-4 text-[0.9rem] md:text-[1.2rem]">
 			Rs
-			{#if fields.confirmationcheck}
+			{#if paymentData.noOfInstallments > 0}
+				{#if fields.confirmationcheck}
+					{(bookingAmount + confirmationAmount).toLocaleString()}
+				{:else if bookingAmount == 1}
+					{(bookingAmount + 0.5).toLocaleString()}
+				{:else}
+					{bookingAmount}
+				{/if}
+			{:else}
+				{bookingAmount}
+			{/if}
+			<!-- {#if fields.confirmationcheck}
 				{(bookingAmount + confirmationAmount).toLocaleString()}
 			{:else if bookingAmount == 1}
 				{(bookingAmount + 0.5).toLocaleString()}
 			{:else}
 				{bookingAmount}
-			{/if}
+			{/if} -->
 		</span>
 	</div>
 	<Button
@@ -287,21 +280,4 @@
 		Your personal data will be used to process your order, support your experience throughout this
 		website, and for other purposes described in our privacy policy.
 	</h2>
-	<!-- {:else} -->
-	<!-- <div class="flex justify-left mt-[2rem]">
-
-		<Button
-			className="rounded-md w-[14.438rem] mt-6 h-[2.5rem] text-[0.9rem] md:text-[1.2rem]"
-			type="submit"
-			onclick={() => paymentHandler()}
-			label="Purchase this Deal"
-		/>
-	</div>
-	<h2 class="w-[90%] mt-6 text-[0.9rem] md:text-[1.2rem]">
-		Your personal data will be used to process your order, support your experience throughout this
-		website, and for other purposes described in our privacy policy.
-	</h2> -->
-	<!-- {/if} -->
-	
-	
 </div>

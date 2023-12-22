@@ -90,27 +90,27 @@
 		fields.bookingamount = data.inventoryValue.bookingPrice;
 		fields.projectId = data.inventoryValue.projectId;
 
-		fields.downpayment = Math.round((fields.sellingprice / 100) * +data.paymentPlan[0].downpayment);
-		fields.possession = Math.round(
-			(fields.sellingprice / 100) * +data.paymentPlan[0].possessionamount
-		);
-		fields.yearly = Math.round((fields.totalAmount / 100) * +data.paymentPlan[0].annualpayment);
-		fields.biannual = Math.round(
-			(fields.totalAmount / 100) * +data.paymentPlan[0].biannualpayments
-		);
-		fields.quaterly = Math.round(
-			(fields.totalAmount / 100) * +data.paymentPlan[0].quarterlypayments
-		);
-		fields.noofinstallments = +data.paymentPlan[0].noOfInstallments;
-		fields.monthly = Math.round(
-			(fields.totalAmount -
-				fields.downpayment -
-				fields.yearly -
-				fields.biannual -
-				fields.quaterly -
-				fields.possession) /
-				fields.noofinstallments
-		);
+		// fields.downpayment = Math.round((fields.sellingprice / 100) * +data.paymentPlan[0].downpayment);
+		// fields.possession = Math.round(
+		// 	(fields.sellingprice / 100) * +data.paymentPlan[0].possessionamount
+		// );
+		// fields.yearly = Math.round((fields.totalAmount / 100) * +data.paymentPlan[0].annualpayment);
+		// fields.biannual = Math.round(
+		// 	(fields.totalAmount / 100) * +data.paymentPlan[0].biannualpayments
+		// );
+		// fields.quaterly = Math.round(
+		// 	(fields.totalAmount / 100) * +data.paymentPlan[0].quarterlypayments
+		// );
+		// fields.noofinstallments = +data.paymentPlan[0].noOfInstallments;
+		// fields.monthly = Math.round(
+		// 	(fields.totalAmount -
+		// 		fields.downpayment -
+		// 		fields.yearly -
+		// 		fields.biannual -
+		// 		fields.quaterly -
+		// 		fields.possession) /
+		// 		fields.noofinstallments
+		// );
 	});
 
 	let paymentBtn: HTMLButtonElement;

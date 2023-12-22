@@ -47,4 +47,5 @@ export interface GETDEALFIELDS {
 	noofinstallments: number;
 	allotmentcheck: boolean;
 	AmountconfirmationCheck: boolean;
+	confirmationCheck: false;
 }
