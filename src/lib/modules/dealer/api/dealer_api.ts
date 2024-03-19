@@ -1,6 +1,7 @@
 import axiosFunction from '$lib/utils/network';
 
 export const createDealerApi = async (data: any) => {
+	console.log(data);
 	return await axiosFunction({
 		method: 'POST',
 		url: 'dealer/signup',
