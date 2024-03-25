@@ -49,22 +49,22 @@
 				}
 
 				// Use an HTMLImageElement to check the resolution
-				const img = new Image();
-				img.src = URL.createObjectURL(file);
+				// const img = new Image();
+				// img.src = URL.createObjectURL(file);
 
-				// Wait for the image to load before checking the resolution
-				await new Promise((resolve) => {
-					img.onload = resolve;
-				});
+				// // Wait for the image to load before checking the resolution
+				// await new Promise((resolve) => {
+				// 	img.onload = resolve;
+				// });
 
-				if (img.width !== 504 || img.height !== 338) {
-					toast({
-						type: 'error',
-						heading: 'Resolution',
-						text: 'Image resolution should be 504x338'
-					});
-					return; // Do not process the file
-				}
+				// if (img.width !== 504 || img.height !== 338) {
+				// 	toast({
+				// 		type: 'error',
+				// 		heading: 'Resolution',
+				// 		text: 'Image resolution should be 504x338'
+				// 	});
+				// 	return; // Do not process the file
+				// }
 			}
 			// Read base64 strings for the new files
 			const base64Strings = await readBase64StringsForFiles(newFiles);

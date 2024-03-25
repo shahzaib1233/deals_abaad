@@ -16,11 +16,12 @@
 	<div class="flex flex-wrap gap-[1.5rem] items-center justify-center">
 		{#each deals as item}
 			<DealerCard	
-				dealerId={item.id}
 				name={`${item.fname} ${item.lname}`}
 				contact={item.contactno}
 				email={item.email}
 				img={item.dealer_image}
+				companyName={item.business_name}
+				companyAddress={item.business_address}
 			/>
 		{/each}
 	</div>
