@@ -11,7 +11,7 @@
 </script>
 
 <main>
-    <Hero heading="Dealers" image="/images/dealers-hero.png" />
+    <Hero heading="Authorized Dealers" image="/images/dealers-hero.png" />
     <div class="bg-[#F2F5F7]">
         <div class="my-container py-[6.25rem]">
           <!-- <h2 class="text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%] mb-[1.2rem]">

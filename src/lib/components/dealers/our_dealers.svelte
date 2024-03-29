@@ -8,7 +8,7 @@
 	<h2
 		class="text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%] mb-[2.813rem] text-center"
 	>
-		Our dealers
+		Our authorized dealers
 	</h2>
 	<p class="text-[1rem] md:text-[1.313rem] text-[#4B4B4B] mb-[2.813rem] w-full text-center">
 		Here you can find our trustworthy and reliable dealers.
