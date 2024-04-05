@@ -2,6 +2,8 @@
 	import DealerCard from '../shared/dealer_card.svelte';
 
 	export let deals: any;
+
+	console.log(deals);
 </script>
 
 <div class="my-container mb-[5rem] md:mb-[8.25rem]">
