@@ -61,11 +61,7 @@
 
 	const scheduleHandler = async () => {
 		try {
-			console.log('1');
-
 			const res = await getScheduleApi();
-			console.log('2');
-
 			response = res.data;
 			console.log(response);
 

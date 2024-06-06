@@ -86,6 +86,11 @@
 									>Checkout</button
 								>
 							</li>
+							<li>
+								<button on:click={() => redirectHandler('/add-property')} class="py-2 px-4 w-full flex"
+									>Add Property</button
+								>
+							</li>
 							<!-- <li>
 								<button on:click={() => redirectHandler('/saved-ads')} class="pt-2 px-4 w-full flex"
 									>My saved ads</button

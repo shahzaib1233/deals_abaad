@@ -5,6 +5,5 @@
 
 <div class="my-container pt-[8rem] md:pt-[14.25rem]">
 	<PaymentFirstSection />
-
 	<PaymentForm />
 </div>

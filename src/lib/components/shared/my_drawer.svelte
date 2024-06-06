@@ -30,7 +30,7 @@
 		<div class="flex justify-between">
 			<a href="/"><img src="/logos/logo-dark.svg" alt="" class=" w-[12rem]" /></a>
 			<button class="self-end" on:click={() => (open = false)}>
-				<img src="/icons/close.svg" class="w-6 h-6" />
+				<img src="/icons/close.svg" class="w-6 h-6" alt="close"/>
 			</button>
 		</div>
 		<ul class="flex flex-col gap-6 mt-8">
@@ -40,6 +40,7 @@
 				<li><a href="/deals" class="hover:text-[#FFD624]">Deals</a></li>
 				<li><a href="/project" class="hover:text-[#FFD624]">Project</a></li>
 				<li><a href="/dealers" class="hover:text-[#FFD624]">Dealers</a></li>
+				<li><a href="/add-property" class="hover:text-[#FFD624]">Add Property</a></li>
 				<li><a href="/blogs" class="hover:text-[#FFD624]">News & Blogs</a></li>
 				<li><a href="/contact" class="hover:text-[#FFD624]">Contact Us</a></li>
 				<li><a href="/dealer-registration" class="hover:text-[#FFD624]">Dealer Registration</a></li>
