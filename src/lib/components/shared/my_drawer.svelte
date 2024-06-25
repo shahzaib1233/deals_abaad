@@ -54,6 +54,7 @@
 				<li><a href="/about" class="hover:text-[#FFD624]">About</a></li>
 				<li><a href="/deals" class="hover:text-[#FFD624]">Deals</a></li>
 				<li><a href="/project" class="hover:text-[#FFD624]">Project</a></li>
+				<li><a href="/login" class="hover:text-[#FFD624]">Add Property</a></li>
 				<li><a href="/dealers" class="hover:text-[#FFD624]">Dealers</a></li>
 				<li><a href="/blogs" class="hover:text-[#FFD624]">News & Blogs</a></li>
 				<li><a href="/contact" class="hover:text-[#FFD624]">Contact Us</a></li>
