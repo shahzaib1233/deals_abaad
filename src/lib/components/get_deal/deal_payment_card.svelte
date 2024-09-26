@@ -88,9 +88,7 @@
 		fields.biannual = paymentData.biannualPayments;
 		fields.quaterly = paymentData.quarterlyPayments;
 		fields.noofinstallments = paymentData.noOfInstallments;
-
-		console.log(fields);
-		debugger;
+		fields.monthly = paymentData.amountPerInstallment;
 
 		paymentBtn.click();
 		setPaymentFields(fields);
