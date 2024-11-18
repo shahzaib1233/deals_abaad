@@ -253,7 +253,7 @@
 			>0300 285 2856</a
 		>
 	</div>
-	<div class="block mt-7">
+	<div class="block mt-5 text-xs text-red-400">
 		** Registration Fee Rs.2500/- **
 	</div>
 	<Button
