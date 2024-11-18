@@ -44,6 +44,7 @@
 				<li><a href="/blogs" class="hover:text-[#FFD624]">News & Blogs</a></li>
 				<li><a href="/contact" class="hover:text-[#FFD624]">Contact Us</a></li>
 				<li><a href="/dealer-registration" class="hover:text-[#FFD624]">Dealer Registration</a></li>
+				<li><a href="/ballot-registration" class="hover:text-[#FFD624]">Ballot Registration</a></li>
 				<li><a href="/profile" class="hover:text-[#FFD624]">Profile</a></li>
 				<li><a href="/payment" class="hover:text-[#FFD624]">Payment</a></li>
 				<li><a href="/booking" class="hover:text-[#FFD624]">My Bookings</a></li>
@@ -59,6 +60,7 @@
 				<li><a href="/blogs" class="hover:text-[#FFD624]">News & Blogs</a></li>
 				<li><a href="/contact" class="hover:text-[#FFD624]">Contact Us</a></li>
 				<li><a href="/dealer-registration" class="hover:text-[#FFD624]">Dealer Registration</a></li>
+				<li><a href="/ballot-registration" class="hover:text-[#FFD624]">Ballot Registration</a></li>
 			{/if}
 		</ul>
 	</div>

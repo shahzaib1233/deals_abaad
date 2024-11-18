@@ -74,6 +74,7 @@
 				<p class="text-white">+92 304 111 7000</p>
 			</div>
 			<div class="flex items-center gap-6">
+				<Button label="Ballot Registrations" onclick={() => goto('/ballot-registration')} />
 				<Button label="Dealer Registrations" onclick={() => goto('/dealer-registration')} />
 				{#if token}
 					<Popover />

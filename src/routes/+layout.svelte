@@ -28,6 +28,7 @@
 		'forget-password',
 		'reset-password',
 		'dealer-registration',
+		'ballot-registration',
 		'user-login',
 		'dashboard'
 	];
