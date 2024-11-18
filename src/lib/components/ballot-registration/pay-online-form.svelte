@@ -178,21 +178,21 @@
 
 			<input
 				placeholder="DOB"
-				class="flex-1 focus:outline-none px-4 py-3 rounded-md border border-[#ced4da] text-[1.188rem]"
+				class="flex-1 focus:outline-none px-4 py-3 rounded-md border border-[#ced4da] text-[1.188rem] w-full"
 				bind:value={data.dob}
 				type="date"
 				required
 			/>
 		</div>
 		<div class="flex flex-col gap-2">
-			<label for="name">Interested In <span class="text-red-600 font-semibold">*</span></label>
+			<label for="name">Property Type <span class="text-red-600 font-semibold">*</span></label>
 
 			<select
 				required
 				bind:value={data.insterestedInLounge}
 				class="flex-1 focus:outline-none px-4 py-3 rounded-md border border-[#ced4da] text-[1.188rem]"
 			>
-				<option value="" selected disabled hidden>Interested In</option>
+				<option value="" selected disabled hidden>Select</option>
 				{#each interestedInArr as item}
 					<option value={item}>{item}</option>
 				{/each}
@@ -200,7 +200,7 @@
 		</div>
 		{#if data.insterestedInLounge.length > 0}
 			<div class="flex flex-col gap-2">
-				<label for="name">Installment <span class="text-red-600 font-semibold">*</span></label>
+				<label for="name">Desired Installment <span class="text-red-600 font-semibold">*</span></label>
 
 				<select
 					required
@@ -208,7 +208,7 @@
 					class="flex-1 focus:outline-none px-4 py-3 rounded-md border border-[#ced4da] text-[1.188rem]"
 				>
 					<option value="" selected disabled hidden
-						>How much monthly installment you can pay?</option
+						>Select</option
 					>
 					{#if data.insterestedInLounge === '1 Bed Lounge'}
 						{#each installmentsForOneBed as installment}
