@@ -18,7 +18,7 @@
 <div class="bg-[#F2F5F7] min-h-screen">
 	<div class="my-container pt-[2.25rem] md:w-[60%] sm:w-full pb-5">
 		<!-- {#if resultResponse != 'JCN'} -->
-			<div class="flex justify-center mt-32">
+			<div class="flex justify-center">
 				<h2 class="text-[2.063rem] md:text-[3.063rem] font-bold text-center">Thank you!</h2>
 			</div>
 
