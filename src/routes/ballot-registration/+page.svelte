@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PayOnlineForm from "$lib/components/pay-online/pay-online-form.svelte";
+	import PayOnlineForm from "$lib/components/ballot-registration/pay-online-form.svelte";
 	import Hero from "$lib/components/shared/hero.svelte";
 	import axiosFunction from "$lib/utils/network";
 
@@ -47,14 +47,14 @@
 </script>
 
 <main>
-    <Hero heading="Pay Online" image="/images/contact-hero.png" />
+    <Hero heading="Ballot Registration" image="/images/contact-hero.png" />
     <div class="bg-[#F2F5F7]">
         <div class="my-container py-[6.25rem]">
           <h2 class="text-[2.5rem] md:text-[3.438rem] font-extrabold leading-[120%] mb-[1.2rem]">
-            Pay Online
+            Ballot Registration
           </h2>
           <p class="text-[1rem] md:text-[1.313rem] text-[#4B4B4B] mb-[2.813rem] max-w-[52rem]">
-            For Down Payment, Installment Payment, and other payment methods send us a payment by filling out this form.
+            For registration, Please submit the form with the following details and pay the registration fee online.
           </p>
           <PayOnlineForm />
         </div>
