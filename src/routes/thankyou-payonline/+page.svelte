@@ -8,8 +8,10 @@
 	let voucherExpiry = $page.url.searchParams.get('JCVoucherExpiry');
 	let responseMessage = $page.url.searchParams.get('resultmessage');
 	let resultResponse = $page.url.searchParams.get('resultresponse');
-	let transtype = $page.url.searchParams.get('transtype');
 	let br_number = $page.url.searchParams.get('BRNumber');
+	let custName = $page.url.searchParams.get('name');
+	let custPhone = $page.url.searchParams.get('phone');
+	let propertyType = $page.url.searchParams.get('proptype');
 
 	voucherNo = voucherNo && voucherNo?.length > 0 ? voucherNo : '---';
 	voucherExpiry = voucherExpiry && voucherExpiry?.length > 0 ? voucherExpiry : '---';
@@ -33,7 +35,7 @@
 				</h2>
 			{/if}
 		</div>
-		<ThankYouPayOnlineCard {transtype} {voucherNo} {voucherExpiry} {br_number}/>
+		<ThankYouPayOnlineCard {voucherNo} {voucherExpiry} {br_number} {custName} {custPhone} {propertyType}/>
 		<div class="flex justify-center gap-4">
 			<Button
 				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] w-full h-[3.5rem] md:h-[2.5rem] "
