@@ -253,6 +253,9 @@
 			>0300 285 2856</a
 		>
 	</div>
+	<div class="block mt-7">
+		** Registration Fee Rs.2500/- **
+	</div>
 	<Button
 		className="mt-6 bg-[#FFD624] hover:bg-[#FFD624] text-[#1A202C] text-[1.188rem] font-[600] w-[16rem] h-[3.2rem] rounded-md"
 		type="submit"

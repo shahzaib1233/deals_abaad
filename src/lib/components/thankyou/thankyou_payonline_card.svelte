@@ -12,7 +12,7 @@
 		<h2 class="text-xl md:text-2xl font-bold mb-4">Form Details</h2>
 		<div class="grid grid-cols-2 md:grid-cols-2 gap-y-2">
 			{#if br_number}
-				<p class="text-sm md:text-base font-bold">Form Number</p>
+				<p class="text-sm md:text-base font-bold">Reference No</p>
 				<p class="text-sm md:text-base">{br_number}</p>
 			{/if}
 			{#if voucherNo}
@@ -20,15 +20,17 @@
 				<p class="text-sm md:text-base">{voucherNo}</p>
 			{/if}
 			{#if voucherExpiry}
-				<p class="text-sm md:text-base font-bold">Voucher Expiry Date</p>
+				<p class="text-sm md:text-base font-bold">Voucher Expiry Date:</p>
 				<p class="text-sm md:text-base">{voucherExpiry}</p>
 			{/if}
-			<p class="text-sm md:text-base font-bold">Name</p>
+			<p class="text-sm md:text-base font-bold">Customer's Name:</p>
 			<p class="text-sm md:text-base">{custName}</p>
-			<p class="text-sm md:text-base font-bold">Phone</p>
+			<p class="text-sm md:text-base font-bold">Contact No:</p>
 			<p class="text-sm md:text-base">{custPhone}</p>
-			<p class="text-sm md:text-base font-bold">Property Type</p>
+			<p class="text-sm md:text-base font-bold">Desried Property:</p>
 			<p class="text-sm md:text-base">{propertyType}</p>
+			<p class="text-sm md:text-base font-bold">Registration Fee:</p>
+			<p class="text-sm md:text-base">Rs: 2500/-</p>
 		</div>
 	</div>
 	<div class="md:w-1/2 mt-4 md:mt-0 md:ml-8 flex items-center justify-center mt-[3rem] md:">
