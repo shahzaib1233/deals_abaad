@@ -21,10 +21,17 @@
 			<p class="text-sm md:text-base">{custPhone}</p>
 			<p class="text-sm md:text-base font-bold">Desried Property:</p>
 			<p class="text-sm md:text-base">{propertyType}</p>
-			<p class="text-sm md:text-base font-bold">Installment:</p>
+			<p class="text-sm md:text-base font-bold">Desired Installment:</p>
 			<p class="text-sm md:text-base">{amount}</p>
 			<p class="text-sm md:text-base font-bold">Registration Fee:</p>
 			<p class="text-sm md:text-base">Rs: 2500/-</p>
+		</div>
+		<div class="block mt-4">
+			For further details, our helpline:
+			<a href="tel:03041117000" class="text-blue-400 underline">0304 111 7000</a> & WhatsApp:
+			<a href="https://wa.me/923002852856" target="_blank" class="text-blue-400 underline"
+				>0300 285 2856</a
+			>
 		</div>
 	</div>
 	<div class="md:w-1/2 mt-4 md:mt-0 md:ml-8 flex items-center justify-center mt-[3rem] md:">
