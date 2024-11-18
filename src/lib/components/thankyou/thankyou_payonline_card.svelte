@@ -7,7 +7,7 @@
 
 <div class="bg-white rounded-2xl mt-3 md:mt-12 px-6 py-8 md:flex md:items-center md:justify-center">
 	<div class="md:w-1/2 text-left md:text-left">
-		<h2 class="text-xl md:text-2xl font-bold mb-4">Order Details</h2>
+		<h2 class="text-xl md:text-2xl font-bold mb-4">Form Details</h2>
 		<div class="grid grid-cols-2 md:grid-cols-2 gap-y-2">
 			{#if br_number}
 				<p class="text-sm md:text-base font-bold">Form Number</p>

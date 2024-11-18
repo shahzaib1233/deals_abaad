@@ -39,6 +39,13 @@
 		document.body.removeChild(form);
 	}
 
+	function handleFocus(event: FocusEvent) {
+		const target = event.target as HTMLInputElement;
+		if (target) {
+			target.type = 'date';
+		}
+	}
+
 	const submit = async () => {
 		try {
 			loading = true;
@@ -94,7 +101,10 @@
 	const installmentsForShops = [25000, 30000, 35000, 40000, 45000, 50000];
 </script>
 
-<form on:submit|preventDefault={submit} class="flex flex-col items-center md:items-start justify-center">
+<form
+	on:submit|preventDefault={submit}
+	class="flex flex-col items-center md:items-start justify-center"
+>
 	<div class="grid grid-cols-1 md:grid-cols-2 grid-rows-5 gap-5 w-full">
 		<div class="flex flex-col gap-2 w-full">
 			<label for="name">Name <span class="text-red-600 font-semibold">*</span></label>
@@ -177,10 +187,11 @@
 			<label for="name">DOB <span class="text-red-600 font-semibold">*</span></label>
 
 			<input
-				placeholder="DOB"
+				placeholder="YYYY-MM-DD"
 				class="flex-1 focus:outline-none px-4 py-3 rounded-md border border-[#ced4da] text-[1.188rem] w-full"
 				bind:value={data.dob}
-				type="date"
+				type="text"
+				on:focus={handleFocus}
 				required
 			/>
 		</div>
@@ -200,16 +211,16 @@
 		</div>
 		{#if data.insterestedInLounge.length > 0}
 			<div class="flex flex-col gap-2">
-				<label for="name">Desired Installment <span class="text-red-600 font-semibold">*</span></label>
+				<label for="name"
+					>Desired Installment <span class="text-red-600 font-semibold">*</span></label
+				>
 
 				<select
 					required
 					bind:value={data.installment}
 					class="flex-1 focus:outline-none px-4 py-3 rounded-md border border-[#ced4da] text-[1.188rem]"
 				>
-					<option value="" selected disabled hidden
-						>Select</option
-					>
+					<option value="" selected disabled hidden>Select</option>
 					{#if data.insterestedInLounge === '1 Bed Lounge'}
 						{#each installmentsForOneBed as installment}
 							<option value={installment}>{installment}</option>
@@ -236,9 +247,11 @@
 		{/if}
 	</div>
 	<div class="block mt-4">
-		For further details, our helpline: 
-		<a href="tel:03041117000" class="text-blue-400 underline">0304 111 7000</a> & WhatsApp: 
-		<a href="https://wa.me/923002852856" target="_blank" class="text-blue-400 underline">0300 285 2856</a>
+		For further details, our helpline:
+		<a href="tel:03041117000" class="text-blue-400 underline">0304 111 7000</a> & WhatsApp:
+		<a href="https://wa.me/923002852856" target="_blank" class="text-blue-400 underline"
+			>0300 285 2856</a
+		>
 	</div>
 	<Button
 		className="mt-6 bg-[#FFD624] hover:bg-[#FFD624] text-[#1A202C] text-[1.188rem] font-[600] w-[16rem] h-[3.2rem] rounded-md"
