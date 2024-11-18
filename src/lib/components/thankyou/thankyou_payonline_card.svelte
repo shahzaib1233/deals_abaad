@@ -5,6 +5,7 @@
 	export let custName: any;
 	export let custPhone: any;
 	export let propertyType: any;
+	export let amount: any;
 </script>
 
 <div class="bg-white rounded-2xl mt-3 md:mt-12 px-6 py-8 md:flex md:items-center md:justify-center">
@@ -29,6 +30,8 @@
 			<p class="text-sm md:text-base">{custPhone}</p>
 			<p class="text-sm md:text-base font-bold">Desried Property:</p>
 			<p class="text-sm md:text-base">{propertyType}</p>
+			<p class="text-sm md:text-base font-bold">Installment:</p>
+			<p class="text-sm md:text-base">{amount}</p>
 			<p class="text-sm md:text-base font-bold">Registration Fee:</p>
 			<p class="text-sm md:text-base">Rs: 2500/-</p>
 		</div>

@@ -12,6 +12,7 @@
 	let custName = $page.url.searchParams.get('name');
 	let custPhone = $page.url.searchParams.get('phone');
 	let propertyType = $page.url.searchParams.get('proptype');
+	let amount = $page.url.searchParams.get('installment');
 
 	voucherNo = voucherNo && voucherNo?.length > 0 ? voucherNo : '---';
 	voucherExpiry = voucherExpiry && voucherExpiry?.length > 0 ? voucherExpiry : '---';
@@ -35,7 +36,7 @@
 				</h2>
 			{/if}
 		</div>
-		<ThankYouPayOnlineCard {voucherNo} {voucherExpiry} {br_number} {custName} {custPhone} {propertyType}/>
+		<ThankYouPayOnlineCard {voucherNo} {voucherExpiry} {br_number} {custName} {custPhone} {propertyType} {amount}/>
 		<div class="flex justify-center gap-4">
 			<Button
 				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] w-full h-[3.5rem] md:h-[2.5rem] "

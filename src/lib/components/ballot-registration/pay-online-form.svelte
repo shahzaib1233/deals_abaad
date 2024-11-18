@@ -151,13 +151,12 @@
 			/>
 		</div>
 		<div class="flex flex-col gap-2">
-			<label for="name">Second Phone No <span class="text-red-600 font-semibold">*</span></label>
+			<label for="name">Second Phone No</label>
 
 			<input
 				placeholder="Second Phone No"
 				class="flex-1 focus:outline-none px-4 py-3 rounded-md border border-[#ced4da] text-[1.188rem]"
 				bind:value={data.secPhone}
-				required
 				type="number"
 				pattern="[0-9]{11}"
 				maxlength="11"
@@ -253,7 +252,7 @@
 			>0300 285 2856</a
 		>
 	</div>
-	<div class="block mt-5 text-xs text-red-400">
+	<div class="block mt-5 text-bold text-red-400">
 		** Registration Fee Rs.2500/- **
 	</div>
 	<Button
