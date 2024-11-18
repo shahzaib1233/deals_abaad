@@ -29,6 +29,7 @@
 		'reset-password',
 		'dealer-registration',
 		'ballot-registration',
+		'thankyou-payonline',
 		'user-login',
 		'dashboard'
 	];
