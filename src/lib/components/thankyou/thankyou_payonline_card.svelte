@@ -1,6 +1,5 @@
 <script lang="ts">
 	export let voucherNo: any;
-	export let voucherExpiry: any;
 	export let br_number: any;
 	export let custName: any;
 	export let custPhone: any;
@@ -12,18 +11,10 @@
 	<div class="md:w-1/2 text-left md:text-left">
 		<h2 class="text-xl md:text-2xl font-bold mb-4">Form Details</h2>
 		<div class="grid grid-cols-2 md:grid-cols-2 gap-y-2">
-			{#if br_number}
-				<p class="text-sm md:text-base font-bold">Reference No</p>
-				<p class="text-sm md:text-base">{br_number}</p>
-			{/if}
-			{#if voucherNo}
-				<p class="text-sm md:text-base font-bold">Voucher No</p>
-				<p class="text-sm md:text-base">{voucherNo}</p>
-			{/if}
-			{#if voucherExpiry}
-				<p class="text-sm md:text-base font-bold">Voucher Expiry Date:</p>
-				<p class="text-sm md:text-base">{voucherExpiry}</p>
-			{/if}
+			<p class="text-sm md:text-base font-bold">Reference No</p>
+			<p class="text-sm md:text-base">{br_number}</p>
+			<p class="text-sm md:text-base font-bold">Voucher No</p>
+			<p class="text-sm md:text-base">{voucherNo}</p>
 			<p class="text-sm md:text-base font-bold">Customer's Name:</p>
 			<p class="text-sm md:text-base">{custName}</p>
 			<p class="text-sm md:text-base font-bold">Contact No:</p>

@@ -5,7 +5,6 @@
 	import ThankYouPayOnlineCard from '$lib/components/thankyou/thankyou_payonline_card.svelte';
 
 	let voucherNo = $page.url.searchParams.get('JCVoucherNo');
-	let voucherExpiry = $page.url.searchParams.get('JCVoucherExpiry');
 	let responseMessage = $page.url.searchParams.get('resultmessage');
 	let resultResponse = $page.url.searchParams.get('resultresponse');
 	let br_number = $page.url.searchParams.get('BRNumber');
@@ -15,7 +14,6 @@
 	let amount = $page.url.searchParams.get('installment');
 
 	voucherNo = voucherNo && voucherNo?.length > 0 ? voucherNo : '---';
-	voucherExpiry = voucherExpiry && voucherExpiry?.length > 0 ? voucherExpiry : '---';
 </script>
 
 <div class="bg-[#F2F5F7] min-h-screen">
@@ -36,7 +34,7 @@
 				</h2>
 			{/if}
 		</div>
-		<ThankYouPayOnlineCard {voucherNo} {voucherExpiry} {br_number} {custName} {custPhone} {propertyType} {amount}/>
+		<ThankYouPayOnlineCard {voucherNo} {br_number} {custName} {custPhone} {propertyType} {amount}/>
 		<div class="flex justify-center gap-4">
 			<Button
 				className="mb-[0.563rem] mt-[1.6rem] md:w-[11.813rem] w-full h-[3.5rem] md:h-[2.5rem] "
