@@ -34,7 +34,7 @@
 			>
 		</div>
 	</div>
-	<div class="md:w-1/2 mt-4 md:mt-0 md:ml-8 flex items-center justify-center mt-[3rem] md:">
+	<div class="md:w-1/2 mt-4 md:mt-0 md:ml-8 flex items-center justify-center">
 		<img src="images/thankyou/order-placed.png" alt="Customer" class="h-40 md:h-64" />
 	</div>
 </div>
