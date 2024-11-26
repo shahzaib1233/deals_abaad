@@ -8,7 +8,7 @@
 	import autoTable from 'jspdf-autotable';
 	import { onMount } from 'svelte';
 
-	let details = {};
+	let details: any = {};
 
 	let voucherNo = $page.url.searchParams.get('JCVoucherNo');
 	let responseMessage = $page.url.searchParams.get('resultmessage');
@@ -52,11 +52,20 @@
 			startY: yPosition + 5, // Table starts just below the heading
 			head: [['Form Details']],
 			body: [
-				[`BR Number`],
-				['Name'],
-				['Phone'],
-				['Property Type'],
-				['Installment Amount']
+				[`BR Number : ${details.BRNumber}`],
+				[`Name : ${details.name}`],
+				[`Father Name : ${details.fatherName}`],
+				[`CNIC : ${details.cnic}`],
+				[`Phone : 0${details.phone}`],
+				[`Secondary Phone : 0${details.secondaryPhone}`],
+				[`Address : ${details.address}`],
+				[`Date Of Birth : ${details.DOB}`],
+				[`Desired Installment : ${details.installment}`],
+				[`Desired Lounge : ${details.insterestedInLounge}`],
+				[`Voucher No : ${details.voucherNo}`],
+				[`Message : ${details.message}`],
+				[`Area / City: ${details.area}`],
+				[`Referral Code : ${details.referralCode}`]
 			],
 			styles: {
 				fontSize: 12,

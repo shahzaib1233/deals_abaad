@@ -15,7 +15,9 @@
 		address: '',
 		dob: '',
 		installment: '',
-		insterestedInLounge: ''
+		insterestedInLounge: '',
+		area: '',
+		referralCode: ''
 	};
 
 	function openWindowWithPost(url: any, name: any, params: any) {
@@ -163,13 +165,22 @@
 			/>
 		</div>
 		<div class="flex flex-col gap-2">
-			<label for="name">Nationality <span class="text-red-600 font-semibold">*</span></label>
+			<label for="name">Area / City <span class="text-red-600 font-semibold">*</span></label>
 
 			<input
-				placeholder="Nationality"
+				placeholder="Area / City"
 				class="flex-1 focus:outline-none px-4 py-3 rounded-md border border-[#ced4da] text-[1.188rem]"
-				bind:value={data.nationality}
+				bind:value={data.area}
 				required
+			/>
+		</div>
+		<div class="flex flex-col gap-2">
+			<label for="name">Referral Code</label>
+
+			<input
+				placeholder="Referral Code"
+				class="flex-1 focus:outline-none px-4 py-3 rounded-md border border-[#ced4da] text-[1.188rem]"
+				bind:value={data.referralCode}
 			/>
 		</div>
 		<div class="flex flex-col gap-2">
