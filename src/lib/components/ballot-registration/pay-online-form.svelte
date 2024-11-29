@@ -89,6 +89,15 @@
 	};
 
 	const interestedInArr = ['1 Bed Lounge', '2 Bed Lounge', '3 Bed Lounge', 'Showrooms', 'Shops'];
+	const areaArr = [
+		'Surjani Karachi',
+		'Malir Karachi',
+		'Orangi Town Karachi',
+		'Northern By Pass karachi',
+		'Highway Karachi',
+		'Islamabad',
+		'Lahore'
+	];
 
 	const installmentsForOneBed = [25000, 30000, 35000, 40000, 45000, 50000];
 
@@ -167,12 +176,22 @@
 		<div class="flex flex-col gap-2">
 			<label for="name">Area / City <span class="text-red-600 font-semibold">*</span></label>
 
-			<input
+			<select
+				required
+				bind:value={data.area}
+				class="flex-1 focus:outline-none px-4 py-3 rounded-md border border-[#ced4da] text-[1.188rem]"
+			>
+				<option value="" selected disabled hidden>Select</option>
+				{#each areaArr as item}
+					<option value={item}>{item}</option>
+				{/each}
+			</select>
+			<!-- <input
 				placeholder="Area / City"
 				class="flex-1 focus:outline-none px-4 py-3 rounded-md border border-[#ced4da] text-[1.188rem]"
 				bind:value={data.area}
 				required
-			/>
+			/> -->
 		</div>
 		<div class="flex flex-col gap-2">
 			<label for="name">Referral Code</label>
@@ -263,9 +282,7 @@
 			>0300 285 2856</a
 		>
 	</div>
-	<div class="block mt-5 font-extrabold text-red-400">
-		** Registration Fee Rs.2500/- **
-	</div>
+	<div class="block mt-5 font-extrabold text-red-400">** Registration Fee Rs.2500/- **</div>
 	<Button
 		className="mt-6 bg-[#FFD624] hover:bg-[#FFD624] text-[#1A202C] text-[1.188rem] font-[600] w-[16rem] h-[3.2rem] rounded-md"
 		type="submit"
