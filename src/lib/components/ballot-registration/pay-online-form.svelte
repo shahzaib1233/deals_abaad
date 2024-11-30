@@ -174,7 +174,7 @@
 			/>
 		</div>
 		<div class="flex flex-col gap-2">
-			<label for="name">Area / City <span class="text-red-600 font-semibold">*</span></label>
+			<label for="name">Project Locations <span class="text-red-600 font-semibold">*</span></label>
 
 			<select
 				required
