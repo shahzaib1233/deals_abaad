@@ -14,6 +14,7 @@
 		lname: '',
 		contactno: '',
 		email: '',
+		cnic:'',
 		password: '',
 		confirmPassword: ''
 	};
@@ -54,6 +55,7 @@
 		<TextField placeholder="Last Name" bind:value={data.lname} />
 	</div>
 	<TextField placeholder="Email" type="email" bind:value={data.email} className="mb-4" />
+	<TextField placeholder="Cnic" type="text" bind:value={data.cnic} required className="mb-4" />
 	<TextField placeholder="Phone" type="phone" bind:value={data.contactno} className="mb-4" />
 	<TextField placeholder="Password" type="password" bind:value={data.password} className="mb-4" />
 	<TextField

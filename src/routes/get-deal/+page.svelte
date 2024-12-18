@@ -112,7 +112,7 @@
 		// 		fields.noofinstallments
 		// );
 	});
-
+	
 	let paymentBtn: HTMLButtonElement;
 </script>
 

@@ -15,6 +15,16 @@
 	export let saleprice: number;
 	export let bookingAmount = 0;
 
+	console.log("///////////////////////////");
+	console.log(plan);
+	console.log("fields");
+	console.log(fields);
+	console.log("paymentBtn"+ paymentBtn);
+	console.log("price"+ price);
+	console.log("saleprice"+ saleprice);
+	console.log("bookingAmount"+ bookingAmount);
+	console.log("///////////////////////////");
+
 	let confirmationAmount = 0;
 	let token = '';
 	tokenStore.subscribe((value) => {
@@ -37,12 +47,12 @@
 		if (plan[paymentPlan].noOfInstallments > 0) {
 			paymentData.downPayment = Math.round((saleprice / 100) * +plan[paymentPlan].downpayment);
 			paymentData.possession = Math.round((saleprice / 100) * +plan[paymentPlan].possessionamount);
-			paymentData.annualPayment = Math.round((price / 100) * +plan[paymentPlan].annualpayment);
+			paymentData.annualPayment = Math.round((saleprice / 100) * +plan[paymentPlan].annualpayment);
 			paymentData.biannualPayments = Math.round(
-				(price / 100) * +plan[paymentPlan].biannualpayments
+				(saleprice / 100) * +plan[paymentPlan].biannualpayments
 			);
 			paymentData.quarterlyPayments = Math.round(
-				(price / 100) * +plan[paymentPlan].quarterlypayments
+				(saleprice / 100) * +plan[paymentPlan].quarterlypayments
 			);
 			paymentData.noOfInstallments = +plan[paymentPlan].noOfInstallments;
 			paymentData.amountPerInstallment = Math.round(

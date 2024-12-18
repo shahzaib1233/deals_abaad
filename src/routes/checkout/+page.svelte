@@ -53,15 +53,12 @@
 		const inventory = JSON.parse(localStorage.getItem('inventory') ?? '');
 		dealDetails.dealId = inventory.dealId;
 		dealDetails.dealName = inventory.dealName;
-		// console.log('dealDetails', dealDetails);
-		// console.log(formData.payment);
+		
 		if (formData.payment === 'cash') {
 			dealDetails.paymenttype = 'Cash';
 		}
-		// debugger;
 
 		const res = await axiosFunction({ url: 'sale/create', method: 'POST', data: dealDetails });
-		// console.log(res);
 
 		localStorage.setItem('orderId', res.data.saleId);
 		Cookies.set('orderId', res.data.saleId);
@@ -101,7 +98,7 @@
 			amount,
 			bankID,
 			billReference,
-			description,
+			res.data.project_name,
 			isRegisteredCustomer,
 			language,
 			merchantID,
@@ -146,14 +143,14 @@
 				pp_TxnDateTime: dayjs().format('YYYYMMDDHHmmss'),
 				pp_TxnExpiryDateTime: dayjs().add(8, 'days').format('YYYYMMDDHHmmss'),
 				pp_BillReference: billReference,
-				pp_Description: description,
+				pp_Description: res.data.project_name,
 				pp_ReturnURL: returnURL,
 				pp_SecureHash: secureHash,
 				ppmpf_1: ppmpf_1,
-				ppmpf_2: ppmpf_2,
+				ppmpf_2: description,
 				ppmpf_3: ppmpf_3,
 				ppmpf_4: ppmpf_4,
-				ppmpf_5: ppmpf_5,
+				ppmpf_5: 'web',
 				pp_BankID: bankID,
 				pp_ProductID: productID
 			});

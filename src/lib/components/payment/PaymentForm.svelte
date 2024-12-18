@@ -5,7 +5,6 @@
 	import { toast } from '$lib/stores/notification';
 	import { onMount } from 'svelte';
 	import Spinner from '$lib/components/shared/spinner.svelte';
-	import axiosFunction from '$lib/utils/network';
 	import dayjs from 'dayjs';
 	import CryptoJS from 'crypto-js';
 
@@ -50,6 +49,7 @@
 
 		buttonDisabled = selectedInstallments.length > 0 ? false : true;
 	};
+
 	const updateData = (saleIds: number[]) => {
 		const dataOptions = saleIds.map((saleId) => ({
 			value: saleId.toString(),
@@ -202,14 +202,14 @@
 			pp_TxnDateTime: dayjs().format('YYYYMMDDHHmmss'),
 			pp_TxnExpiryDateTime: dayjs().add(8, 'days').format('YYYYMMDDHHmmss'),
 			pp_BillReference: billReference,
-			pp_Description: description,
+			pp_Description: selectedSaleData.SaleDetail[0].project.name,
 			pp_ReturnURL: returnURL,
 			pp_SecureHash: secureHash,
 			ppmpf_1: ppmpf_1,
-			ppmpf_2: ppmpf_2,
+			ppmpf_2: description,
 			ppmpf_3: ppmpf_3,
 			ppmpf_4: ppmpf_4,
-			ppmpf_5: ppmpf_5,
+			ppmpf_5: 'schedule_web',
 			pp_BankID: bankID,
 			pp_ProductID: productID
 		});
