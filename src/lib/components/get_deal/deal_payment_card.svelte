@@ -44,7 +44,7 @@
 	let paymentPlan = 0;
 
 	const calculation = () => {
-		if (plan[paymentPlan].noOfInstallments > 0) {
+		if (plan[paymentPlan].plantype == 'percentage') {
 			paymentData.downPayment = Math.round((saleprice / 100) * +plan[paymentPlan].downpayment);
 			paymentData.possession = Math.round((saleprice / 100) * +plan[paymentPlan].possessionamount);
 			paymentData.annualPayment = Math.round((saleprice / 100) * +plan[paymentPlan].annualpayment);
@@ -72,7 +72,7 @@
 			fields.paymentplanId = 1;
 		} else {
 			paymentData.downPayment = plan[paymentPlan].downpayment;
-			paymentData.possession = Math.round((saleprice / 100) * +plan[paymentPlan].possessionamount);
+			paymentData.possession = plan[paymentPlan].possessionamount;
 			paymentData.annualPayment = plan[paymentPlan].annualpayment;
 			paymentData.biannualPayments = plan[paymentPlan].biannualpayments;
 			paymentData.quarterlyPayments = plan[paymentPlan].quarterlypayments;
@@ -80,7 +80,7 @@
 			paymentData.amountPerInstallment = plan[paymentPlan].amountPerInstallment;
 			fields.confirmationAmount = 0;
 			confirmationAmount = 0;
-			fields.paymentplanId = 3;
+			fields.paymentplanId = 1;
 		}
 	};
 	onMount(() => {
@@ -105,7 +105,7 @@
 	};
 
 	$: {
-		if (plan[paymentPlan].noOfInstallments > 0) {
+		if (plan[paymentPlan].plantype == 'percentage') {
 			if (fields.confirmationcheck) {
 				fields.totalAmount = confirmationAmount + bookingAmount;
 			} else if (bookingAmount == 1) {
@@ -206,7 +206,7 @@
 			</span>
 		</div>
 
-		{#if paymentData.noOfInstallments > 0}
+		<!-- {#if paymentData.noOfInstallments > 0} -->
 			<div class="flex flex-col md:flex-row justify-between mt">
 				<span class="text-left mt-4 text-[1rem] md:text-[1.2rem]">
 					<input
@@ -227,7 +227,7 @@
 			<p class="mt-6 text-sm text-[grey]">
 				Please Pay confirmation amount Now or in max 2 days to avoid cancellation
 			</p>
-		{/if}
+		<!-- {/if} -->
 
 		<h2 class="mt-[2rem] font-bold">BOOKING & PAYMENT DETAILS</h2>
 	</div>
@@ -243,7 +243,8 @@
 			{/if}
 		</span>
 	</div>
-	{#if paymentData.noOfInstallments > 0 && fields.AmountconfirmationCheck}
+	<!-- paymentData.noOfInstallments > 0 &&  -->
+	{#if fields.AmountconfirmationCheck}
 		<div class="flex flex-col md:flex-row justify-between mt">
 			<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold">
 				Confirmation Amount
@@ -258,7 +259,7 @@
 		<span class="text-left mt-4 text-[0.9rem] md:text-[1.2rem] font-bold"> Total </span>
 		<span class="text-left mt-2 mb-4 text-[0.9rem] md:text-[1.2rem]">
 			Rs
-			{#if paymentData.noOfInstallments > 0}
+			<!-- {#if paymentData.noOfInstallments > 0} -->
 				{#if fields.confirmationcheck}
 					{(bookingAmount + confirmationAmount).toLocaleString()}
 				{:else if bookingAmount == 1}
@@ -266,9 +267,9 @@
 				{:else}
 					{bookingAmount}
 				{/if}
-			{:else}
-				{bookingAmount}
-			{/if}
+			<!-- {:else} -->
+				<!-- {bookingAmount} -->
+			<!-- {/if} -->
 			<!-- {#if fields.confirmationcheck}
 				{(bookingAmount + confirmationAmount).toLocaleString()}
 			{:else if bookingAmount == 1}
