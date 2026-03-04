@@ -1,9 +1,8 @@
 {
-  "outputDirectory": "build",
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/$1"
     }
   ]
 }
