@@ -11,6 +11,22 @@ export const load = async ({ params }) => {
 
 		return { deal: data.data };
 	} catch (e) {
-		return { deal: null };
+		// Return mock data for static build
+		return { 
+			deal: {
+				comingSoon: true,
+				message: 'Coming Soon - Deal details will be displayed here once the backend is integrated.',
+				id: params.id,
+				name: 'Sample Deal',
+				desc: 'Property description will appear here',
+				price: '0',
+				saleper: 0,
+				frontImage: '',
+				DealImages: [],
+				endDate: '',
+				units: [],
+				vouchers: []
+			}
+		};
 	}
 };

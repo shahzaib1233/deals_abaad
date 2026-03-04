@@ -12,6 +12,15 @@ export const load = async ({ params }) => {
 
 		return { category: data.data };
 	} catch (e) {
-		return { category: null };
+		// Return mock data for static build
+		return { 
+			category: {
+				comingSoon: true,
+				message: 'Coming Soon - Category details will be displayed here once the backend is integrated.',
+				id: params.id,
+				name: 'Sample Category',
+				image: ''
+			}
+		};
 	}
 };

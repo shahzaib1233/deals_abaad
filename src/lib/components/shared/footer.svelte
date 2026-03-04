@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let dealsData: any;
 
-	let selectedData = dealsData.slice(0, 6);
+	let selectedData = (dealsData?.slice) ? dealsData.slice(0, 6) : [];
 	console.log(selectedData);
 </script>
 

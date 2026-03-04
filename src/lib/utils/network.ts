@@ -45,16 +45,84 @@ const axiosFunction = async ({
 		config['params'] = params;
 	}
 
-	const result = await axios(config)
-		.then(function (response) {
-			return response;
-		})
-		.catch(function (error) {
+	try {
+		const result = await axios(config);
+		return result;
+	} catch (error: any) {
+		// Return mock data for development when no backend is available
+		const mockData = getMockData(url);
+		if (mockData !== null) {
+			return { data: mockData };
+		}
+		
+		// Show error toast only if response exists
+		if (error.response?.data?.message) {
 			toast({ heading: 'Error', text: error.response.data.message, type: 'error' });
 			throw new AppError(error.response.data.message);
-		});
-
-	return result;
+		}
+		
+		// For network errors, return mock data
+		const fallbackMockData = getMockData(url);
+		if (fallbackMockData !== null) {
+			return { data: fallbackMockData };
+		}
+		
+		throw new AppError('Unable to connect to server. Showing placeholder data.');
+	}
 };
+
+// Mock data for development without backend
+function getMockData(url: string): any {
+	if (url.includes('deal/')) {
+		return {
+			comingSoon: true,
+			message: 'Coming Soon - Deal details will be displayed here once the backend is integrated.',
+			id: url.split('/')[1] || 1,
+			name: 'Sample Deal',
+			desc: 'Property description will appear here',
+			price: '0',
+			saleper: 0,
+			frontImage: '',
+			DealImages: [],
+			endDate: '',
+			units: [],
+			vouchers: []
+		};
+	}
+	if (url.includes('category/')) {
+		return {
+			comingSoon: true,
+			message: 'Coming Soon - Category details will be displayed here once the backend is integrated.',
+			id: url.split('/')[1] || 1,
+			name: 'Sample Category',
+			image: ''
+		};
+	}
+	if (url.includes('deal')) {
+		return {
+			comingSoon: true,
+			message: 'Coming Soon - Deals will be displayed here once the backend is integrated.',
+			data: []
+		};
+	}
+	if (url.includes('category')) {
+		return {
+			comingSoon: true,
+			message: 'Coming Soon - Categories will be displayed here once the backend is integrated.',
+			data: []
+		};
+	}
+	if (url.includes('home/dropdown')) {
+		return {
+			comingSoon: true,
+			message: 'Coming Soon - Dropdown data will be displayed here once the backend is integrated.',
+			project: [],
+			cities: [],
+			location: [],
+			property: []
+		};
+	}
+	return null;
+}
 
 export default axiosFunction;

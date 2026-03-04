@@ -24,8 +24,8 @@
 		search={true}
 		dropdown={data.dropdown}
 	/>
-	<Category category={data.category} />
-	<AmazingDeals deals={data.deals} />
+	<Category category={data.category?.data || []} />
+	<AmazingDeals deals={data.deals?.data || []} />
 	<PlayVideo />
 	<CustomerTestimonial />
 	<HowItWorks />

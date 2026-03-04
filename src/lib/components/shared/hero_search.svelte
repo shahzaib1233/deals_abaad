@@ -21,7 +21,7 @@
 	$: project = dropdown
 		? [
 				{ label: 'All', value: 0 },
-				...dropdown?.project.map((item: any) => ({
+				...(dropdown?.project || []).map((item: any) => ({
 					value: item.id,
 					label: item.name
 				}))
@@ -31,7 +31,7 @@
 	$: cities = dropdown
 		? [
 				{ label: 'All', value: 0 },
-				...dropdown?.cities.map((item: any) => ({
+				...(dropdown?.cities || []).map((item: any) => ({
 					value: item.id,
 					label: item.name
 				}))
@@ -41,7 +41,7 @@
 	$: location = dropdown
 		? [
 				{ label: 'All', value: 0 },
-				...dropdown?.location.map((item: any) => ({
+				...(dropdown?.location || []).map((item: any) => ({
 					value: item.id,
 					label: item.name
 				}))
@@ -51,7 +51,7 @@
 	$: property = dropdown
 		? [
 				{ label: 'All', value: 0 },
-				...dropdown?.property.map((item: any) => ({
+				...(dropdown?.property || []).map((item: any) => ({
 					value: item.id,
 					label: item.name
 				}))

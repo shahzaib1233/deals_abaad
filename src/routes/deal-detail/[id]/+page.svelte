@@ -15,7 +15,7 @@
 	onMount(() => {
 		bannerImage = localStorage.getItem('bannerImage');
 		responsiveBannerImage = localStorage.getItem('responsiveBannerImage');
-		images = data.deal.DealImages.map((image: any) => image.imagePath);
+		images = data.deal?.DealImages?.map((image: any) => image.imagePath) || [];
 	});
 
 	// localStorage.setItem('endDate', data.deal.endDate.split('T')[0]);
@@ -45,11 +45,18 @@
 		</div>
 	{/if}
 
-	<div class="mt-8 flex flex-col md:gap-8 md:flex-row">
-		<div>
-			<ApplyVoucher date={data.deal.endDate.split('T')[0]} left={data.deal.DealInventory.length} />
-			<ProjectDetails data={data.deal} />
+	{#if data.deal && !data.deal.comingSoon}
+		<div class="mt-8 flex flex-col md:gap-8 md:flex-row">
+			<div>
+				<ApplyVoucher date={data.deal.endDate?.split('T')[0] || ''} left={data.deal.DealInventory?.length || 0} />
+				<ProjectDetails data={data.deal} />
+			</div>
+			<div class="mt-8 md:mt-0"><SelectUnit data={data.deal} /></div>
 		</div>
-		<div class="mt-8 md:mt-0"><SelectUnit data={data.deal} /></div>
-	</div>
+	{:else}
+		<div class="mt-8 text-center py-12">
+			<p class="text-2xl font-bold mb-4">Coming Soon</p>
+			<p class="text-gray-600">Deal details will be displayed here once the backend is integrated.</p>
+		</div>
+	{/if}
 </main>

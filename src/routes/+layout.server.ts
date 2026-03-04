@@ -19,10 +19,22 @@ export const load = async ({ cookies, request }) => {
 		throw redirect(301, '/login');
 	}
 
-	const deals = await axiosFunction({
-		url: 'deal',
-		isServer: true
-	});
+	let deals;
+	try {
+		const dealsResponse = await axiosFunction({
+			url: 'deal',
+			isServer: true
+		});
+		deals = dealsResponse.data;
+	} catch (e) {
+		console.log('error loading deals = ', e);
+		// Return mock data for Coming Soon page
+		deals = {
+			comingSoon: true,
+			message: 'Coming Soon - Deals will be displayed here once the backend is integrated.',
+			data: []
+		};
+	}
 
-	return { token, deals: deals.data };
+	return { token, deals };
 };

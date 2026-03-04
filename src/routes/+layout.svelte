@@ -90,7 +90,7 @@
 
 	{#if !showLayout}
 		<GetInTouch />
-		<Footer dealsData={data.deals} />
+		<Footer dealsData={data.deals?.data || []} />
 	{/if}
 {/if}
 <Toast />
